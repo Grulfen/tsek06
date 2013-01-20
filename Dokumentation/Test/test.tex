@@ -8,7 +8,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 
-\input{LIPS.tex}
+\input{../LIPS.tex}
 
 \newcommand{\LIPSartaltermin}{2013/VT}
 \newcommand{\LIPSkursnamn}{TSEK06}
@@ -16,7 +16,7 @@
 \newcommand{\LIPSprojekttitel}{TITEL}
 
 \newcommand{\LIPSprojektgrupp}{GRUPP}
-\newcommand{\LIPSgruppepost}{komborobot@googlegroups.com}
+\newcommand{\LIPSgruppepost}{}
 \newcommand{\LIPSgrupphemsida}{finns ej}
 \newcommand{\LIPSdokumentansvarig}{Gustav Svensk}
 
@@ -43,8 +43,9 @@
 %% Argument till \LIPSgruppmedlem: namn, roll i gruppen, telefonnummer, epost
 \begin{LIPSprojektidentitet}
   \LIPSgruppmedlem{Nora Björklund}{Projektledare (PL)}{}{}
-  \LIPSgruppmedlem{\LIPSdokumentansvarig}{Dokumentansvarig (DOK)}{}{}
-  \LIPSgruppmedlem{Johan Berneland}{Reglersystem (REG)}{073-6208776}{gussv666@student.liu.se}
+  \LIPSgruppmedlem{\LIPSdokumentansvarig}{Dokumentansvarig
+  (DOK)}{}{gussv666@student.liu.se}
+  \LIPSgruppmedlem{Johan Berneland}{}{}{}
   \LIPSgruppmedlem{Gustaf Bengtz}{}{}{}
   \LIPSgruppmedlem{Christopher Hallberg}{}{}{}
 \end{LIPSprojektidentitet}
@@ -55,7 +56,7 @@
 %% Argument till \LIPSversionsinfo: versionsnummer, datum, ändringar, utfört av, granskat av
 \addcontentsline{toc}{section}{Dokumenthistorik}
 \begin{LIPSdokumenthistorik} 
-  \LIPSversionsinfo{0.1}{2012-04-10}{Första utkast.}{gussv666}{}
+  \LIPSversionsinfo{0.1}{}{Första utkast.}{gussv666}{}
 \end{LIPSdokumenthistorik}
 
 \end{document}
