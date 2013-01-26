@@ -1,0 +1,134 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+%\usepackage{gensymb}
+\usepackage{longtable}
+\input{../LIPS.tex}
+
+
+\newcommand{\LIPSartaltermin}{2013/VT}
+\newcommand{\LIPSkursnamn}{TSEK06}
+
+\newcommand{\LIPSprojekttitel}{DLL Based Frequency Multiplier}
+
+\newcommand{\LIPSprojektgrupp}{Grupp 7}
+\newcommand{\LIPSgruppepost}{}
+\newcommand{\LIPSgrupphemsida}{finns ej}
+\newcommand{\LIPSdokumentansvarig}{Gustav Svensk}
+
+\newcommand{\LIPSkund}{ISY, Linköpings universitet, 581\,83 Linköping}
+\newcommand{\LIPSkundkontakt}{}
+\newcommand{\LIPSkursansvarig}{}
+\newcommand{\LIPShandledare}{}
+
+
+\newcommand{\LIPSdokumenttyp}{Projektplan}
+\newcommand{\LIPSredaktor}{Nora Björklund}
+\newcommand{\LIPSversion}{0.1}
+\newcommand{\LIPSdatum}{\dagensdatum}
+
+\newcommand{\LIPSgranskare}{}
+\newcommand{\LIPSgranskatdatum}{}
+\newcommand{\LIPSgodkannare}{}
+\newcommand{\LIPSgodkantdatum}{}
+
+\begin{document}
+
+\LIPStitelsida
+
+%% Argument till \LIPSgruppmedlem: namn, roll i gruppen, telefonnummer, epost
+\begin{LIPSprojektidentitet}
+  \LIPSgruppmedlem{Nora Björklund}{Projektledare (PL)}{}{}
+  \LIPSgruppmedlem{\LIPSdokumentansvarig}{Dokumentansvarig (DOK)}{}{}
+  \LIPSgruppmedlem{Christopher Hallberg}{}{}{}
+  \LIPSgruppmedlem{Gustaf Bengtz}{}{}{}
+  \LIPSgruppmedlem{Johan Berneland}{}{}{}
+\end{LIPSprojektidentitet}
+
+\tableofcontents{}
+\newpage
+
+%% Argument till \LIPSversionsinfo: versionsnummer, datum, ändringar, utfört av, granskat av
+\addcontentsline{toc}{section}{Dokumenthistorik}
+\begin{LIPSdokumenthistorik}
+  \LIPSversionsinfo{0.1}{}{Första utkast.}{}{}
+\end{LIPSdokumenthistorik}
+\newpage
+
+
+\section{Beställare} %%SL
+
+\section{Översiktlig beskrivning av projektet} %%Markus
+
+\subsection{Syfte och mål}
+
+ 
+\subsection{Leveranser}
+
+\begin{LIPSleveranslista}
+        \LIPSleverans{Leverans}{\textbf{Ansvarig}}{\textbf{Syfte}}{Färdig-datum}
+\LIPSleverans{}{}{}{}
+\hline
+\end{LIPSleveranslista}
+
+
+
+
+\subsection{Begränsningar}
+
+\section{Fasplan}		
+
+\subsection{Under projektet}
+\subsection{Efter projektet}
+\section{Organisationsplan för hela projektet}	%%SL
+
+\subsection{Villkor för samarbete inom projektgruppen}
+
+\subsection{Definition av arbetsinnehåll och ansvar}
+\section{Dokumentplan}	%%MJ
+\hline
+\end{tabular}
+
+%%\section{Utvecklingsmetodik}	%%SW
+
+\section{Utbildningplan}	%%Markus
+\subsection{Egen utbildning}
+\subsection{Kundens utbildning}
+\section{Mötesplan}
+\section{Resursplan}	%%SW
+\subsection{Personer}
+\subsection{Materiel}
+\subsection{Lokaler}
+\subsection{Ekonomi}
+
+
+\section{Milstolpar och beslutspunkter} %%SL
+\subsection{Milstolpar}
+
+\subsection{Beslutspunkter}
+
+\section{Tidplan}
+
+\section{Kvalitetsplan}	%SL
+\subsection{Granskningar}
+\subsection{Testplan}
+\section{Prioriteringar}
+\section{Projektavslut} %MARKUS
+\newpage
+\appendix
+
+\newpage
+
+
+\addcontentsline{toc}{section}{Referenser}
+\begin{thebibliography}{99}
+\bibitem{lipskompendiet}\textit{Projektmodellen LIPS - } Svensson, Tomas
+\\Studentlitteratur, 2011.
+\end{thebibliography}
+
+\end{document} 
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
