@@ -17,9 +17,9 @@
 \newcommand{\LIPSdokumentansvarig}{Gustav Svensk}
 
 \newcommand{\LIPSkund}{ISY, Linköpings universitet, 581\,83 Linköping}
-\newcommand{\LIPSkundkontakt}{Amine Ojani}
+\newcommand{\LIPSkundkontakt}{Amin Ojani}
 \newcommand{\LIPSkursansvarig}{Atila Alvandpour}
-\newcommand{\LIPShandledare}{Amine Ojani}
+\newcommand{\LIPShandledare}{Amin Ojani}
 
 
 \newcommand{\LIPSdokumenttyp}{Project Plan}
@@ -59,11 +59,12 @@
 \newpage
 
 \section{Customer}
-The customer is Amine Ojani from the department of Electrical Engineering.
+The customer is Amin Ojani from the department of Electrical Engineering.
 
 \section{Project Outline}
 This project is the main part of the course TSEK06 - VLSI Chip Design Project.
 The purpose of this project is to design a DLL-Based frequency multiplier.
+DLL stands for delay-lock loop.
 
 \subsection{Project Goal}
 From \cite{project_spec} ``The project goal is to design an integrated circuit (IC) in complementary metal-oxide
@@ -77,17 +78,22 @@ test the manufactured chips, another course (TSEK11) is available after the proj
 
 \begin{LIPSleveranslista}
         \LIPSleverans{Delivery}{\textbf{Responsible}}{\textbf{Purpose}}{Deadline}
-\LIPSleverans{}{}{}{}
+        \LIPSleverans{High-level simulation result}{Nora Björklund}{Simulation results from high-level, ensuring the functionality of the model}{11/2 -13}
+        \LIPSleverans{Transistor-level simulation result}{Nora Björklund}{Simulation results from the gate/transistor level, ensuring the functionality of the design}{11/3 -13}
+        \LIPSleverans{Completed chip}{Nora Björklund}{The final design files for the chip}{13/5 -13}
+        \LIPSleverans{Final report}{Gustav Svensk}{Report indicating the functionality and how to use the chip}{24/5 -13}
 \hline
 \end{LIPSleveranslista}
 
 \subsection{Limitations}
+The final chip shall fulfill the requirements specified in section \ref{requirements}.
+The requirements with priority level High will be focused on first and the other requirements 
+will be focused on only after all the requirements with higher priority level have been met.
 
 \section{Project Phases}		
 \subsection{Before Project}
 \subsection{Under Project}
 \subsection{After Project}
-
 \section{Organization Plan}
 \subsection{Definition of parties and tasks}
 
@@ -104,6 +110,8 @@ test the manufactured chips, another course (TSEK11) is available after the proj
 \subsection{Materiel}
 \subsection{Labs}
 
+\section{Requirements}
+\label{requirements}
 \section{Milestones and Deadlines}
 \subsection{Milestones}
 \subsection{Deadlines}
@@ -127,7 +135,7 @@ test the manufactured chips, another course (TSEK11) is available after the proj
 \addcontentsline{toc}{section}{References}
 \begin{thebibliography}{99}
 \bibitem{project_spec}\textit{Project: DLL-Based Frequency Multiplier - } Bhide, Ameya
-\\ http://www.ek.isy.liu.se/courses/tsek06/ 2012-01-27
+\\ http://www.ek.isy.liu.se/courses/tsek06/ 2013-01-27
 \end{thebibliography}
 
 \end{document} 
