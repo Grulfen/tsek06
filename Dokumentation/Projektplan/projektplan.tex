@@ -7,15 +7,19 @@
 \newcommand{\LIPSkursnamn}{TSEK06}
 \newcommand{\LIPSprojekttitel}{DLL Based Frequency Multiplier}
 
-\newcommand{\LIPSprojektgrupp}{Grupp 7} 
+
+\newcommand{\LIPSprojektgrupp}{Group 7}
+
 \newcommand{\LIPSgruppepost}{}
 \newcommand{\LIPSgrupphemsida}{} 
 \newcommand{\LIPSdokumentansvarig}{Gustav Svensk}
 
 \newcommand{\LIPSkund}{ISY, Linköpings universitet, 581\,83 Linköping}
-\newcommand{\LIPSkundkontakt}{Amine Ojani} 
-\newcommand{\LIPSkursansvarig}{Atila Alvandpour} 
-\newcommand{\LIPShandledare}{Amine Ojani}
+
+\newcommand{\LIPSkundkontakt}{Amin Ojani}
+\newcommand{\LIPSkursansvarig}{Atila Alvandpour}
+\newcommand{\LIPShandledare}{Amin Ojani}
+
 
 
 \newcommand{\LIPSdokumenttyp}{Project Plan} 
@@ -28,8 +32,13 @@
 \newcommand{\LIPSgodkannare}{} 
 \newcommand{\LIPSgodkantdatum}{}
 
-\begin{document} \LIPStitelsida %% Argument till \LIPSgruppmedlem: namn, roll i
-gruppen, telefonnummer, epost \begin{LIPSprojektidentitet}
+
+\begin{document}
+\LIPStitelsida
+
+%% Argument till \LIPSgruppmedlem: namn, roll i gruppen, telefonnummer, epost
+\selectlanguage{swedish}
+\begin{LIPSprojektidentitet}
  
 \LIPSgruppmedlem{Nora Björklund}{Project leader}{}{}
 \LIPSgruppmedlem{\LIPSdokumentansvarig}{Documentation}{073
@@ -38,6 +47,7 @@ gruppen, telefonnummer, epost \begin{LIPSprojektidentitet}
 \LIPSgruppmedlem{Gustaf Bengtz}{}{}{} 
 \LIPSgruppmedlem{Johan Berneland}{}{}{}
 \end{LIPSprojektidentitet}
+
 \selectlanguage{english}
 
 \tableofcontents{} 
@@ -47,20 +57,39 @@ datum, ändringar, utfört av,granskat av
 \LIPSversionsinfo{0.1}{}{First draft.}{}{}\end{LIPSdokumenthistorik} 
 \newpage
 
-
 \section{Customer}
+The customer is Amin Ojani from the department of Electrical Engineering.
 
 \section{Project Outline}
+This project is the main part of the course TSEK06 - VLSI Chip Design Project.
+The purpose of this project is to design a DLL-Based frequency multiplier.
+DLL stands for delay-lock loop.
 
 \subsection{Project Goal}
+From \cite{project_spec} ``The project goal is to design an integrated circuit (IC) in complementary metal-oxide
+semiconductor (CMOS) technology. Students, participating in this project as project members
+and project leaders, should learn the different steps of the IC design flow. That includes the
+given system architecture analysis, simulation, layout implementation and verification. The
+project students have an optional choice to manufacture the designed IC circuit on a chip. To
+test the manufactured chips, another course (TSEK11) is available after the project.''
 
-\subsection{Deliveries}
+\subsection{Deliverables}
 
 \begin{LIPSleveranslista}
-\LIPSleverans{Delivery}{\textbf{Responsible}}{\textbf{Purpose}}{Deadline}\LIPSleverans{}{}{}{}
-\hline \end{LIPSleveranslista}
+
+        \LIPSleverans{Delivery}{\textbf{Responsible}}{\textbf{Purpose}}{Deadline}
+        \LIPSleverans{High-level simulation result}{Nora Björklund}{Simulation results from high-level, ensuring the functionality of the model}{11/2 -13}
+        \LIPSleverans{Transistor-level simulation result}{Nora Björklund}{Simulation results from the gate/transistor level, ensuring the functionality of the design}{11/3 -13}
+        \LIPSleverans{Completed chip}{Nora Björklund}{The final design files for the chip}{13/5 -13}
+        \LIPSleverans{Final report}{Gustav Svensk}{Report indicating the functionality and how to use the chip}{24/5 -13}
+\hline
+\end{LIPSleveranslista}
+
 
 \subsection{Limitations}
+The final chip shall fulfill the requirements specified in section \ref{requirements}.
+The requirements with priority level High will be focused on first and the other requirements 
+will be focused on only after all the requirements with higher priority level have been met.
 
 \section{Project Phases} 
 \subsection{Before Project}
@@ -80,8 +109,8 @@ post-layout simulations, modification and chip evaluations. Finally the chip
 design will be sent to the foundry for fabrication.
 
 \subsection{After Project}
+\section{Organization Plan}
 
-\section{Organization Plan} 
 \subsection{Definition of parties and tasks}
 \section{Documentation Plan}
 
@@ -103,7 +132,11 @@ the final report.
 \subsection{Materiel}
 \subsection{Labs}
 
-\section{Milestones and Deadlines} 
+
+\section{Requirements}
+\label{requirements}
+\section{Milestones and Deadlines}
+
 \subsection{Milestones}
 \subsection{Deadlines}
 
@@ -120,9 +153,13 @@ the final report.
 \appendix 
 \newpage
 
-\addcontentsline{toc}{section}{References} \begin{thebibliography}{99}
-\bibitem{lipskompendiet}\textit{Projektmodellen LIPS - } Svensson, Tomas
-\\Studentlitteratur, 2011. \end{thebibliography}
+
+\addcontentsline{toc}{section}{References}
+\begin{thebibliography}{99}
+\bibitem{project_spec}\textit{Project: DLL-Based Frequency Multiplier - } Bhide, Ameya
+\\ http://www.ek.isy.liu.se/courses/tsek06/ 2013-01-27
+\end{thebibliography}
+
 
 \end{document} 
 
