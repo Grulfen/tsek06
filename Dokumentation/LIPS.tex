@@ -1,6 +1,6 @@
 %% Definitioner för LIPS-dokument
 
-\usepackage[swedish]{babel}
+\usepackage[english,swedish]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{times}
@@ -53,7 +53,7 @@
   \textbf{\Huge \LIPSdokumenttyp}
 \end{center}
 \begin{center}
-  {\Large Redaktör: \LIPSredaktor}
+  {\Large Editor: \LIPSredaktor}
 \end{center}
 \begin{center}
   {\Large \textbf{Version \LIPSversion}}
@@ -63,9 +63,9 @@
   {\large Status}\\[1.5ex]
   \begin{tabular}{|*{3}{p{40mm}|}}
     \hline
-    Granskad & \LIPSgranskare & \LIPSgranskatdatum \\
+    Reviewed & \LIPSgranskare & \LIPSgranskatdatum \\
     \hline
-    Godkänd & \LIPSgodkannare & \LIPSgodkantdatum \\
+    Approved & \LIPSgodkannare & \LIPSgodkantdatum \\
     \hline
   \end{tabular}
 \end{center}
@@ -76,18 +76,18 @@
 \newenvironment{LIPSprojektidentitet}{%
 {\ }\vspace{45mm}
 \begin{center}
-  {\Large PROJEKTIDENTITET}\\[0.5ex]
+  {\Large PROJECT IDENTITY}\\[0.5ex]
   {\small
   \LIPSartaltermin, \LIPSprojektgrupp\\
   Linköpings Tekniska Högskola, ISY
   }
 \end{center}
 \begin{center}
-  {\small Gruppdeltagare}\\
+  {\small Group member}\\
 %  \begin{tabular}{|p{30mm}|p{40mm}|p{35mm}|p{45mm}|}
   \begin{tabular}{|l|p{45mm}|p{25mm}|l|}
     \hline
-    \textbf{Namn} & \textbf{Ansvar} & \textbf{Telefon} & \textbf{E-post} \\
+    \textbf{Name} & \textbf{Responsibility} & \textbf{Phone} & \textbf{E-mail} \\
     \hline
 }%
 {%
@@ -96,12 +96,12 @@
 \end{center}
 \begin{center}
   {\small
-    \textbf{E-postlista för hela gruppen}: \LIPSgruppepost\\
-    \textbf{Hemsida}: \LIPSgrupphemsida\\[1ex]
-    \textbf{Kund}: \LIPSkund\\
-    \textbf{Kontaktperson hos kund}: \LIPSkundkontakt\\
-    \textbf{Kursansvarig}: \LIPSkursansvarig\\
-    \textbf{Handledare}: \LIPShandledare\\
+    %\textbf{E-postlista för hela gruppen}: \LIPSgruppepost\\
+    %\textbf{Hemsida}: \LIPSgrupphemsida\\[1ex]
+    \textbf{Customer}: \LIPSkund\\
+    \textbf{Customer Contact}: \LIPSkundkontakt\\
+    \textbf{Course Leader}: \LIPSkursansvarig\\
+    \textbf{Tutor}: \LIPShandledare\\
   }
 \end{center}
 \newpage
@@ -112,11 +112,11 @@
 
 \newenvironment{LIPSdokumenthistorik}{%
 \begin{center}
-  Dokumenthistorik\\[1ex]
+  Document history\\[1ex]
   \begin{small}
     \begin{tabular}{|l|l|p{60mm}|l|l|}
       \hline
-      \textbf{Version} & \textbf{Datum} & \textbf{Utförda förändringar} & \textbf{Utförda av} & \textbf{Granskad} \\
+      \textbf{Version} & \textbf{Date} & \textbf{Changes} & \textbf{Edited by} & \textbf{Reviewed} \\
       }%
     {%
       \hline
@@ -162,7 +162,7 @@
         \textbf {{#4}} 
 \\}
 
-\newcommand{\LIPSunderkrav}[3]{\hline\stepcounter{LIPSunderkravnummer}\textbf{Krav nr \arabic{LIPSkravnummer}\Alph{LIPSunderkravnummer}} & \textbf{{#1}} & {#2} & \textbf{{#3}} \\}
+\newcommand{\LIPSunderkrav}[3]{\hline\stepcounter{LIPSunderkravnummer}\textbf{Requirement nr \arabic{LIPSkravnummer}\Alph{LIPSunderkravnummer}} & \textbf{{#1}} & {#2} & \textbf{{#3}} \\}
 
 
 
