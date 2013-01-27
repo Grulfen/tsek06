@@ -1,36 +1,37 @@
-\documentclass[a4paper,12pt]{article}
-\usepackage{graphicx}
-\usepackage{epstopdf}
-%\usepackage{gensymb}
-\usepackage{longtable}
+\documentclass[a4paper,12pt]{article} \usepackage{graphicx}
+\usepackage{epstopdf} %\usepackage{gensymb} \usepackage{longtable}
 \input{../LIPS.tex}
 
 
 \newcommand{\LIPSartaltermin}{2013/VT}
 \newcommand{\LIPSkursnamn}{TSEK06}
-
 \newcommand{\LIPSprojekttitel}{DLL Based Frequency Multiplier}
 
+
 \newcommand{\LIPSprojektgrupp}{Group 7}
+
 \newcommand{\LIPSgruppepost}{}
-\newcommand{\LIPSgrupphemsida}{}
+\newcommand{\LIPSgrupphemsida}{} 
 \newcommand{\LIPSdokumentansvarig}{Gustav Svensk}
 
 \newcommand{\LIPSkund}{ISY, Linköpings universitet, 581\,83 Linköping}
+
 \newcommand{\LIPSkundkontakt}{Amin Ojani}
 \newcommand{\LIPSkursansvarig}{Atila Alvandpour}
 \newcommand{\LIPShandledare}{Amin Ojani}
 
 
-\newcommand{\LIPSdokumenttyp}{Project Plan}
-\newcommand{\LIPSredaktor}{Nora Björklund}
-\newcommand{\LIPSversion}{0.1}
+
+\newcommand{\LIPSdokumenttyp}{Project Plan} 
+\newcommand{\LIPSredaktor}{Nora Björklund} 
+\newcommand{\LIPSversion}{0.1} 
 \newcommand{\LIPSdatum}{\dagensdatum}
 
-\newcommand{\LIPSgranskare}{}
+\newcommand{\LIPSgranskare}{} 
 \newcommand{\LIPSgranskatdatum}{}
-\newcommand{\LIPSgodkannare}{}
+\newcommand{\LIPSgodkannare}{} 
 \newcommand{\LIPSgodkantdatum}{}
+
 
 \begin{document}
 \LIPStitelsida
@@ -39,23 +40,21 @@
 \selectlanguage{swedish}
 \begin{LIPSprojektidentitet}
  
-  \LIPSgruppmedlem{Nora Björklund}{Project leader}{}{}
-  \LIPSgruppmedlem{\LIPSdokumentansvarig}{Documentation}{073 6208776}{grulfen3@gmail.com}
-  \LIPSgruppmedlem{Christopher Hallberg}{}{0739845945}{chrha007@student.liu.se}
-  \LIPSgruppmedlem{Gustaf Bengtz}{}{}{}
-  \LIPSgruppmedlem{Johan Berneland}{}{}{}
+\LIPSgruppmedlem{Nora Björklund}{Project leader}{}{}
+\LIPSgruppmedlem{\LIPSdokumentansvarig}{Documentation}{073
+6208776}{grulfen3@gmail.com} 
+\LIPSgruppmedlem{Christopher Hallberg}{}{0739845945}{chrha007@student.liu.se} 
+\LIPSgruppmedlem{Gustaf Bengtz}{}{}{} 
+\LIPSgruppmedlem{Johan Berneland}{}{}{}
 \end{LIPSprojektidentitet}
 
 \selectlanguage{english}
 
-\tableofcontents{}
-\newpage
-
-%% Argument till \LIPSversionsinfo: versionsnummer, datum, ändringar, utfört av, granskat av
-\addcontentsline{toc}{section}{Document history}
-\begin{LIPSdokumenthistorik}
-  \LIPSversionsinfo{0.1}{}{First draft.}{}{}
-\end{LIPSdokumenthistorik}
+\tableofcontents{} 
+\newpage %% Argument till \LIPSversionsinfo: versionsnummer,
+datum, ändringar, utfört av,granskat av 
+\addcontentsline{toc}{section}{Document history} \begin{LIPSdokumenthistorik} 
+\LIPSversionsinfo{0.1}{}{First draft.}{}{}\end{LIPSdokumenthistorik} 
 \newpage
 
 \section{Customer}
@@ -77,6 +76,7 @@ test the manufactured chips, another course (TSEK11) is available after the proj
 \subsection{Deliverables}
 
 \begin{LIPSleveranslista}
+
         \LIPSleverans{Delivery}{\textbf{Responsible}}{\textbf{Purpose}}{Deadline}
         \LIPSleverans{High-level simulation result}{Nora Björklund}{Simulation results from high-level, ensuring the functionality of the model}{11/2 -13}
         \LIPSleverans{Transistor-level simulation result}{Nora Björklund}{Simulation results from the gate/transistor level, ensuring the functionality of the design}{11/3 -13}
@@ -85,30 +85,53 @@ test the manufactured chips, another course (TSEK11) is available after the proj
 \hline
 \end{LIPSleveranslista}
 
+
 \subsection{Limitations}
 The final chip shall fulfill the requirements specified in section \ref{sec:requirements}.
 The requirements with priority level High will be focused on first and the other requirements 
 will be focused on only after all the requirements with higher priority level have been met.
 
-\section{Project Phases}		
+\section{Project Phases} 
 \subsection{Before Project}
+Before starting with the high level design of the DLL the group will hold
+preparatory meetings for planning the project and specify the written project
+plan. The group members will also study up on relevant material concerning
+functionality and implementation of a DLL.
+  
 \subsection{Under Project}
+The project will start with implementing a high level model of the DLL using
+the hardware definition language Verilog-A and running simulation on this
+model.Thereafter the model will be implemented on gate/transistor level followed
+by
+simulation. When the DLL behaves correctly on transistor level the work will
+continue with the layout of the chip, DRC, parasitic extraction, LVS,
+post-layout simulations, modification and chip evaluations. Finally the chip
+design will be sent to the foundry for fabrication.
+
 \subsection{After Project}
 \section{Organization Plan}
+
 \subsection{Definition of parties and tasks}
+\section{Documentation Plan}
 
-\section{Documentation Plan}	
+\section{Education}
+This section specifies the education of group members and customer respectively.
 
-\section{Education}	
 \subsection{Project Group Education}
+Each group member takes responsibility to study material relevant to both the
+whole project and his or her designated tasks. 
+
 \subsection{Customer Education}
+The information needed for the customer to use the product will be included in
+the final report.
 
 \section{Meeting Plan}
 
-\section{Resource Plan}
-\subsection{Persons}
+\section{Resource Plan} 
+\subsection{Persons} 
 \subsection{Materiel}
 \subsection{Labs}
+
 
 \section{Requirements}
 \label{sec:requirements}
@@ -131,22 +154,21 @@ will be focused on only after all the requirements with higher priority level ha
 \end{LIPSkravlista}
 
 \section{Milestones and Deadlines}
+
 \subsection{Milestones}
 \subsection{Deadlines}
 
 \section{Time plan}
 
-\section{Quality Plan}
-\subsection{Simulations}
+\section{Quality Plan} 
+\subsection{Simulations} 
 \subsection{Test plan}
-
 \section{Priorities}
 
 \section{Finishing of Project}
 
-\newpage
-\appendix
-
+\newpage 
+\appendix 
 \newpage
 
 
@@ -156,9 +178,7 @@ will be focused on only after all the requirements with higher priority level ha
 \\ http://www.ek.isy.liu.se/courses/tsek06/ 2013-01-27
 \end{thebibliography}
 
+
 \end{document} 
 
-%%% Local Variables: 
-%%% mode: latex
-%%% TeX-master: t
-%%% End: 
+%%% Local Variables: %%% mode: latex %%% TeX-master: t %%% End:
