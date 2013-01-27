@@ -13,16 +13,16 @@
 
 \newcommand{\LIPSprojektgrupp}{Grupp 7}
 \newcommand{\LIPSgruppepost}{}
-\newcommand{\LIPSgrupphemsida}{finns ej}
+\newcommand{\LIPSgrupphemsida}{}
 \newcommand{\LIPSdokumentansvarig}{Gustav Svensk}
 
 \newcommand{\LIPSkund}{ISY, Linköpings universitet, 581\,83 Linköping}
-\newcommand{\LIPSkundkontakt}{}
-\newcommand{\LIPSkursansvarig}{}
-\newcommand{\LIPShandledare}{}
+\newcommand{\LIPSkundkontakt}{Amine Ojani}
+\newcommand{\LIPSkursansvarig}{Atila Alvandpour}
+\newcommand{\LIPShandledare}{Amine Ojani}
 
 
-\newcommand{\LIPSdokumenttyp}{Projektplan}
+\newcommand{\LIPSdokumenttyp}{Project Plan}
 \newcommand{\LIPSredaktor}{Nora Björklund}
 \newcommand{\LIPSversion}{0.1}
 \newcommand{\LIPSdatum}{\dagensdatum}
@@ -33,94 +33,88 @@
 \newcommand{\LIPSgodkantdatum}{}
 
 \begin{document}
-
 \LIPStitelsida
 
 %% Argument till \LIPSgruppmedlem: namn, roll i gruppen, telefonnummer, epost
 \begin{LIPSprojektidentitet}
-  \LIPSgruppmedlem{Nora Björklund}{Projektledare (PL)}{}{}
-  \LIPSgruppmedlem{\LIPSdokumentansvarig}{Dokumentansvarig (DOK)}{}{}
+ 
+  \LIPSgruppmedlem{Nora Björklund}{Project leader}{}{}
+  \LIPSgruppmedlem{\LIPSdokumentansvarig}{Documentation}{073 6208776}{grulfen3@gmail.com}
   \LIPSgruppmedlem{Christopher Hallberg}{}{0739845945}{chrha007@student.liu.se}
   \LIPSgruppmedlem{Gustaf Bengtz}{}{}{}
   \LIPSgruppmedlem{Johan Berneland}{}{}{}
 \end{LIPSprojektidentitet}
+\selectlanguage{english}
 
 \tableofcontents{}
 \newpage
 
 %% Argument till \LIPSversionsinfo: versionsnummer, datum, ändringar, utfört av, granskat av
-\addcontentsline{toc}{section}{Dokumenthistorik}
+\addcontentsline{toc}{section}{Document history}
 \begin{LIPSdokumenthistorik}
-  \LIPSversionsinfo{0.1}{}{Första utkast.}{}{}
+  \LIPSversionsinfo{0.1}{}{First draft.}{}{}
 \end{LIPSdokumenthistorik}
 \newpage
 
 
-\section{Beställare} %%SL
+\section{Customer}
 
-\section{Översiktlig beskrivning av projektet} %%Markus
+\section{Project Outline}
 
-\subsection{Syfte och mål}
+\subsection{Project Goal}
 
- 
-\subsection{Leveranser}
+\subsection{Deliveries}
 
 \begin{LIPSleveranslista}
-        \LIPSleverans{Leverans}{\textbf{Ansvarig}}{\textbf{Syfte}}{Färdig-datum}
+        \LIPSleverans{Delivery}{\textbf{Responsible}}{\textbf{Purpose}}{Deadline}
 \LIPSleverans{}{}{}{}
 \hline
 \end{LIPSleveranslista}
 
+\subsection{Limitations}
 
+\section{Project Phases}		
+\subsection{Before Project}
+\subsection{Under Project}
+\subsection{After Project}
 
+\section{Organization Plan}
+\subsection{Definition of parties and tasks}
 
-\subsection{Begränsningar}
+\section{Documentation Plan}	
 
-\section{Fasplan}		
+\section{Education}	
+\subsection{Project Group Education}
+\subsection{Customer Education}
 
-\subsection{Under projektet}
-\subsection{Efter projektet}
-\section{Organisationsplan för hela projektet}	%%SL
+\section{Meeting Plan}
 
-\subsection{Villkor för samarbete inom projektgruppen}
-
-\subsection{Definition av arbetsinnehåll och ansvar}
-\section{Dokumentplan}	%%MJ
-\hline
-\end{tabular}
-
-%%\section{Utvecklingsmetodik}	%%SW
-
-\section{Utbildningplan}	%%Markus
-\subsection{Egen utbildning}
-\subsection{Kundens utbildning}
-\section{Mötesplan}
-\section{Resursplan}	%%SW
-\subsection{Personer}
+\section{Resource Plan}
+\subsection{Persons}
 \subsection{Materiel}
-\subsection{Lokaler}
-\subsection{Ekonomi}
+\subsection{Labs}
 
+\section{Milestones and Deadlines}
+\subsection{Milestones}
+\subsection{Deadlines}
 
-\section{Milstolpar och beslutspunkter} %%SL
-\subsection{Milstolpar}
+\section{Time plan}
 
-\subsection{Beslutspunkter}
+\section{Quality Plan}
+\subsection{Simulations}
+\subsection{Test plan}
 
-\section{Tidplan}
+\section{Priorities}
 
-\section{Kvalitetsplan}	%SL
-\subsection{Granskningar}
-\subsection{Testplan}
-\section{Prioriteringar}
-\section{Projektavslut} %MARKUS
+\section{Finishing of Project}
+
 \newpage
 \appendix
 
 \newpage
 
 
-\addcontentsline{toc}{section}{Referenser}
+\addcontentsline{toc}{section}{References}
 \begin{thebibliography}{99}
 \bibitem{lipskompendiet}\textit{Projektmodellen LIPS - } Svensson, Tomas
 \\Studentlitteratur, 2011.
