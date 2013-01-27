@@ -86,7 +86,7 @@ test the manufactured chips, another course (TSEK11) is available after the proj
 \end{LIPSleveranslista}
 
 \subsection{Limitations}
-The final chip shall fulfill the requirements specified in section \ref{requirements}.
+The final chip shall fulfill the requirements specified in section \ref{sec:requirements}.
 The requirements with priority level High will be focused on first and the other requirements 
 will be focused on only after all the requirements with higher priority level have been met.
 
@@ -111,7 +111,25 @@ will be focused on only after all the requirements with higher priority level ha
 \subsection{Labs}
 
 \section{Requirements}
-\label{requirements}
+\label{sec:requirements}
+\begin{LIPSkravlista}
+        \LIPSkrav{Design for low power}{Medium}
+        \LIPSkrav{Integrate as many system components as possible on-chip}{High}
+        \LIPSkrav{Schematic and layout must be verified by simulation}{High}
+        \LIPSkrav{On-chip evaluation should be implemented, for full speed testing}{High}
+        \LIPSkrav{Multiplied clock frequency at nominal supply (3.3V)>1 GHz}{High}
+        \LIPSkrav{Simulated chip power consumption < 100mW (3.3V supply)}{Medium}
+        \LIPSkrav{Simulated circuit power (normal activity) < 50mW (3.3V supply)}{Medium}
+        \LIPSkrav{Maximum transistor sizing = 20$\mu$m}{Medium}
+        \LIPSkrav{Chip core area < 0.27mm$^2$}{High}
+        \LIPSkrav{ Total project pin count: 12 }{High}
+        \LIPSkrav{ Design technology is AMS 4-Metal 0.35 $\mu$m CMOS }{High}
+        \LIPSkrav{ The most important system nodes should have off-chip access pins }{Medium}
+        \LIPSkrav{ On-chip current densities < 1 mA/$\mu$m }{High}
+        \LIPSkrav{ All requirements fulfilled in “typical”, “slow”, and “fast”
+        process Medium corners and for temperatures between 25 and 110 $^\circ$C }{High}
+\end{LIPSkravlista}
+
 \section{Milestones and Deadlines}
 \subsection{Milestones}
 \subsection{Deadlines}
