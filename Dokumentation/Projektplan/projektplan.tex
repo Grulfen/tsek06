@@ -39,7 +39,8 @@
 \selectlanguage{swedish}
 \begin{LIPSprojektidentitet}
  
-\LIPSgruppmedlem{Nora Björklund}{Project leader}{076 7756 789}{norbj648@student.liu.se}
+\LIPSgruppmedlem{Nora Björklund}{Project leader}{076 7756
+789}{norbj648@student.liu.se}
 \LIPSgruppmedlem{\LIPSdokumentansvarig}{Documentation}{073
 6208776}{grulfen3@gmail.com} 
 \LIPSgruppmedlem{Christopher Hallberg}{}{0739845945}{chrha007@student.liu.se} 
@@ -50,7 +51,8 @@
 \selectlanguage{english}
 
 \tableofcontents{} 
-\newpage %% Argument till \LIPSversionsinfo: versionsnummer, datum, ändringar, utfört av,granskat av 
+\newpage %% Argument till \LIPSversionsinfo: versionsnummer, datum, ändringar,
+utfört av,granskat av
 \addcontentsline{toc}{section}{Document history} \begin{LIPSdokumenthistorik} 
 \LIPSversionsinfo{0.1}{}{First draft.}{}{}\end{LIPSdokumenthistorik} 
 \newpage
@@ -64,32 +66,58 @@ The purpose of this project is to design a DLL-Based frequency multiplier.
 DLL stands for delay-lock loop.
 
 \subsection{Project Goal}
-From \cite{project_spec} ``The project goal is to design an integrated circuit (IC) in complementary metal-oxide
-semiconductor (CMOS) technology. Students, participating in this project as project members
-and project leaders, should learn the different steps of the IC design flow. That includes the
-given system architecture analysis, simulation, layout implementation and verification. The
-project students have an optional choice to manufacture the designed IC circuit on a chip. To
-test the manufactured chips, another course (TSEK11) is available after the project.''
+From \cite{project_spec} ``The project goal is to design an integrated circuit
+(IC) in complementary metal-oxide
+semiconductor (CMOS) technology. Students, participating in this project as
+project members
+and project leaders, should learn the different steps of the IC design flow.
+That includes the
+given system architecture analysis, simulation, layout implementation and
+verification. The
+project students have an optional choice to manufacture the designed IC circuit
+on a chip. To
+test the manufactured chips, another course (TSEK11) is available after the
+project.''
+
 
 \subsection{Deliverables}
 
 \begin{LIPSleveranslista}
 
-        \LIPSleverans{Delivery}{\textbf{Responsible}}{\textbf{Purpose}}{Deadline}
-        \LIPSleverans{High-level simulation result}{Nora Björklund}{Simulation results from high-level, ensuring the functionality of the model}{11/2 -13}
-        \LIPSleverans{Transistor-level simulation result}{Nora Björklund}{Simulation results from the gate/transistor level, ensuring the functionality of the design}{11/3 -13}
-        \LIPSleverans{Completed chip}{Nora Björklund}{The final design files for the chip}{13/5 -13}
-        \LIPSleverans{Final report}{Gustav Svensk}{Report indicating the functionality and how to use the chip}{24/5 -13}
+\LIPSleverans{Delivery}{\textbf{Responsible}}{\textbf{Purpose}}{Deadline}\LIPSleverans{High-level simulation result}{Nora Björklund}{Simulation results
+from high-level, ensuring the functionality of the model}{11/2 -13}
+\LIPSleverans{Transistor-level simulation result}{Nora Björklund}{Simulation
+results from the gate/transistor level, ensuring the functionality of the
+design}{11/3 -13}
+\LIPSleverans{Completed chip}{Nora Björklund}{The final design files for the
+chip}{13/5 -13}
+\LIPSleverans{Final report}{Gustav Svensk}{Report indicating the functionality
+and how to use the chip}{24/5 -13}
 \hline
 \end{LIPSleveranslista}
 
 
 \subsection{Limitations}
-The final chip shall fulfill the requirements specified in section \ref{sec:requirements}.
-The requirements with priority level High will be focused on first and the other requirements 
-will be focused on only after all the requirements with higher priority level have been met.
+The final chip shall fulfill the requirements specified in section
+\ref{sec:requirements}.
+The requirements with priority level High will be focused on first and the other
+requirements
+will be focused on only after all the requirements with higher priority level
+have been met.
+
+\section{System Components}
+
+\subsection{Phase Detector}
+
+\subsection{Digital Counter}
+
+\subsection{Delay Line}
+
+\subsection{Phase Combiner}
 
 \section{Project Phases} 
+This section briefly describes the outline of the different phases of the
+project.
 \subsection{Before Project}
 Before starting with the high level design of the DLL the group will hold
 preparatory meetings for planning the project and specify the written project
@@ -99,8 +127,7 @@ functionality and implementation of a DLL.
 \subsection{Under Project}
 The project will start with implementing a high level model of the DLL using
 the hardware definition language Verilog-A and running simulation on this
-model.Thereafter the model will be implemented on gate/transistor level followed
-by
+model.Thereafter the model will be implemented on gate/transistor level followedby
 simulation. When the DLL behaves correctly on transistor level the work will
 continue with the layout of the chip, DRC, parasitic extraction, LVS,
 post-layout simulations, modification and chip evaluations. Finally the chip
@@ -114,7 +141,6 @@ design will be sent to the foundry for fabrication.
 
 \section{Education}
 This section specifies the education of group members and customer respectively.
-
 \subsection{Project Group Education}
 Each group member takes responsibility to study material relevant to both the
 whole project and his or her designated tasks. 
@@ -135,21 +161,20 @@ the final report.
 \label{sec:requirements}
 \begin{LIPSkravlista}
         \LIPSkrav{Design for low power}{Medium}
-        \LIPSkrav{Integrate as many system components as possible on-chip}{High}
-        \LIPSkrav{Schematic and layout must be verified by simulation}{High}
-        \LIPSkrav{On-chip evaluation should be implemented, for full speed testing}{High}
-        \LIPSkrav{Multiplied clock frequency at nominal supply (3.3V)>1 GHz}{High}
-        \LIPSkrav{Simulated chip power consumption < 100mW (3.3V supply)}{Medium}
-        \LIPSkrav{Simulated circuit power (normal activity) < 50mW (3.3V supply)}{Medium}
+\LIPSkrav{Integrate as many system components as possible on-chip}{High}        \LIPSkrav{Schematic and layout must be verified by simulation}{High}
+\LIPSkrav{On-chip evaluation should be implemented, for full speed
+testing}{High}
+\LIPSkrav{Multiplied clock frequency at nominal supply (3.3V)>1 GHz}{High}\LIPSkrav{Simulated chip power consumption < 100mW (3.3V supply)}{Medium}\LIPSkrav{Simulated circuit power (normal activity) < 50mW (3.3V
+supply)}{Medium}
         \LIPSkrav{Maximum transistor sizing = 20$\mu$m}{Medium}
         \LIPSkrav{Chip core area < 0.27mm$^2$}{High}
         \LIPSkrav{ Total project pin count: 12 }{High}
         \LIPSkrav{ Design technology is AMS 4-Metal 0.35 $\mu$m CMOS }{High}
-        \LIPSkrav{ The most important system nodes should have off-chip access pins }{Medium}
+\LIPSkrav{ The most important system nodes should have off-chip access pins
+}{Medium}
         \LIPSkrav{ On-chip current densities < 1 mA/$\mu$m }{High}
         \LIPSkrav{ All requirements fulfilled in “typical”, “slow”, and “fast”
-        process Medium corners and for temperatures between 25 and 110 $^\circ$C }{High}
-\end{LIPSkravlista}
+process Medium corners and for temperatures between 25 and 110 $^\circ$C }{High}\end{LIPSkravlista}
 
 \section{Milestones and Deadlines}
 
@@ -172,7 +197,8 @@ the final report.
 
 \addcontentsline{toc}{section}{References}
 \begin{thebibliography}{99}
-\bibitem{project_spec}\textit{Project: DLL-Based Frequency Multiplier - } Bhide, Ameya
+\bibitem{project_spec}\textit{Project: DLL-Based Frequency Multiplier - } Bhide,
+Ameya
 \\ http://www.ek.isy.liu.se/courses/tsek06/ 2013-01-27
 \end{thebibliography}
 
