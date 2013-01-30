@@ -2,7 +2,7 @@
 \usepackage{epstopdf} %\usepackage{gensymb} \usepackage{longtable}
 \input{../LIPS.tex}
 
-
+\newcommand{\degree}{\ensuremath{^\circ}}
 \newcommand{\LIPSartaltermin}{2013/VT}
 \newcommand{\LIPSkursnamn}{TSEK06}
 \newcommand{\LIPSprojekttitel}{DLL Based Frequency Multiplier}
@@ -117,7 +117,20 @@ The system consists of the following components.
 \subsection{Delay Line}
 
 The delay line delays the signal in steps, the output between each steps will be
-used to combine the new output signal of the system.
+used to combine the new output signal of the system. The main components
+of the delay line are an even number of inverters.  When the input signal has
+passed through the entire delay line it will have been phase-shifted 360\degree
+The delay of each stage will be set by binary-weighted capacitive loads
+controlled by the output from the 6-bit binary counter. Preliminary  the
+system will have 8 delay stages, each delaying the signal 45\degree. This makes
+it possible to generate an output frequency 4 times that of the input. With this
+it is also possible to choose signal components so that the output frequency is
+2 times that of the input.
+
+Depending on available space on the chip and available time the preliminary
+number of 8 delay stages might be increased further. For example to a total of
+16 stages giving 8 times the input frequency on the output. However, since space
+is limited this improvement will hold low priority.
 
 \subsection{Phase Combiner}
 
