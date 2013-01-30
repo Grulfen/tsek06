@@ -1,6 +1,6 @@
 \documentclass[a4paper,12pt]{article} \usepackage{graphicx}
 \usepackage{epstopdf} %\usepackage{gensymb} \usepackage{longtable}
-\usepackage{gensymb}
+% %\usepackage{gensymb}
 \input{../LIPS.tex}
 
 \newcommand{\degree}{\ensuremath{^\circ}}
@@ -45,8 +45,8 @@
 \LIPSgruppmedlem{\LIPSdokumentansvarig}{Documentation}{073
 6208776}{grulfen3@gmail.com} 
 \LIPSgruppmedlem{Christopher Hallberg}{}{0739845945}{chrha007@student.liu.se} 
-\LIPSgruppmedlem{Gustaf Bengtz}{}{}{} 
-\LIPSgruppmedlem{Johan Berneland}{}{}{}
+\LIPSgruppmedlem{Gustaf Bengtz}{}{07073607307}{gbengtz@gmail.com} 
+\LIPSgruppmedlem{Johan Berneland}{}{0704988329}{johbe915@student.liu.se}
 \end{LIPSprojektidentitet}
 
 \selectlanguage{english}
@@ -107,6 +107,9 @@ have been met.
 The system consists of the following components.
 
 \subsection{Phase Detector}
+The Phase Detector (PD) is in charge of checking whether the input frequency and the produced frequency are in phase. The reference frequency is used as an input for a D flip-flop (DFF), while the produced frequency clock is used as the input of the DFF. If the produced signal is running late, it will not yet have risen when it should have, which means that the output from the DFF should be set low. Respectively, the output from the DFF will be high if the signal is running early. The output from the DFF will then be sent to the counter for further processing.
+
+If the output from the PD starts toggling between low and high the phases of the clocks are as close to in phase as they can be. When this happens, the PD as well as the counter will be shut off to save energy. This will result in the reference and produced clocks to shift slightly and after a while they will not be in phase anymore. When this happens the PD and counter will be turned on again to get them into phase once more.
 
 \subsection{Digital Counter}
 
