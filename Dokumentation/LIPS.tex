@@ -130,6 +130,7 @@
 \newcounter{LIPSkravnummer}
 \newcounter{LIPSunderkravnummer}[LIPSkravnummer]
 
+
 \newenvironment{LIPSkravlista}{%
   \begin{longtable}{|p{25mm}|p{85mm}|p{15mm}|}
     }%
@@ -146,6 +147,21 @@
   \end{tabular}
 }
 
+\newcounter{LIPSdeadlinenummer}
+\newenvironment{LIPSdeadlines}{%
+  \begin{tabular}{|p{4mm}|p{105mm}|p{23mm}|}
+    }%
+  {%
+    \hline
+  \end{tabular}
+}
+
+\newcommand{\LIPSdeadline}[2]
+{\hline
+        \stepcounter{LIPSdeadlinenummer}\textbf{\arabic{LIPSdeadlinenummer}} &
+        {#1} & 
+        \textbf{{#2}} 
+\\}
 
 \newcommand{\LIPSkrav}[2]
 {\hline
