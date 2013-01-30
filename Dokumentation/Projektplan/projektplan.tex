@@ -1,6 +1,5 @@
 \documentclass[a4paper,12pt]{article} \usepackage{graphicx}
 \usepackage{epstopdf} %\usepackage{gensymb} \usepackage{longtable}
-% %\usepackage{gensymb}
 \input{../LIPS.tex}
 
 \newcommand{\degree}{\ensuremath{^\circ}}
@@ -59,7 +58,7 @@
 \newpage
 
 \section{Customer}
-The customer is Amin Ojani from the department of Electrical Engineering.
+The customer is Amin Ojani from the department of Electrical Engineering, Linköping University.
 
 \section{Project Outline}
 This project is the main part of the course TSEK06 - VLSI Chip Design Project.
@@ -115,10 +114,10 @@ If the output from the PD starts toggling between low and high the phases of the
 
 \subsection{Delay Line}
 
-The delay line delays the signal in steps, the output between each steps will be
-used to combine the new output signal of the system. The main components
+The delay line delays the signal in steps, the output between the steps will be
+combined to produce the output signal of the system. The main components
 of the delay line are an even number of inverters.  When the input signal has
-passed through the entire delay line it will have been phase-shifted 360\degree
+passed through the entire delay line it will have been phase-shifted 360\degree. 
 The delay of each stage will be set by binary-weighted capacitive loads
 controlled by the output from the 6-bit binary counter. Preliminary  the
 system will have 8 delay stages, each delaying the signal 45\degree. This makes
@@ -149,13 +148,71 @@ model.Thereafter the model will be implemented on gate/transistor level followed
 simulation. When the DLL behaves correctly on transistor level the work will
 continue with the layout of the chip, DRC, parasitic extraction, LVS,
 post-layout simulations, modification and chip evaluations. Finally the chip
-design will be sent to the foundry for fabrication.
+layout will be sent to the foundry for fabrication.
 
 \subsection{After Project}
+When the chip layout has been sent to the foundry for fabrication a presentation
+will be held where the stages of the project and results will be presented. 
+Thereafter a more detailed final report will be written and submitted to the 
+concerned parties. With this the project is considered finalized. In HT-13 there
+is a course where the produced chip can be tested. The majority of the project
+group members will take this course at this occasion.
+
+
 \section{Organization Plan}
+This section describes the organization of the project and the different
+parties involved.
 
 \subsection{Definition of parties and tasks}
+\begin{enumerate}
+        \item{Customer: Amin Ojani}
+        \item{Project supervisor: Amin Ojani}
+
+                Tasks:
+                \begin{itemize}
+                        \item{Formulate the project requirements}
+                        \item{Provides technical support}
+                        \item{Reviews the project documents}
+                \end{itemize}
+        \item{Project leader}
+
+                Tasks:
+                \begin{itemize}
+                        \item{Responsible for organization of the team and the project planning}
+                        \item{Divides the design and documentation work in an efficient way}
+                        \item{Organizes the team meetings as well as the meetings between the team and supervisor}
+                        \item{Keeps the supervisor informed about the progress of the project}
+                \end{itemize}
+        \item{Project design members (including the project leader)}
+
+                Tasks:
+                \begin{itemize}
+                        \item{Are equally responsible for project planning and design}
+                        \item{Participate actively in all the meetings}
+                        \item{Support the team and the project leader}
+                        \item{Keep the team and project leader informed about the progress of their tasks}
+                \end{itemize}
+\end{enumerate}
+
+
+
 \section{Documentation Plan}
+This section lists the documents that will be sent to the project supervisor.
+
+\begin{longtable}{|p{40mm}|p{80mm}|p{30mm}|}
+        \hline
+        \textbf{Document} & \textbf{Description} & \textbf{Deadline} \\
+        \hline
+        Project plan & Describes the outline of the project & Week 5 \\
+        \hline
+        High-level modeling design and simulation result & Simulations results from high-level modeling & February 11 \\
+        \hline
+        Gate/Transistor level modeling design and simulation result  & Simulations results from gate/transistor level modeling & March 11 \\
+        \hline
+        Final Report & Description of the final product and experiences from the project & May 24 \\
+        \hline
+\end{longtable}
+
 
 \section{Education}
 This section specifies the education of group members and customer respectively.
@@ -170,9 +227,19 @@ the final report.
 \section{Meeting Plan}
 
 \section{Resource Plan} 
+This section describes the available resources for the project.
 \subsection{Persons} 
+Supervisor - Amin Ojani
 \subsection{Materiel}
+\begin{itemize}
+        \item{Scientific publication database}
+        \item{IEL - IEEE/IEE Electronic Library, http://www.bibl.liu.se/english/databas/}
+        \item{Circuit simulation and layout tool from Cadence$^{\textregistered}$, http://www.cadence.com/}
+\end{itemize}
+
 \subsection{Labs}
+The project group will have access to the computer 
+labs of the department of Electrical Engineering.
 
 
 \section{Requirements}
@@ -200,7 +267,7 @@ process Medium corners and for temperatures between 25 and 110 $^\circ$C }{High}
 \section{Milestones and Deadlines}
 This section lists the milestones and deadlines of the project.
 The deadlines marked with \textbf{DEADLINE} are hard 
-deadlines that can not be adjusted at all.
+deadlines that can not be adjusted.
 
 \begin{LIPSdeadlines}
         \LIPSdeadline{Project selection}{January 18}
@@ -212,14 +279,11 @@ deadlines that can not be adjusted at all.
 \end{LIPSdeadlines}
 
 \section{Time plan}
+The time plan is a separate document.
 
 \section{Quality Plan} 
 \subsection{Simulations} 
-\subsection{Test plan}
 
-\section{Priorities}
-
-\section{Finishing of Project}
 
 \newpage 
 \appendix 
