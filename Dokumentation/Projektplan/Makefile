@@ -1,6 +1,6 @@
 all: projektplan.pdf
 
-projektplan.pdf: projektplan.tex
+projektplan.pdf: projektplan.tex ../LIPS.tex
 	pdflatex projektplan.tex && \
 	pdflatex projektplan.tex && \
 	pdflatex projektplan.tex
