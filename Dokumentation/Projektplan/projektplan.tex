@@ -111,6 +111,7 @@ The Phase Detector (PD) is in charge of checking whether the input frequency and
 If the output from the PD starts toggling between low and high the phases of the clocks are as close to in phase as they can be. When this happens, the PD as well as the counter will be shut off to save energy. This will result in the reference and produced clocks to shift slightly and after a while they will not be in phase anymore. When this happens the PD and counter will be turned on again to get them into phase once more.
 
 \subsection{Digital Counter}
+The Digital Counter is used to determine how the delay line is supposed to adjust for the phase of the produced counter signal. It takes the output from the PD and if the output is high, it increments the internal value, while it decreases the internal value if the output from the PD is low. The input value is then used to determine how much the delay line should delay the signal. 
 
 \subsection{Delay Line}
 
@@ -225,6 +226,7 @@ The information needed for the customer to use the product will be included in
 the final report.
 
 \section{Meeting Plan}
+The plan for the group is to hold one internal meeting each week aswell as one meeting with the tutor.
 
 \section{Resource Plan} 
 This section describes the available resources for the project.
