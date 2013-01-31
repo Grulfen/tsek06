@@ -1,5 +1,6 @@
 \documentclass[a4paper,12pt]{article} \usepackage{graphicx}
 \usepackage{epstopdf} %\usepackage{gensymb} \usepackage{longtable}
+\usepackage{graphicx}
 \input{../LIPS.tex}
 
 \newcommand{\degree}{\ensuremath{^\circ}}
@@ -106,12 +107,28 @@ have been met.
 The system consists of the following components.
 
 \subsection{Phase Detector}
-The Phase Detector (PD) is in charge of checking whether the input frequency and the produced frequency are in phase. The reference frequency is used as an input for a D flip-flop (DFF), while the produced frequency clock is used as the input of the DFF. If the produced signal is running late, it will not yet have risen when it should have, which means that the output from the DFF should be set low. Respectively, the output from the DFF will be high if the signal is running early. The output from the DFF will then be sent to the counter for further processing.
+The Phase Detector (PD) is in charge of checking whether the input frequency 
+and the produced frequency are in phase. The reference frequency is used as an 
+input for a D flip-flop (DFF), while the produced frequency clock is used as 
+the input of the DFF. If the produced signal is running late, it will not yet 
+have risen when it should have, which means that the output from the DFF 
+should be set low. Respectively, the output from the DFF will be high if the 
+signal is running early. The output from the DFF will then be sent to the 
+counter for further processing.
 
-If the output from the PD starts toggling between low and high the phases of the clocks are as close to in phase as they can be. When this happens, the PD as well as the counter will be shut off to save energy. This will result in the reference and produced clocks to shift slightly and after a while they will not be in phase anymore. When this happens the PD and counter will be turned on again to get them into phase once more.
+If the output from the PD starts toggling between low and high the phases of 
+the clocks are as close to in phase as they can be. When this happens, the PD 
+as well as the counter will be shut off to save energy. This will result in 
+the reference and produced clocks to shift slightly and after a while they will 
+not be in phase anymore. When this happens the PD and counter will be turned 
+on again to get them into phase once more.
 
 \subsection{Digital Counter}
-The Digital Counter is used to determine how the delay line is supposed to adjust for the phase of the produced counter signal. It takes the output from the PD and if the output is high, it increments the internal value, while it decreases the internal value if the output from the PD is low. The input value is then used to determine how much the delay line should delay the signal. 
+The Digital Counter is used to determine how the delay line is supposed to 
+adjust for the phase of the produced counter signal. It takes the output from 
+the PD and if the output is high, it increments the internal value, while it 
+decreases the internal value if the output from the PD is low. The input value 
+is then used to determine how much the delay line should delay the signal. 
 
 \subsection{Delay Line}
 
@@ -131,7 +148,27 @@ number of 8 delay stages might be increased further. For example to a total of
 16 stages giving 8 times the input frequency on the output. However, since space
 is limited this improvement will hold low priority.
 
-\subsection{Phase Combiner}
+\subsection{Frequency Multiplier}
+The frequency multiplier combines multiple phase-shifted versions of the input
+signal to a higher frequency signal, essentially multiplying the frequency of
+the input signal. This can be accomplished by letting the phase-shifted
+signals be inputs to a multiplexer and the output of the multiplexer is the 
+clock input to a counter. The output of the counter controls the multiplexer.
+The frequency multiplied output is taken from the LSB of the counter output.
+
+Preliminary the system will have 8 phase-shifted signals, 
+each delayed 45\degree with respect to the previous signal.
+Therefore a 3-bit counter is necessary. The LSB of the counter output will 
+have a frequency that is 4 times the frequency of the input signal.
+A block diagram of the frequency multiplier can be seen in 
+figure \ref{fig:freq_mult}.
+
+\begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.5\textwidth]{freq_mult.png}
+        \caption{Frequency multiplier}
+        \label{fig:freq_mult}
+\end{figure}
 
 \section{Project Phases} 
 This section briefly describes the outline of the different phases of the
@@ -307,6 +344,11 @@ The following should be verified by simulations,
 \bibitem{project_spec}\textit{Project: DLL-Based Frequency Multiplier - } Bhide,
 Ameya
 \\ http://www.ek.isy.liu.se/courses/tsek06/ 2013-01-27
+
+\bibitem{dll_clock}\textit{A Low-Power Digital DLL-Based Clock Generator in Open-Loop Mode - }
+Behzad Mesgarzadeh, Atila Alvandpour \\
+IEEE Journal of Solid-State Circuits. Vol. 44. No. 7. July 2009
+
 \end{thebibliography}
 
 
