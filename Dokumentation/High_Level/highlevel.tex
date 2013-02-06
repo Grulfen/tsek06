@@ -31,7 +31,7 @@
 \newcommand{\LIPSgranskatdatum}{}
 \newcommand{\LIPSgodkannare}{} 
 \newcommand{\LIPSgodkantdatum}{}
-
+\newcommand{\degree}{\ensuremath{^\circ}}
 
 \begin{document}
 \LIPStitelsida
@@ -64,6 +64,12 @@
 \subsection{Phase Detector}
 \subsection{Counter}
 \subsection{Delay Cells}
+The delay block will in the finished design consist of eight inverter cells,
+each delaying the signal 45\degree giving a total delay of 360\degree. In turn
+each inverter cell might consist of an odd number of smaller inverters to buffer
+the signal in order to obtain better rise and fall times.
+
+However, in the high
 \subsection{Frequency Multiplier}
 \section{Simulation Result}
 \subsection{Whole System Simulation}
