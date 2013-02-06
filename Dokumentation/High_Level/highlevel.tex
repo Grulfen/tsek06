@@ -60,7 +60,13 @@
 
 
 \section{Overview}
-  \includegraphics[width=150mm]{hll_system.png}
+An overview of the system can be seen in \ref{fig:system}.
+\begin{figure}[h]
+        \centering
+        \includegraphics[width=150mm]{../Bilder/hll_system.png}
+        \caption{Overview of the system}
+        \label{fig:system}
+\end{figure}
 \section{Block Level and Description}
 In the subsections below the blocks presented above will be described in detail.
 
@@ -102,19 +108,57 @@ current value which locks the delay.
 
 \subsection{Frequency Multiplier}
 The frequency multiplier contains 3 blocks, one 8-input multiplexer, one 3-bit
-counter and one 3-input multiplexer the blocks and connections can be seen in 
+counter and one 3-input multiplexer, the blocks and connections can be seen in 
 figure \ref{fig:freq_mult}.
-\begin{figure}[hb!]
+\begin{figure}[h!b]
         \centering
         \includegraphics[width=0.6\textwidth]{../Bilder/freq_mult_high.png}
-        \caption{Frequncy Multiplier}
+        \caption{Frequency Multiplier}
         \label{fig:freq_mult}
 \end{figure}
+The eight delayed versions of the input signal from the delay cells
+are the inputs to the 8-input multiplexer, each signal delayed 45\degree 
+compared to the previous one. The output of the 8-input multiplexer is 
+connected to the clock of the counter and the output of the counter is 
+controlling the 8-input multiplexer. So when a rising edge on the clock
+makes the counter tick once, the new clock signal is a 45\degree shifted
+version of the previous one, making the counter tick 4 times faster than
+if the input signal was used as clock. The 3-input multiplexer chooses which 
+signal it to be used as output, bit one, two or three of the counter output. 
+In table \ref{tab:mult_fact} the different control signals to choose 
+multiplication factor can be seen.
+\begin{table}[h!]
+        \centering
+        \begin{tabular}{|c|c|}
+                \hline
+                \textbf{Control signals} & \textbf{Multiplication factor} \\
+                \hline
+                00 & 1 \\
+                01 & 2 \\
+                10 & 2 \\
+                11 & 4 \\
+                \hline
+        \end{tabular}
+        \caption{Multiplication Factors}
+        \label{tab:mult_fact}
+\end{table}
 
 \section{Simulation Result}
 The simulation result of the whole system and the individual Blocks is
 presented below.
 \subsection{Whole System Simulation}
+Simulation of the whole system with a 250 MHz input signal successfully
+generates a output of 1 GHz, this can be seen in figure \ref{fig:high_sim}.
+It can be noted that it takes a while for the system to produce a good output
+with around 50\% duty cycle, this is because it takes some time for the DLL
+to lock.
+\begin{figure}[hb]
+        \centering
+        \includegraphics[width=\textwidth]{../Bilder/high_level_sim.png}
+        \caption{Simulation of the whole system}
+        \label{fig:high_sim}
+\end{figure}
+
 %% Insert each blocks's simulation result here
 \subsection{Phase Detector}
 \subsection{Counter}
