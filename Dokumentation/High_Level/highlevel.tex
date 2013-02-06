@@ -49,10 +49,11 @@
 \LIPSgruppmedlem{Johan Berneland}{}{0704988329}{johbe915@student.liu.se}
 \end{LIPSprojektidentitet}
 
+
 \selectlanguage{english}
 
 \tableofcontents{} 
-\newpage %% Argument till \LIPSversionsinfo: versionsnummer, datum, ändringar,
+\newpage %% Argument till \LIPSversionsinfo: versionsnummer, datum, Ändringar,
          %  utfört av,granskat av
 \addcontentsline{toc}{section}{Document history} \begin{LIPSdokumenthistorik} 
 \LIPSversionsinfo{0.1}{}{First draft.}{}{}\end{LIPSdokumenthistorik} 
@@ -60,10 +61,20 @@
 
 
 \section{Overview}
+  \includegraphics[width=150mm]{hll_system.png}
 \section{Block Level and Description}
+In the subsections below the blocks presented above will be described in detail.
 \subsection{Phase Detector}
+The phase detector has a very simple design. It is a DFF with the
+reference clock as update signal and the delayed clock signal coming
+out from the delay cells as input signal. When the reference clock and
+the delayed clock are high at the same time a one will be the output,
+when they are not the same a zero will be the output. The `Same time' is
+ when the clocks are both above the transient voltage (i.e 50\% of
+ rise-time/fall-time).     
 \subsection{Counter}
 \subsection{Delay Cells}
+\subsection{Lock-detector}
 \subsection{Frequency Multiplier}
 The frequency multiplier contains 3 blocks, one 8-input multiplexer, one 3-bit
 counter and one 3-input multiplexer the blocks and connections can be seen in 
@@ -76,6 +87,8 @@ figure \ref{fig:freq_mult}.
 \end{figure}
 
 \section{Simulation Result}
+The simulation result of the whole system and the individual Blocks is
+presented below.
 \subsection{Whole System Simulation}
 %% Insert each blocks's simulation result here
 \subsection{Phase Detector}
