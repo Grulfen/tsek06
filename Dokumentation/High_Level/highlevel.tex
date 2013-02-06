@@ -31,7 +31,6 @@
 \newcommand{\LIPSgranskatdatum}{}
 \newcommand{\LIPSgodkannare}{} 
 \newcommand{\LIPSgodkantdatum}{}
-\newcommand{\degree}{\ensuremath{^\circ}}
 
 \begin{document}
 \LIPStitelsida
@@ -64,17 +63,27 @@
   \includegraphics[width=150mm]{hll_system.png}
 \section{Block Level and Description}
 In the subsections below the blocks presented above will be described in detail.
+
 \subsection{Phase Detector}
-The phase detector has a very simple design. It is a DFF with the
+The phase detector (PD) has a very simple design. It is a DFF with the
 reference clock as update signal and the delayed clock signal coming
 out from the delay cells as input signal. When the reference clock and
 the delayed clock are high at the same time a one will be the output,
 when they are not the same a zero will be the output. The `Same time' is
  when the clocks are both above the transient voltage (i.e 50\% of
- rise-time/fall-time).     
+ rise-time/fall-time).
+ 
 \subsection{Counter}
-\subsection{Delay Cells}
+The counter takes an input from the PD and either increments
+the internal value, or decrements it. If the input from the PD is one the
+counter is incremented, and decresed if the input is zero. The counter also has
+an enable signal coming from the lock-detector. If the enable is high the counter
+is active, and it is inactive when the enable is low. This is implemented to 
+save power, and avoid the toggle state that the counter is bound to end up in when
+the phases between the reference clock and the delayed clock match.
 
+
+\subsection{Delay Cells}
 The delay block will in the finished design consist of eight inverter cells,
 each delaying the signal 45\degree giving a total delay of 360\degree. In turn
 each inverter cell might consist of an odd number of smaller inverters to buffer
@@ -83,6 +92,14 @@ the signal in order to obtain better rise and fall times.
 However, in the high
 
 \subsection{Lock-detector}
+The lock-detector takes the output signal from the Phase Detector and uses
+it to check if the Phase Detector has reached the toggle state or not. If the Phase
+Detector send an alternation of increment and decrement instructions to the counter
+seven times the Phase Detection is considered to be done and the enable 
+signal sent to the counter is put to low. This forces the counter to lock its 
+current value which locks the delay.
+
+
 \subsection{Frequency Multiplier}
 The frequency multiplier contains 3 blocks, one 8-input multiplexer, one 3-bit
 counter and one 3-input multiplexer the blocks and connections can be seen in 
