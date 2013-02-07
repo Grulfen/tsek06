@@ -89,18 +89,28 @@ save power, and avoid the toggle state that the counter is bound to end up in wh
 the phases between the reference clock and the delayed clock match.
 
 
-\subsection{Delay Cells}
+\subsection{Delay Line}
 The delay block will in the finished design consist of eight inverter cells,
 each delaying the signal 45\degree giving a total delay of 360\degree. In turn
 each inverter cell might consist of an odd number of smaller inverters to buffer
 the signal in order to obtain better rise and fall times.
 
-However, in the high level implementation the delay cells are modelled
+However, in the high level implementation the delay cells are modeled
 as a single block consisting of Verilog A code. To model the inverter
-cells the input signal is inverted eight times and the intermediate
+cells the input clock signal is inverted eight times and the intermediate
 signals are put on the output. Each of the inverters have a rise and a
 fall time of 100ps to simulate physical properties. They also have an
-inherent delay 
+inherent delay of 400ps. For now these numbers are just parameters set
+in the Verilog A code but will later on in the project be determined
+by sizing of transistors, capacitance among other things.
+
+To be able to tune the delay for a given input signal an extra
+variable delay is needed for each inverter. On transistor level this
+will be done by switching on and off binary weighted capacitive loads,
+but in the high level design these are just delays set explicit as time
+values. How many of these binary weighted delays should be active at a
+given time is controlled by the input to the delay line from the 6-bit
+counter, as can be seen in \ref{fig:system}. 
 
 
 \subsection{Lock-detector}
@@ -154,7 +164,7 @@ The simulation result of the whole system and the individual Blocks is
 presented below.
 \subsection{Whole System Simulation}
 Simulation of the whole system with a 250 MHz input signal successfully
-generates a output of 1 GHz, this can be seen in figure \ref{fig:high_sim}.
+generates an output of 1 GHz, this can be seen in figure \ref{fig:high_sim}.
 It can be noted that it takes a while for the system to produce a good output
 with around 50\% duty cycle, this is because it takes some time for the DLL
 to lock.
@@ -168,11 +178,46 @@ to lock.
 %% Insert each blocks's simulation result here
 \subsection{Phase Detector}
 \subsection{Counter}
-\subsection{Delay Cells}
+\subsection{Delay Line}
+Simulating the delay line in high level is mostly just a matter of
+seeing if the Verilog A code is correct. Since there are no physical
+considerations to take into account at this stage thorough simulations
+on the delay line alone are of little interest. It is, however, useful
+to get a visualization of the delayed signals and the tuning of this
+delay. When deciding on the resolution of the variable delay
+controlled by the 6-bit counter some consideration needs to be taken. 
+There is a trade-off between resolution and the
+range of possible input frequencies. Simulations showed this very
+clearly. 
+
+Simulation was performed with different values on the variable
+delay. The target input frequency is 250MHz so focus is placed to make
+the delay line work well near this value. Finally the inherent fixed
+delay of the inverters was set to 400ps, as mentioned in the
+description of the delay block, and the
+LSB of the variable delay was set to 5ps. This gives a resolution of
+40ps on the whole delay line. The range of possible input frequency
+will with this resolution be approximately 166-278MHz. This was
+verified by the simulation results.
 \subsection{Frequency Multiplier}
 
 \section{Risks and Delays}
+%% nämn övergripande process variations. typ vad det är för ngt
+%%ska detta vara här? är det denna typen av ``risks and delays'' som
+%%efterfrågas? om ni vill kan ni slå ihop min subsection under section.
+\subsection{Delay Line}
+A problem with process variation for the delay line is that the delay
+needs to be very exact in order for the whole thing to work. If the
+fixed delay of each inverter cell is off-set when the chip is
+delivered the variable delay needs to be able to handle this. Also,
+if by chance the target input frequency needs to be lowered the delay
+needs to be long enough to handle this. If focus is on only making it
+perform well at 250MHz it might not work with a lower frequency. 
 
+Also, in the high level design the delay is explicitly determined by
+the time values set in the Verilog A file. Later on the delay needs to
+be set by transistor sizing and the capacitance. Things like
+non-linearities needs to be considered.
 \end{document} 
 
 %%% Local Variables: %%% mode: latex %%% TeX-master: t %%% End:
