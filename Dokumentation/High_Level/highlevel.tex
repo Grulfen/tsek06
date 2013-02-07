@@ -78,6 +78,13 @@ the delayed clock are high at the same time a one will be the output,
 when they are not the same a zero will be the output. The `Same time' is
  when the clocks are both above the transient voltage (i.e 50\% of
  rise-time/fall-time).
+
+\begin{figure}[h!b]
+        \centering
+        \includegraphics[width=60mm]{../Bilder/PD_dia.png}
+        \caption{Phase Detector}
+        \label{fig:phase_det}
+\end{figure}
  
 \subsection{Counter}
 The counter takes an input from the PD and either increments
@@ -177,6 +184,17 @@ to lock.
 
 %% Insert each blocks's simulation result here
 \subsection{Phase Detector}
+Simulation of the phase detector was successful. We simulated the
+block with the delayed clock and the reference clock of equal pulse
+width, equal fall and rise time but with different period. 
+\begin{figure}[hb]
+        \centering
+        \includegraphics[width=\textwidth]{../Bilder/PD_closeup_sim.png}
+        \caption{Simulation of phase detector}
+        \label{fig:PD_sim}
+\end{figure}
+As seen in figure \ref{fig:PD_sim} the output stays high when the
+signal matches the reference clock. And goes low when unmatched.
 \subsection{Counter}
 \subsection{Delay Line}
 Simulating the delay line in high level is mostly just a matter of
