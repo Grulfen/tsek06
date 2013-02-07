@@ -73,11 +73,12 @@ In the subsections below the blocks presented above will be described in detail.
 \subsection{Phase Detector}
 The phase detector (PD) has a very simple design. It is a DFF with the
 reference clock as update signal and the delayed clock signal coming
-out from the delay cells as input signal. When the reference clock and
-the delayed clock are high at the same time a one will be the output,
-when they are not the same a zero will be the output. The `Same time' is
- when the clocks are both above the transient voltage (i.e 50\% of
- rise-time/fall-time).
+out from the delay cells as input signal. If the delayed clock rises before
+the reference clock does, the output will be set to a logic high resulting it to 
+be more delayed since it rose too early. If the delayed clock has not yet risen 
+when the reference clock rises the output will be set to a logic zero, causing 
+it to be less delayed. The clocks are checked when the transient voltage (i.e 50\% 
+of rise-time/fall-time) is exceeded.
  
 \subsection{Counter}
 The counter takes an input from the PD and either increments
@@ -110,7 +111,7 @@ will be done by switching on and off binary weighted capacitive loads,
 but in the high level design these are just delays set explicit as time
 values. How many of these binary weighted delays should be active at a
 given time is controlled by the input to the delay line from the 6-bit
-counter, as can be seen in \ref{fig:system}. 
+counter, as can be seen in figure \ref{fig:system}. 
 
 
 \subsection{Lock-detector}
@@ -180,8 +181,8 @@ to lock.
 \subsection{Counter}
 \subsection{Delay Line}
 Simulating the delay line in high level is mostly just a matter of
-seeing if the Verilog A code is correct. Since there are no physical
-considerations to take into account at this stage thorough simulations
+verifying if the Verilog A code is correct or not. Since there are no physical
+considerations to take into account at this stage, thorough simulations
 on the delay line alone are of little interest. It is, however, useful
 to get a visualization of the delayed signals and the tuning of this
 delay. When deciding on the resolution of the variable delay
