@@ -179,6 +179,14 @@ to lock.
 %% Insert each blocks's simulation result here
 \subsection{Phase Detector}
 \subsection{Counter}
+The simulation of the counter is mostly done to see if the Verilog A code is 
+written correctly so that it can be used in the simulation of the entire system.
+As all delays and rise/fall times are made up and the code doesn't say anything 
+about the actual design of the counter we can merely see that the counter 
+works as intended, both on its own and also when implemented together with
+the rest of the system.
+Simulations show that the counter can count both up and down, have a synchronous
+reset and that the enable signal works.
 \subsection{Delay Line}
 Simulating the delay line in high level is mostly just a matter of
 verifying if the Verilog A code is correct or not. Since there are no physical
