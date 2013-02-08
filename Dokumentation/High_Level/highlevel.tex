@@ -60,7 +60,7 @@
 
 
 \section{Overview}
-An overview of the system can be seen in \ref{fig:system}.
+An overview of the system can be seen in figure\ref{fig:system}.
 \begin{figure}[h]
         \centering
         \includegraphics[width=150mm]{../Bilder/hll_system.png}
@@ -72,12 +72,12 @@ In the subsections below the blocks presented above will be described in detail.
 
 \subsection{Phase Detector}
 The phase detector (PD) has a very simple design. It is a DFF with the
-reference clock as update signal and the delayed clock signal coming
-out from the delay cells as input signal. When the reference clock and
-the delayed clock are high at the same time a one will be the output,
-when they are not the same a zero will be the output. The `Same time' is
- when the clocks are both above the transient voltage (i.e 50\% of
- rise-time/fall-time).
+reference clock as update signal and the delayed clock signal coming out from the delay cells as input signal. If the delayed clock rises before
+the reference clock does, the output will be set to a logic high resulting it to 
+be more delayed since it rose too early. If the delayed clock has not yet risen 
+when the reference clock rises the output will be set to a logic zero, causing 
+it to be less delayed. The clocks are checked when the transient voltage (i.e 50\% 
+of rise-time/fall-time) is exceeded.
 
 \begin{figure}[h!b]
         \centering
@@ -106,8 +106,8 @@ However, in the high level implementation the delay cells are modeled
 as a single block consisting of Verilog A code. To model the inverter
 cells the input clock signal is inverted eight times and the intermediate
 signals are put on the output. Each of the inverters have a rise and a
-fall time of 100ps to simulate physical properties. They also have an
-inherent delay of 400ps. For now these numbers are just parameters set
+fall time of 100 ps to simulate physical properties. They also have an
+inherent delay of 400 ps. For now these numbers are just parameters set
 in the Verilog A code but will later on in the project be determined
 by sizing of transistors, capacitance among other things.
 
@@ -117,7 +117,7 @@ will be done by switching on and off binary weighted capacitive loads,
 but in the high level design these are just delays set explicit as time
 values. How many of these binary weighted delays should be active at a
 given time is controlled by the input to the delay line from the 6-bit
-counter, as can be seen in \ref{fig:system}. 
+counter, as can be seen in figure \ref{fig:system}. 
 
 
 \subsection{Lock-detector}
@@ -198,8 +198,8 @@ signal matches the reference clock, and goes low when unmatched.
 \subsection{Counter}
 \subsection{Delay Line}
 Simulating the delay line in high level is mostly just a matter of
-seeing if the Verilog A code is correct. Since there are no physical
-considerations to take into account at this stage thorough simulations
+verifying if the Verilog A code is correct or not. Since there are no physical
+considerations to take into account at this stage, thorough simulations
 on the delay line alone are of little interest. It is, however, useful
 to get a visualization of the delayed signals and the tuning of this
 delay. When deciding on the resolution of the variable delay
@@ -209,15 +209,27 @@ range of possible input frequencies. Simulations showed this very
 clearly. 
 
 Simulation was performed with different values on the variable
-delay. The target input frequency is 250MHz so focus is placed to make
+delay. The target input frequency is 250 MHz so focus is placed to make
 the delay line work well near this value. Finally the inherent fixed
-delay of the inverters was set to 400ps, as mentioned in the
+delay of the inverters was set to 400 ps, as mentioned in the
 description of the delay block, and the
-LSB of the variable delay was set to 5ps. This gives a resolution of
-40ps on the whole delay line. The range of possible input frequency
-will with this resolution be approximately 166-278MHz. This was
+LSB of the variable delay was set to 5 ps. This gives a resolution of
+40 ps on the whole delay line. The range of possible input frequency
+will with this resolution be approximately 166-278 MHz. This was
 verified by the simulation results.
+
 \subsection{Frequency Multiplier}
+When simulating the frequency multiplier it can be seen that it works
+as expected for input frequencies lower than 256 MHz. At higher input 
+frequencies the output signal does not have constant frequency. This is
+mainly because of delays in the counter block.
+The result of a simulation can be seen in figure \ref{fig:freq_mult_sim}.
+\begin{figure}[hb]
+        \centering
+        \includegraphics[width=\textwidth]{../Bilder/delay_line_sim.png}
+        \caption{Simulation of frequency multiplier}
+        \label{fig:freq_mult_sim}
+\end{figure}
 
 \section{Risks and Delays}
 %% nämn övergripande process variations. typ vad det är för ngt
@@ -230,12 +242,23 @@ fixed delay of each inverter cell is off-set when the chip is
 delivered the variable delay needs to be able to handle this. Also,
 if by chance the target input frequency needs to be lowered the delay
 needs to be long enough to handle this. If focus is on only making it
-perform well at 250MHz it might not work with a lower frequency. 
+perform well at 250 MHz it might not work with a lower frequency. 
 
 Also, in the high level design the delay is explicitly determined by
 the time values set in the Verilog A file. Later on the delay needs to
 be set by transistor sizing and the capacitance. Things like
 non-linearities needs to be considered.
-\end{document} 
 
+\subsection{Frequency Multiplier}
+The frequency multiplier is the block that needs to work with the highest 
+frequency as it will combine the delayed signals to a frequency multiplied 
+version of the input signal. This puts high requirements on the delays of its
+components. The total delay of the counter and the 8-input multiplexer
+must be smaller than the time of a 45\degree  delay of the input signal.
+This means that for a 250 MHz input signal the total worst case delay of the
+counter and multiplexer must be smaller than 500 ps, int this case the rise
+ and fall times are included in the worst case delay, this needs to be handled
+carefully in the transistor level.
+
+\end{document} 
 %%% Local Variables: %%% mode: latex %%% TeX-master: t %%% End:
