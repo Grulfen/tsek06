@@ -201,7 +201,9 @@ verifying if the Verilog A code is correct or not. Since there are no physical
 considerations to take into account at this stage, thorough simulations
 on the delay line alone are of little interest. It is, however, useful
 to get a visualization of the delayed signals and the tuning of this
-delay. When deciding on the resolution of the variable delay
+delay. The output of the delay line can be seen in figure
+\ref{fig:freq_mult_sim}. 
+When deciding on the resolution of the variable delay
 controlled by the 6-bit counter some consideration needs to be taken. 
 There is a trade-off between resolution and the
 range of possible input frequencies. Simulations showed this very
@@ -231,9 +233,20 @@ The result of a simulation can be seen in figure \ref{fig:freq_mult_sim}.
 \end{figure}
 
 \section{Risks and Delays}
-%% nämn övergripande process variations. typ vad det är för ngt
-%%ska detta vara här? är det denna typen av ``risks and delays'' som
-%%efterfrågas? om ni vill kan ni slå ihop min subsection under section.
+This section gives a brief overview of the different risks and delays
+that might occur during the design process. It can sometimes be
+difficult to foresee exactly how well a design will work when it comes
+to the physical properties, such as parasitic capacitances. Therefore
+it is important to simulate as thorough as possible during the
+transistor and layout phases of the project. Also much time will be
+needed when designing the layout since there are many things to think
+about, distribution of signals and the risk of short circuits. 
+
+A risk which the designers of a chip can not directly affect is the
+problem with process variation. The finished product might have slight
+differences from the simulated layout. If the design is good and
+robust this will not be a problem. Nevertheless, it is important to
+take such things into account when designing the chip.
 \subsection{Delay Line}
 A problem with process variation for the delay line is that the delay
 needs to be very exact in order for the whole thing to work. If the
