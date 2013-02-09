@@ -256,6 +256,21 @@ problem with process variation. The finished product might have slight
 differences from the simulated layout. If the design is good and
 robust this will not be a problem. Nevertheless, it is important to
 take such things into account when designing the chip.
+
+\subsection{Counter}
+The main problem that we expect of the counter is its power consumption and the
+noise that the control signals might generate.
+If the lock detection will not work as intended the counter will continuously
+alternate the LSB signal which will in turn switches a relatively large net
+resulting both in high power consumption and noise.
+One action that can keep the switching speed down is to not enable the counter
+on every clock pulse but rather every eight. The DLL still locks on the target
+frequency decently fast and there won't be as much of a risk that we will 
+overshoot.
+
+The counter also has to have a low enough delay for it to change the control
+signal fast enough that when it reacts to the next signal from the phase 
+detector the delay line has already had time enough to react to the last change.
 \subsection{Delay Line}
 A problem with process variation for the delay line is that the delay
 needs to be very exact in order for the whole thing to work. If the
