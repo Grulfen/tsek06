@@ -120,14 +120,21 @@ given time is controlled by the input to the delay line from the 6-bit
 counter, as can be seen in figure \ref{fig:system}. 
 
 
-\subsection{Lock-detector}
-The lock-detector takes the output signal from the Phase Detector and uses
-it to check if the Phase Detector has reached the toggle state or not. If the Phase
-Detector send an alternation of increment and decrement instructions to the counter
-the Phase Detection is considered to be done and the enable signal sent to the 
-counter is put to a logic low. This forces the counter to lock its current value 
-which locks the delay.
+\subsection{Lock Detector}
+The lock detector takes the input signal and the signal that is delayed 
+360\degree   as inputs and outputs a signal that is used as an enable 
+signal to the counter. If the input signal and the delayed signal are 
+closer than a predetermined time, the loop is locked and the counter
+is disabled, and if not, the counter is enabled. This prevents 
+the counter to toggle between two values and prevents harmonics on the
+output. The Lock detector can be seen in figure \ref{fig:lockdetect}.
 
+\begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.8\textwidth]{../Bilder/lock_detector_block.png}
+        \caption{Lock detector}
+        \label{fig:lockdetect}
+\end{figure}
 
 \subsection{Frequency Multiplier}
 The frequency multiplier contains 3 blocks, one 8-input multiplexer, one 3-bit
@@ -227,6 +234,28 @@ LSB of the variable delay was set to 5 ps. This gives a resolution of
 40 ps on the whole delay line. The range of possible input frequency
 will with this resolution be approximately 166-278 MHz. This was
 verified by the simulation results.
+
+\subsection{Lock Detector}
+The lock detector was simulated two times, one when the predetermined 
+delay was shorter than the resolution of the delay line and one when 
+it was longer. The results can be seen in figure \ref{fig:LD_sim1} and 
+\ref{fig:LD_sim2}. When the delay is shorter than the resolution
+the loop loses it lock frequently, this is because the condition for 
+locking is more exact than what the delay line can provide. When the 
+delay is longer than the resolution the circuit locks once.
+
+\begin{figure}[p]
+        \centering
+        \includegraphics[width=\textwidth]{../Bilder/LD.png}
+        \caption{Lock detector simulation, td < resolution}
+        \label{fig:LD_sim1}
+\end{figure}
+\begin{figure}[p]
+        \centering
+        \includegraphics[width=\textwidth]{../Bilder/LD_sim.png}
+        \caption{Lock detector simulation, td > resolution}
+        \label{fig:LD_sim2}
+\end{figure}
 
 \subsection{Frequency Multiplier}
 When simulating the frequency multiplier it can be seen that it works
