@@ -63,7 +63,7 @@
 An overview of the system can be seen in figure\ref{fig:system}.
 \begin{figure}[h]
         \centering
-        \includegraphics[width=150mm]{../Bilder/hll_system.png}
+        \includegraphics[width=150mm]{../Bilder/DIA_high_level.png}
         \caption{Overview of the system}
         \label{fig:system}
 \end{figure}
@@ -72,7 +72,7 @@ In the subsections below the blocks presented above will be described in detail.
 
 \subsection{Phase Detector}
 The phase detector (PD) has a very simple design. It is a DFF with the
-reference clock as update signal and the delayed clock signal coming out from the delay cells as input signal. If the delayed clock rises before
+reference clock as update signal and the delayed clock signal coming out from the delay cells as input signal (as in figure \ref{fig:phase_det}). If the delayed clock rises before
 the reference clock does, the output will be set to a logic high resulting it to 
 be more delayed since it rose too early. If the delayed clock has not yet risen 
 when the reference clock rises the output will be set to a logic zero, causing 
