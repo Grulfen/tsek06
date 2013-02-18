@@ -72,11 +72,9 @@ In the subsections below the blocks presented above will be described in detail.
 
 \subsection{Phase Detector}
 The phase detector (PD) has a very simple design. It is a DFF with the
-reference clock as update signal and the delayed clock signal coming out from the delay cells as input signal (as in figure \ref{fig:phase_det}). If the delayed clock rises before
-the reference clock does, the output will be set to a logic high resulting it to 
-be more delayed since it rose too early. If the delayed clock has not yet risen 
-when the reference clock rises the output will be set to a logic zero, causing 
-it to be less delayed. The clocks are checked when the transient voltage (i.e 50\% 
+reference clock as update signal and the delayed clock signal coming out from the last delay cell as input signal (as in figure \ref{fig:phase_det}). If the delayed clock rises before
+the reference clock does, the output will be set to a logic high. If the delayed clock has not yet risen 
+when the reference clock rises the output will be set to a logic zero. The clocks are checked when the transient voltage (i.e 50\% 
 of rise-time/fall-time) is exceeded.
 
 \begin{figure}[h!b]
