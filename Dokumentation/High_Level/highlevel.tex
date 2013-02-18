@@ -131,12 +131,13 @@ counter, as can be seen in figure \ref{fig:system}.
 
 \subsection{Lock Detector}
 The lock detector takes the input signal and the signal that is delayed 
-360\degree   as inputs and outputs a signal that is used as an enable 
+360\degree  as inputs and outputs a signal that is used as an enable 
 signal to the counter. If the input signal and the delayed signal are 
 closer than a predetermined time, the loop is locked and the counter
 is disabled, and if not, the counter is enabled. This prevents 
 the counter to toggle between two values and prevents harmonics on the
 output. The Lock detector can be seen in figure \ref{fig:lockdetect}.
+The design of the lock detector is taken from \cite{lock_detect}.
 
 \begin{figure}[h!]
         \centering
@@ -148,7 +149,7 @@ output. The Lock detector can be seen in figure \ref{fig:lockdetect}.
 \subsection{Frequency Multiplier}
 The frequency multiplier contains 3 blocks, one 8-input multiplexer, one 3-bit
 counter and one 3-input multiplexer, the blocks and connections can be seen in 
-figure \ref{fig:freq_mult}.
+figure \ref{fig:freq_mult}. The design is taken from \cite{dll_clock}.
 \begin{figure}[h!b]
         \centering
         \includegraphics[width=0.6\textwidth]{../Bilder/freq_mult_high.png}
@@ -340,13 +341,12 @@ carefully in the transistor level.
 
 \addcontentsline{toc}{section}{References}
 \begin{thebibliography}{99}
-%\bibitem{project_spec}\textit{Project: DLL-Based Frequency Multiplier - } Bhide,
-%Ameya
-%\\ http://www.ek.isy.liu.se/courses/tsek06/ 2013-01-27
-%
-%\bibitem{dll_clock}\textit{A Low-Power Digital DLL-Based Clock Generator in Open-Loop Mode - }
-%Behzad Mesgarzadeh, Atila Alvandpour \\
-%IEEE Journal of Solid-State Circuits. Vol. 44. No. 7. July 2009
+\bibitem{dll_clock}\textit{A Low-Power Digital DLL-Based Clock Generator in Open-Loop Mode - }
+Behzad Mesgarzadeh, Atila Alvandpour \\
+IEEE Journal of Solid-State Circuits. Vol. 44. No. 7. July 2009
+\bibitem{lock_detect}\textit{A 62.5-625-Mhz Anti-Reset All-Digital Delay-Locked Loop - }
+Shao-Ku Kao, Bo-Jiun Chen and Shen-Iuan Liu \\
+IEEE Transations on Circuits and Systems - II: Express Briefs, Vol. 54 No. 7, July 2007
 
 \end{thebibliography}
 
@@ -356,8 +356,8 @@ carefully in the transistor level.
 \subsection{Frequency Multiplier}
 The parts in the frequency multiplier that are written in Verilog-A is the 
 8-input multiplexer, the 3-input multiplexer and the dff in the 3-bit counter.
-\lstinputlisting[caption=8 input multiplexer]{/proj/ek/vlsi6/common_libs/project_main_shared/multiplexer_8input/veriloga/veriloga.va}
-\lstinputlisting[caption=3 input multiplexer]{/proj/ek/vlsi6/common_libs/project_main_shared/mux3bit/veriloga/veriloga.va}
+\lstinputlisting[caption=8 Input Multiplexer]{/proj/ek/vlsi6/common_libs/project_main_shared/multiplexer_8input/veriloga/veriloga.va}
+\lstinputlisting[caption=3 Input Multiplexer]{/proj/ek/vlsi6/common_libs/project_main_shared/mux3bit/veriloga/veriloga.va}
 \lstinputlisting[caption=DFF]{/proj/ek/vlsi6/common_libs/project_main_shared/dff_synchreset/veriloga/veriloga.va}
 
 \subsection{Digitally Controlled Delay Line}
