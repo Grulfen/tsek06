@@ -105,7 +105,7 @@ save power, and avoid the toggle state that the counter is bound to end up in wh
 the phases between the reference clock and the delayed clock match.
 
 
-\subsection{Delay Line}
+\subsection{Digitally Controlled Delay Line}
 The delay block will in the finished design consist of eight inverter cells,
 each delaying the signal 45\degree giving a total delay of 360\degree. In turn
 each inverter cell might consist of an odd number of smaller inverters to buffer
@@ -220,7 +220,7 @@ the rest of the system.
 Simulations show that the counter can count both up and down, have a synchronous
 reset and that the enable signal works.
 
-\subsection{Delay Line}
+\subsection{Digitally Controlled Delay Line}
 Simulating the delay line in high level is mostly just a matter of
 verifying if the Verilog A code is correct or not. Since there are no physical
 considerations to take into account at this stage, thorough simulations
@@ -309,7 +309,7 @@ overshoot.
 The counter also has to have a low enough delay for it to change the control
 signal fast enough that when it reacts to the next signal from the phase 
 detector the delay line has already had time enough to react to the last change.
-\subsection{Delay Line}
+\subsection{Digitally Controlled Delay Line}
 A problem with process variation for the delay line is that the delay
 needs to be very exact in order for the whole thing to work. If the
 fixed delay of each inverter cell is off-set when the chip is
@@ -359,6 +359,11 @@ The parts in the frequency multiplier that are written in Verilog-A is the
 \lstinputlisting[caption=8 input multiplexer]{/proj/ek/vlsi6/common_libs/project_main_shared/multiplexer_8input/veriloga/veriloga.va}
 \lstinputlisting[caption=3 input multiplexer]{/proj/ek/vlsi6/common_libs/project_main_shared/mux3bit/veriloga/veriloga.va}
 \lstinputlisting[caption=DFF]{/proj/ek/vlsi6/common_libs/project_main_shared/dff_synchreset/veriloga/veriloga.va}
+
+\subsection{Digitally Controlled Delay Line}
+In the High-Level design the digitally controlled delay line consists
+of the following Verilog-A code.
+\lstinputlisting[caption=Delay Line]{/proj/ek/vlsi6/common_libs/project_main_shared/delay_line/veriloga/veriloga.va}
 
 \end{document} 
 %%% Local Variables: %%% mode: latex %%% TeX-master: t %%% End:
