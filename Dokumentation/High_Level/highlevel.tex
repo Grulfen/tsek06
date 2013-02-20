@@ -80,12 +80,11 @@ In the subsections below the blocks presented above will be described in detail.
 \subsection{Phase Detector}
 The phase detector (PD) has a very simple design. It is a DFF with the
 reference clock as update signal and the delayed clock signal coming out from the 
-delay cells as input signal (as in figure \ref{fig:phase_det}). If the delayed 
+last delay cell as input signal (as in figure \ref{fig:phase_det}). If the delayed 
 clock rises before
-the reference clock does, the output will be set to a logic high resulting it to 
-be more delayed since it rose too early. If the delayed clock has not yet risen 
-when the reference clock rises the output will be set to a logic zero, causing 
-it to be less delayed. The clocks are checked when the transient voltage (i.e 50\% 
+the reference clock does, the output will be set to a logic high. If the delayed 
+clock has not yet risen when the reference clock rises the output will be set 
+to a logic zero. The clocks are checked when the transient voltage (i.e 50\% 
 of rise-time/fall-time) is exceeded.
 
 \begin{figure}[h!b]
@@ -186,6 +185,7 @@ multiplication factor can be seen.
 \section{Simulation Result}
 The simulation result of the whole system and the individual Blocks is
 presented below.
+
 \subsection{Whole System Simulation}
 Simulation of the whole system with a 250 MHz input signal successfully
 generates an output of 1 GHz, this can be seen in figure \ref{fig:high_sim}.
@@ -211,6 +211,7 @@ width, equal fall and rise time but with different period.
 \end{figure}
 As seen in figure \ref{fig:PD_sim} the output stays high when the
 signal matches the reference clock, and goes low when unmatched.
+
 \subsection{Counter}
 The simulation of the counter is mostly done to see if the Verilog A code is 
 written correctly so that it can be used in the simulation of the entire system.
@@ -310,6 +311,7 @@ overshoot.
 The counter also has to have a low enough delay for it to change the control
 signal fast enough that when it reacts to the next signal from the phase 
 detector the delay line has already had time enough to react to the last change.
+
 \subsection{Digitally Controlled Delay Line}
 A problem with process variation for the delay line is that the delay
 needs to be very exact in order for the whole thing to work. If the
@@ -353,6 +355,11 @@ IEEE Transations on Circuits and Systems - II: Express Briefs, Vol. 54 No. 7, Ju
 \newpage
 
 \section{Verilog-A Code}
+
+\subsection{Phase Detector}
+The Phase Detector consists of the following Verilog-A code.
+\lstinputlisting[caption=Phase Detector]{/proj/ek/vlsi6/common_libs/project_main_shared/phase_detector/veriloga/veriloga.va}
+
 \subsection{Frequency Multiplier}
 The parts in the frequency multiplier that are written in Verilog-A is the 
 8-input multiplexer, the 3-input multiplexer and the dff in the 3-bit counter.
