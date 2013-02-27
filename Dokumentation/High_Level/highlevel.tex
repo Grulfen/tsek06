@@ -31,7 +31,7 @@ breaklines=true
 
 \newcommand{\LIPSdokumenttyp}{High Level Simulation} 
 \newcommand{\LIPSredaktor}{Nora Björklund} 
-\newcommand{\LIPSversion}{0.1} 
+\newcommand{\LIPSversion}{1.0} 
 \newcommand{\LIPSdatum}{\dagensdatum}
 
 \newcommand{\LIPSgranskare}{} 
@@ -61,8 +61,11 @@ breaklines=true
 \tableofcontents{} 
 \newpage %% Argument till \LIPSversionsinfo: versionsnummer, datum, Ändringar,
          %  utfört av,granskat av
-\addcontentsline{toc}{section}{Document history} \begin{LIPSdokumenthistorik} 
-\LIPSversionsinfo{0.1}{}{First draft.}{}{}\end{LIPSdokumenthistorik} 
+\addcontentsline{toc}{section}{Document history}
+\begin{LIPSdokumenthistorik} 
+        \LIPSversionsinfo{0.1}{}{First draft.}{}{}
+        \LIPSversionsinfo{1.0}{27/2 -13}{Added Verilog-A Code}{}{}
+\end{LIPSdokumenthistorik} 
 \newpage
 
 
@@ -76,6 +79,7 @@ An overview of the system can be seen in figure\ref{fig:system}.
 \end{figure}
 \section{Block Level and Description}
 In the subsections below the blocks presented above will be described in detail.
+The Verilog-A code used to describe the blocks can be seen in Appendix \ref{sec:verilog_code}
 
 \subsection{Phase Detector}
 The phase detector (PD) has a very simple design. It is a DFF with the
@@ -192,7 +196,7 @@ generates an output of 1 GHz, this can be seen in figure \ref{fig:high_sim}.
 It can be noted that it takes a while for the system to produce a good output
 with around 50\% duty cycle, this is because it takes some time for the DLL
 to lock.
-\begin{figure}[hb]
+\begin{figure}[h]
         \centering
         \includegraphics[width=\textwidth]{../Bilder/high_level_sim.png}
         \caption{Simulation of the whole system}
@@ -203,7 +207,7 @@ to lock.
 \subsection{Phase Detector}
 Simulation of the phase detector was successful.  The phase detector was simulated with the delayed clock and the reference clock of equal pulse
 width, equal fall and rise time but with different period. 
-\begin{figure}[hb]
+\begin{figure}[h!p]
         \centering
         \includegraphics[width=\textwidth]{../Bilder/PD_closeup_sim.png}
         \caption{Simulation of phase detector}
@@ -274,7 +278,7 @@ as expected for input frequencies lower than 256 MHz. At higher input
 frequencies the output signal does not have constant frequency. This is
 mainly because of delays in the counter block.
 The result of a simulation can be seen in figure \ref{fig:freq_mult_sim}.
-\begin{figure}[hb]
+\begin{figure}[h!]
         \centering
         \includegraphics[width=\textwidth]{../Bilder/delay_line_sim.png}
         \caption{Simulation of frequency multiplier}
@@ -355,6 +359,7 @@ IEEE Transations on Circuits and Systems - II: Express Briefs, Vol. 54 No. 7, Ju
 \newpage
 
 \section{Verilog-A Code}
+\label{sec:verilog_code}
 
 \subsection{Phase Detector}
 The Phase Detector consists of the following Verilog-A code.
