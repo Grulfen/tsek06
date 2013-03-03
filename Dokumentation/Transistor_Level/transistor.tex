@@ -1,0 +1,109 @@
+\documentclass[a4paper,12pt]{article} \usepackage{graphicx}
+\usepackage{epstopdf} %\usepackage{gensymb} \usepackage{longtable}
+\usepackage{graphicx}
+\usepackage{listings}
+\lstset{
+language=verilog,
+basicstyle=\footnotesize,
+breaklines=true
+}
+
+\input{../LIPS.tex}
+
+\newcommand{\degree}{\ensuremath{^\circ}}
+\newcommand{\LIPSartaltermin}{2013/VT}
+\newcommand{\LIPSkursnamn}{TSEK06}
+\newcommand{\LIPSprojekttitel}{DLL Based Frequency Multiplier}
+
+\newcommand{\LIPSprojektgrupp}{Group 7}
+
+\newcommand{\LIPSgruppepost}{}
+\newcommand{\LIPSgrupphemsida}{} 
+\newcommand{\LIPSdokumentansvarig}{Gustav Svensk}
+
+\newcommand{\LIPSkund}{ISY, Linköpings universitet, 581\,83 Linköping}
+
+\newcommand{\LIPSkundkontakt}{Amin Ojani}
+\newcommand{\LIPSkursansvarig}{Atila Alvandpour}
+\newcommand{\LIPShandledare}{Amin Ojani}
+
+\newcommand{\LIPSdokumenttyp}{Transistor Level Simulation} 
+\newcommand{\LIPSredaktor}{Nora Björklund} 
+\newcommand{\LIPSversion}{1.0} 
+\newcommand{\LIPSdatum}{\dagensdatum}
+
+\newcommand{\LIPSgranskare}{} 
+\newcommand{\LIPSgranskatdatum}{}
+\newcommand{\LIPSgodkannare}{} 
+\newcommand{\LIPSgodkantdatum}{}
+
+\begin{document}
+\LIPStitelsida
+
+%% Argument till \LIPSgruppmedlem: namn, roll i gruppen, telefonnummer, epost
+\selectlanguage{swedish}
+\begin{LIPSprojektidentitet}
+ 
+\LIPSgruppmedlem{Nora Björklund}{Project leader}{076 7756
+789}{norbj648@student.liu.se}
+\LIPSgruppmedlem{\LIPSdokumentansvarig}{Documentation}{073
+6208776}{grulfen3@gmail.com} 
+\LIPSgruppmedlem{Christopher Hallberg}{}{0739845945}{chrha007@student.liu.se} 
+\LIPSgruppmedlem{Gustaf Bengtz}{}{07073607307}{gbengtz@gmail.com} 
+\LIPSgruppmedlem{Johan Berneland}{}{0704988329}{johbe915@student.liu.se}
+\end{LIPSprojektidentitet}
+
+
+\selectlanguage{english}
+
+\tableofcontents{} 
+\newpage %% Argument till \LIPSversionsinfo: versionsnummer, datum, Ändringar,
+         %  utfört av,granskat av
+\addcontentsline{toc}{section}{Document history}
+\begin{LIPSdokumenthistorik} 
+        \LIPSversionsinfo{0.1}{}{First draft.}{}{}
+\end{LIPSdokumenthistorik} 
+\newpage
+
+
+\section{Overview}
+An overview of the system can be seen in figure\ref{fig:system}.
+\begin{figure}[h]
+        \centering
+        \includegraphics[width=150mm]{../Bilder/DIA_high_level.png}
+        \caption{Overview of the system}
+        \label{fig:system}
+\end{figure}
+\section{Block Level and Description}
+\subsection{Phase Detector}
+\subsection{Counter}
+\subsection{Digitally Controlled Delay Line}
+\subsection{Lock Detector}
+\subsection{Frequency Multiplier}
+\section{Simulation Result}
+\subsection{Whole System Simulation}
+\subsection{Phase Detector}
+\subsection{Counter}
+\subsection{Digitally Controlled Delay Line}
+\subsection{Lock Detector}
+\subsection{Frequency Multiplier}
+\section{Risks and Delays}
+\subsection{Counter}
+\subsection{Digitally Controlled Delay Line}
+\subsection{Frequency Multiplier}
+\newpage 
+\appendix 
+\newpage
+
+\addcontentsline{toc}{section}{References}
+\begin{thebibliography}{99}
+\bibitem{dll_clock}\textit{A Low-Power Digital DLL-Based Clock Generator in Open-Loop Mode - }
+Behzad Mesgarzadeh, Atila Alvandpour \\
+IEEE Journal of Solid-State Circuits. Vol. 44. No. 7. July 2009
+\bibitem{lock_detect}\textit{A 62.5-625-Mhz Anti-Reset All-Digital Delay-Locked Loop - }
+Shao-Ku Kao, Bo-Jiun Chen and Shen-Iuan Liu \\
+IEEE Transations on Circuits and Systems - II: Express Briefs, Vol. 54 No. 7, July 2007
+
+\end{thebibliography}
+\end{document} 
+%%% Local Variables: %%% mode: latex %%% TeX-master: t %%% End:
