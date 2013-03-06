@@ -79,6 +79,21 @@ An overview of the system can be seen in figure\ref{fig:system}.
 \subsection{Counter}
 \subsection{Digitally Controlled Delay Line}
 \subsection{Lock Detector}
+For power saving reasons a lock detector has been implemented. The
+lock detector detects when the phase error between two signals is
+greater than a decided XXXps and then sets its output to 0.
+
+
+\begin{figure}[h]
+        \centering
+        \includegraphics[width=150mm]{../Bilder/Lockdetector.png}
+        \caption{Lock detector, block overview}
+        \label{fig:LD_block}
+\end{figure}
+
+The delay blocks have been implemented with inverters that have been
+sized to give proper delay to the two input signals.
+
 \subsection{Frequency Multiplier}
 \section{Simulation Result}
 \subsection{Whole System Simulation}
