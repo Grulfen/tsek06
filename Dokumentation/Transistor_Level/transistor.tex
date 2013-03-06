@@ -27,7 +27,7 @@ breaklines=true
 \newcommand{\LIPSkursansvarig}{Atila Alvandpour}
 \newcommand{\LIPShandledare}{Amin Ojani}
 
-\newcommand{\LIPSdokumenttyp}{Transistor Level Simulation} 
+\newcommand{\LIPSdokumenttyp}{Transistor Level Design} 
 \newcommand{\LIPSredaktor}{Nora Björklund} 
 \newcommand{\LIPSversion}{1.0} 
 \newcommand{\LIPSdatum}{\dagensdatum}
@@ -66,7 +66,8 @@ breaklines=true
 \newpage
 
 
-\section{Overview}
+\section{Block Level and Description}
+\subsection{Overview}
 An overview of the system can be seen in figure\ref{fig:system}.
 \begin{figure}[h]
         \centering
@@ -74,7 +75,6 @@ An overview of the system can be seen in figure\ref{fig:system}.
         \caption{Overview of the system}
         \label{fig:system}
 \end{figure}
-\section{Block Level and Description}
 \subsection{Phase Detector}
 \subsection{Counter}
 \subsection{Digitally Controlled Delay Line}
@@ -95,6 +95,40 @@ The delay blocks have been implemented with inverters that have been
 sized to give proper delay to the two input signals.
 
 \subsection{Frequency Multiplier}
+The block structure of the frequency multiplier can be seen in figure 
+\ref{fig:freq_mult}.
+\begin{figure}[p]
+        \centering
+        \includegraphics[width=0.7\textwidth]{../Bilder/freq_mult_trans.png}
+        \caption{Frequency multiplier}
+        \label{fig:freq_mult}
+\end{figure}
+
+The purpose of the frequency multiplier is to combine the eight delayed signals
+to one signal with a frequency that is four times bigger than the input
+frequency. This is done by first producing a negative pulse for every rising
+edge of the delayed signals. This pulse is produced by the transition detector.
+The pulses are then combined to one signal by the edge combiner. The pulse
+train is the inputed to the toggle pulsed latch which produces the final output.
+
+\subsubsection{Transition Detector}
+\begin{figure}[p]
+        \centering
+        \includegraphics[width=0.4\textwidth]{../Bilder/trans_detect_trans.png}
+        \caption{Transition Detector}
+        \label{fig:trans_detect}
+\end{figure}
+
+\subsubsection{Edge Combiner}
+\begin{figure}[p]
+        \centering
+        \includegraphics[width=0.6\textwidth]{../Bilder/edge_combiner_trans.png}
+        \caption{Edge Combiner}
+        \label{fig:edge_comb}
+\end{figure}
+
+\subsubsection{Toggle Pulsed Latch}
+
 \section{Simulation Result}
 \subsection{Whole System Simulation}
 \subsection{Phase Detector}
@@ -102,6 +136,7 @@ sized to give proper delay to the two input signals.
 \subsection{Digitally Controlled Delay Line}
 \subsection{Lock Detector}
 \subsection{Frequency Multiplier}
+\section{PAD Assignment} % Early test plan också
 \section{Risks and Delays}
 \subsection{Counter}
 \subsection{Digitally Controlled Delay Line}
