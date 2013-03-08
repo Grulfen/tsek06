@@ -68,6 +68,9 @@ breaklines=true
 
 \section{Block Level and Description}
 \subsection{Overview}
+The system works as in the high level report with the exception that the
+multiplication factor cannot be changed anymore. The reason for this is stated
+in section \ref{sec:trans_detect}.
 An overview of the system can be seen in figure\ref{fig:system}.
 \begin{figure}[h]
         \centering
@@ -123,6 +126,7 @@ This is because the delays in the multiplexer and counter were too high in this
 technology, so it was very difficult to reach an output frequency of 1 GHz.
 
 \subsubsection{Transition Detector}
+\label{sec:trans_detect}
 The transition detector consists of three inverters and a symmetric nand gate.
 The purpose of the transition detector is to produce negative pulses for every
 rising edge that reaches the input. The transistors are sized so the output
@@ -132,7 +136,8 @@ The gates are connected according to figure \ref{fig:trans_detect}.
 
 Earlier designs had a third input to the symmetric nand to control the
 multiplication factor of the circuit by only allowing certain pulses to pass.
-This was removed because it was difficult to get a 200 ps pulse with full 
+This was changed because it was difficult to get a 200 ps pulse with full swing
+with this design.
 
 \begin{figure}[p]
         \centering
