@@ -78,6 +78,13 @@ An overview of the system can be seen in figure\ref{fig:system}.
 \subsection{Phase Detector}
 \subsection{Counter}
 \subsection{Digitally Controlled Delay Line}
+The Digitally Controlled Delay Line, henceforth called delay line, is the part
+that delays the input clock signal. The delay line is divided into eight
+identical segments, called delay cells, connected in series. Each cell delays the signal 
+45\degree giving a total delay of 360\degree. %TODO: BILDER
+
+\subsubsection{Delay Cell}
+
 \subsection{Lock Detector}
 \subsection{Frequency Multiplier}
 \section{Simulation Result}
@@ -97,10 +104,10 @@ An overview of the system can be seen in figure\ref{fig:system}.
 
 \addcontentsline{toc}{section}{References}
 \begin{thebibliography}{99}
-\bibitem{dll_clock}\textit{A Low-Power Digital DLL-Based Clock Generator in Open-Loop Mode - }
+\bibitem{dll\_clock}\textit{A Low-Power Digital DLL-Based Clock Generator in Open-Loop Mode - }
 Behzad Mesgarzadeh, Atila Alvandpour \\
 IEEE Journal of Solid-State Circuits. Vol. 44. No. 7. July 2009
-\bibitem{lock_detect}\textit{A 62.5-625-Mhz Anti-Reset All-Digital Delay-Locked Loop - }
+\bibitem{lock\_detect}\textit{A 62.5-625-Mhz Anti-Reset All-Digital Delay-Locked Loop - }
 Shao-Ku Kao, Bo-Jiun Chen and Shen-Iuan Liu \\
 IEEE Transations on Circuits and Systems - II: Express Briefs, Vol. 54 No. 7, July 2007
 
