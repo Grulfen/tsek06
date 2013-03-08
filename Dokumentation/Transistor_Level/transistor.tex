@@ -123,7 +123,22 @@ edge of the delayed signals. This pulse is produced by the transition detector.
 The pulses are then combined to one signal by the edge combiner. The pulse
 train is the inputed to the toggle pulsed latch which produces the final output.
 
+The design of the frequency multiplier has changed from the high level report.
+This is because the delays in the multiplexer and counter were too high in this
+technology, so it was very difficult to reach an output frequency of 1 GHz.
+
 \subsubsection{Transition Detector}
+The transition detector consists of three inverters and a symmetric nand gate.
+The purpose of the transition detector is to produce negative pulses for every
+rising edge that reaches the input. The transistors are sized so the output
+pulse is approximately 200 ps long. A buffer is placed at the output of the
+circuit to improve rise and fall times.
+The gates are connected according to figure \ref{fig:trans_detect}.
+
+Earlier designs had a third input to the symmetric nand to control the
+multiplication factor of the circuit by only allowing certain pulses to pass.
+This was removed because it was difficult to get a 200 ps pulse with full 
+
 \begin{figure}[p]
         \centering
         \includegraphics[width=0.4\textwidth]{../Bilder/trans_detect_trans.png}
@@ -132,6 +147,15 @@ train is the inputed to the toggle pulsed latch which produces the final output.
 \end{figure}
 
 \subsubsection{Edge Combiner}
+The purpose of the edge combiner is to combine the negative pulses from the
+transition detectors to one pulse. This is done by a network of symmetric and
+gates. The design can be seen in figure \ref{fig:edge_comb}. A buffer is used to
+improve the rise and fall times of the final signal.
+The sizing of the transistors is inspired from \cite{dll_report}.
+It is important that the incoming pulses are not too wide to be able to combine
+them to a signal. If they are too wide they will be combined to a constant zero,
+which will not produce a valid output.
+
 \begin{figure}[p]
         \centering
         \includegraphics[width=0.6\textwidth]{../Bilder/edge_combiner_trans.png}
@@ -140,6 +164,23 @@ train is the inputed to the toggle pulsed latch which produces the final output.
 \end{figure}
 
 \subsubsection{Toggle Pulsed Latch}
+The toggle pulsed latch toggles its output every time a negative pulse arrives
+at the input. The input is a train of pulses from the edge combiner and the
+output is the multiplied signal which is the final output of the circuit, after
+it is buffered. It is important that the pulses on the input is around 200 ps,
+if they are too short the latch will not toggle and if they are too long the
+latch will toggle more than once. This delay is controlled by the buffer on the
+signal that is fed back to the latch. The toggle pulsed latch is a dynamic
+circuit so a keeper is used to keep the internal node stable both at a high and
+low value.
+The transistor layout can be seen in figure \ref{fig:tpl}. The
+sizing is inspired from \cite{dll_report}. 
+\begin{figure}[p]
+        \centering
+        \includegraphics[width=\textwidth]{../Bilder/tpl_trans.png}
+        \caption{Toggle Pulsed Latch}
+        \label{fig:tpl}
+\end{figure}
 
 \section{Simulation Result}
 \subsection{Whole System Simulation}
@@ -159,12 +200,14 @@ train is the inputed to the toggle pulsed latch which produces the final output.
 
 \addcontentsline{toc}{section}{References}
 \begin{thebibliography}{99}
-\bibitem{dll\_clock}\textit{A Low-Power Digital DLL-Based Clock Generator in Open-Loop Mode - }
-Behzad Mesgarzadeh, Atila Alvandpour \\
-IEEE Journal of Solid-State Circuits. Vol. 44. No. 7. July 2009
-\bibitem{lock\_detect}\textit{A 62.5-625-Mhz Anti-Reset All-Digital Delay-Locked Loop - }
-Shao-Ku Kao, Bo-Jiun Chen and Shen-Iuan Liu \\
-IEEE Transations on Circuits and Systems - II: Express Briefs, Vol. 54 No. 7, July 2007
+        \bibitem{dll_clock}\textit{A Low-Power Digital DLL-Based Clock Generator in Open-Loop Mode - }
+                Behzad Mesgarzadeh, Atila Alvandpour \\
+                IEEE Journal of Solid-State Circuits. Vol. 44. No. 7. July 2009
+        \bibitem{lock_detect}\textit{A 62.5-625-Mhz Anti-Reset All-Digital Delay-Locked Loop - }
+                Shao-Ku Kao, Bo-Jiun Chen and Shen-Iuan Liu \\
+                IEEE Transations on Circuits and Systems - II: Express Briefs, Vol. 54 No. 7, July 2007
+        \bibitem{dll_report}\textit{DLL-Based Frequency Multiplier - }
+                Layout Edition 2008-05-25 
 
 \end{thebibliography}
 \end{document} 
