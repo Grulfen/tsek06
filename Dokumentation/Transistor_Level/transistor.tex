@@ -3,9 +3,9 @@
 \usepackage{graphicx}
 \usepackage{listings}
 \lstset{
-language=verilog,
-basicstyle=\footnotesize,
-breaklines=true
+        language=verilog,
+        basicstyle=\footnotesize,
+        breaklines=true
 }
 
 \input{../LIPS.tex}
@@ -43,14 +43,14 @@ breaklines=true
 %% Argument till \LIPSgruppmedlem: namn, roll i gruppen, telefonnummer, epost
 \selectlanguage{swedish}
 \begin{LIPSprojektidentitet}
- 
-\LIPSgruppmedlem{Nora Björklund}{Project leader}{076 7756
-789}{norbj648@student.liu.se}
-\LIPSgruppmedlem{\LIPSdokumentansvarig}{Documentation}{073
-6208776}{grulfen3@gmail.com} 
-\LIPSgruppmedlem{Christopher Hallberg}{}{0739845945}{chrha007@student.liu.se} 
-\LIPSgruppmedlem{Gustaf Bengtz}{}{07073607307}{gbengtz@gmail.com} 
-\LIPSgruppmedlem{Johan Berneland}{}{0704988329}{johbe915@student.liu.se}
+
+        \LIPSgruppmedlem{Nora Björklund}{Project leader}{076 7756
+        789}{norbj648@student.liu.se}
+        \LIPSgruppmedlem{\LIPSdokumentansvarig}{Documentation}{073
+        6208776}{grulfen3@gmail.com} 
+        \LIPSgruppmedlem{Christopher Hallberg}{}{0739845945}{chrha007@student.liu.se} 
+        \LIPSgruppmedlem{Gustaf Bengtz}{}{07073607307}{gbengtz@gmail.com} 
+        \LIPSgruppmedlem{Johan Berneland}{}{0704988329}{johbe915@student.liu.se}
 \end{LIPSprojektidentitet}
 
 
@@ -67,7 +67,6 @@ breaklines=true
 
 
 \section{Block Level and Description}
-\subsection{Overview}
 The system works as in the high level report with the exception that the
 multiplication factor cannot be changed anymore. The reason for this is stated
 in section \ref{sec:trans_detect}.
@@ -83,9 +82,9 @@ An overview of the system can be seen in figure\ref{fig:system}.
 \subsection{Digitally Controlled Delay Line}
 The Digitally Controlled Delay Line, henceforth called delay line, is the part
 that delays the input clock signal. The delay line is divided into eight
-identical segments, called delay cells, connected in series. Each cell delays the signal 
-$45\degree$ giving a total delay of 360\degree. The delay line can be seen in
-figure \ref{fig:del_line}. 
+identical segments, called delay cells, connected in series. Each cell delays
+the signal $45\degree$ giving a total delay of 360\degree. The delay line can be
+seen in figure \ref{fig:del_line}. 
 \begin{figure}[h]
         \centering
         \includegraphics[width=\textwidth]{../Bilder/Delay_Line/Delay_line_top.png}
@@ -98,7 +97,6 @@ figure \ref{fig:del_line}.
 For power saving reasons a lock detector has been implemented. The
 lock detector detects when the phase error between two signals is
 greater than a decided XXXps and then sets its output to 0.
-
 
 \begin{figure}[h]
         \centering
@@ -136,8 +134,9 @@ technology, so it was very difficult to reach an output frequency of 1 GHz.
 The transition detector consists of three inverters and a symmetric nand gate.
 The purpose of the transition detector is to produce negative pulses for every
 rising edge that reaches the input. The transistors are sized so the output
-pulse is approximately 200 ps long. A buffer is placed at the output of the
-circuit to improve rise and fall times.
+pulse is approximately 200 ps long. The transistor layout can be seen
+in figure \ref{fig:trans_detect_trans}.
+A buffer is placed at the output of the circuit to improve rise and fall times.
 The gates are connected according to figure \ref{fig:trans_detect}.
 
 Earlier designs had a third input to the symmetric nand to control the
@@ -147,7 +146,14 @@ with this design.
 
 \begin{figure}[p]
         \centering
-        \includegraphics[width=0.4\textwidth]{../Bilder/trans_detect_trans.png}
+        \includegraphics[width=\textwidth]{../Bilder/trans_detect_trans.png}
+        \caption{Transistion Detector, Transistor Level}
+        \label{fig:trans_detect_trans}
+\end{figure}
+
+\begin{figure}[p]
+        \centering
+        \includegraphics[width=0.4\textwidth]{../Bilder/trans_detect.png}
         \caption{Transition Detector}
         \label{fig:trans_detect}
 \end{figure}
@@ -195,11 +201,65 @@ sizing is inspired from \cite{dll_report}.
 \subsection{Digitally Controlled Delay Line}
 \subsection{Lock Detector}
 \subsection{Frequency Multiplier}
+The signal that is of biggest importance in the frequency multiplier is the
+combined edges. This is because if the pulses are too wide the combination of
+them will be constant low, and if they are too short the combined edges will not
+reach full swing. In the simulations focus is put upon the pulse width of the
+combined edges. The pulse width should ideally be 120-230 ps for the toggle
+pulsed latch to work properly. The values of the pulse width for the
+different corners and
+temperatures can be seen in table \ref{tab:pulsewidth_corn} and
+\ref{tab:pulsewidth_temp}. To get the frequency multiplier to work in the
+cmosws corner the input frequency and the supply voltage can be adjusted.
+The output, combined edges, a single pulse and input can be seen in figure
+\ref{fig:freq_mult_signals}.
+\begin{table}[h]
+        \centering
+        \begin{tabular}{|c|c|}
+                \hline
+                \textbf{Corner} & \textbf{Pulse Width (ps)} \\
+                \hline
+                cmostm & 199.1 \\
+                cmoswo & 139.1 \\
+                cmoswz & 207.7 \\
+                cmoswp & 118.3 \\
+                cmosws & Not Working \\
+                \hline
+        \end{tabular}
+        \caption{Pulse width of combined edges at 250 MHz, Corners}
+        \label{tab:pulsewidth_corn}
+\end{table}
+
+\begin{table}
+        \centering
+        \begin{tabular}{|c|c|}
+                \hline
+                \textbf{Temperature ($\degree$C)} & \textbf{Pulse Width (ps)} \\
+                \hline
+                0 & 181.8 \\
+                27 & 190.8 \\
+                70 & 226.2 \\
+                \hline
+        \end{tabular}
+        \caption{Pulse width of combined edges at 250 MHz, Temperatures}
+        \label{tab:pulsewidth_temp}
+\end{table}
+
+\begin{figure}[p]
+        \centering
+        \includegraphics[width=\textwidth]{../Bilder/freq_mult_signals.png}
+        \caption{Simulation of Frequency Multipler}
+        \label{fig:freq_mult_signals}
+\end{figure}
+
 \section{PAD Assignment} % Early test plan också
 \section{Risks and Delays}
+\subsection{Phase Detector}
 \subsection{Counter}
 \subsection{Digitally Controlled Delay Line}
+\subsection{Lock Detector}
 \subsection{Frequency Multiplier}
+
 \newpage 
 \appendix 
 \newpage
@@ -217,4 +277,4 @@ sizing is inspired from \cite{dll_report}.
 
 \end{thebibliography}
 \end{document} 
-%%% Local Variables: %%% mode: latex %%% TeX-master: t %%% End:
+%%% Local Variables: %%% mode: latex %%% TeX-master: t %%% End:.
