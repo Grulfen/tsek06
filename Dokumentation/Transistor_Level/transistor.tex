@@ -270,6 +270,77 @@ sizing is inspired from \cite{dll_report}.
 \subsection{Phase Detector}
 \subsection{Counter}
 \subsection{Digitally Controlled Delay Line}
+Figure \ref{fig:delay_white} shows the simulation result of the delay line in
+250 MHz. The first signal is the input signal to the delay line, followed by the
+eight delayed output signals. The control bits has been set so that the last
+output is delayed 360\degree . 
+\begin{figure}[h]
+        \centering
+        \includegraphics{../Bilder/Delay_Line/delay_trans_sim_white.png}
+        \caption{Simulation result of the Delay Line in 250 MHz}
+        \label{fig:delay_white}
+\end{figure}
+
+The delay line is highly sensitive to process variations as can be seen in the
+figures showing the delay for each control bit. Five different combinations of process
+variation corners and temperatures were chosen to test how much the input signal
+was delayed. Figure \ref{fig:CMOSTM} shows the simulation result for CMOSTM
+in 27 \degree C. Figures \ref{fig:CMOSTM0} and \ref{fig:CMOSTM100} show
+the simulation result for CMOSTM in 0 \degree C and 100 \degree C respectively.
+Finally, the CMOSWS and CMOSWP are plotted in figures \ref{fig:CMOSWS} and
+\ref{fig:CMOSWP}, both in 27 \degree C. The CMOSWZ and CMOSWO corners were also
+simulated but for the delay line they did not differ as much as the other corner
+cases and were therefore omitted in this report.
+
+\begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.8\textwidth]{../Bilder/Delay_Line/CMOSTM.png}
+        \caption{CMOSTM in 27 \degree C}
+        \label{fig:CMOSTM}
+\end{figure}
+
+\begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.8\textwidth]{../Bilder/Delay_Line/CMOSTM0.png}
+        \caption{CMOSTM in 0 \degree C}
+        \label{fig:CMOSTM0}
+\end{figure}
+
+\begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.8\textwidth]{../Bilder/Delay_Line/CMOSTM100.png}
+        \caption{CMOSTM in 100 \degree C}
+        \label{fig:CMOSTM100}
+\end{figure}
+
+\begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.8\textwidth]{../Bilder/Delay_Line/CMOSWS.png}
+        \caption{CMOSWS in 27 \degree C}
+        \label{fig:CMOSWS}
+\end{figure}
+
+\begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.8\textwidth]{../Bilder/Delay_Line/CMOSWP.png}
+        \caption{CMOSWP in 27 \degree C}
+        \label{fig:CMOSWP}
+\end{figure}
+
+The values shown in the figures are the
+delays from the rising edges of the input signal to the rising edges of the
+output signal. The values for the falling edge delay may differ from the values
+plotted and also for different bits. However, effort has been made to limit the
+overall difference since it affects the duty cycle of the delayed output. 
+In figure \ref{CMOSWS} it can be seen that the delays are too long to work
+properly with an input frequency of 250 MHz. To fix this it is possible to
+decrease the input frequency. If using a separate power supply for the delay
+line it is possible to increase it to more than the normal 3.3 V which will
+also make the delay smaller. In figure \ref{CMOSWP} the delay is instead too
+small. For this case it is possible to solve the problem by increasing the input
+frequency and reducing the voltage of the power supply.
+
+
 \subsection{Lock Detector}
 \subsection{Frequency Multiplier}
 The signal that is of biggest importance in the frequency multiplier is the
