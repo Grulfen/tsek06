@@ -160,7 +160,8 @@ make the delay binary weighted. To achieve this different numbers of NMOS
 transistor is connected in parallel for each control signal. The exact number
 can be seen in figure \ref{fig:del_bl}. Note that the indices start at 0, so for
 example the first block is called I8<1:0>, meaning that the number of
-transistors is two.
+transistors is two. The corresponding delay when adding more capacitances is
+also highly non-linear as reflected by the numbers.
 
 \subsection{Lock Detector}
 For power saving reasons a lock detector has been implemented. The
@@ -363,6 +364,10 @@ small. For this case it is possible to solve the problem by increasing the input
 frequency and reducing the voltage of the power supply.
 
 
+In the typical case shown in \ref{fig:CMOSTM} the smallest delay achievable is
+around 3.3 ns and the largest delay is almost 5.2 ns. The largest step between
+two control words is approximately 40 ps. 
+
 \subsection{Lock Detector}
 \subsection{Frequency Multiplier}
 The signal that is of biggest importance in the frequency multiplier is the
@@ -422,6 +427,15 @@ The output, combined edges, a single pulse and input can be seen in figure
 \subsection{Phase Detector}
 \subsection{Counter}
 \subsection{Digitally Controlled Delay Line}
+The delay line is sensitive to process variations as shown in the simulation
+section. If process variations affects the delay times too much then this has to
+be controlled by changing the supply voltage and input frequency. Another thing
+to note is that the delay will probably increase because of the parasitic capacitances of
+the interconnect in the layout. It might have been preferable to have a larger
+range but with lower resolution. However, with the current design of the delay
+line, increasing the range would also increase the smallest delay that can be
+achieved. This could cause the system to not work at 250 MHz in the normal case
+and it was therefore decided not to try to increase the range. 
 \subsection{Lock Detector}
 \subsection{Frequency Multiplier}
 The risks from the high level report are no longer applicable on the frequency
