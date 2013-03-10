@@ -45,7 +45,6 @@
 %% Argument till \LIPSgruppmedlem: namn, roll i gruppen, telefonnummer, epost
 \selectlanguage{swedish}
 \begin{LIPSprojektidentitet}
-
         \LIPSgruppmedlem{Nora Björklund}{Project leader}{076 7756
         789}{norbj648@student.liu.se}
         \LIPSgruppmedlem{\LIPSdokumentansvarig}{Documentation}{073
@@ -54,7 +53,6 @@
         \LIPSgruppmedlem{Gustaf Bengtz}{}{07073607307}{gbengtz@gmail.com} 
         \LIPSgruppmedlem{Johan Berneland}{}{0704988329}{johbe915@student.liu.se}
 \end{LIPSprojektidentitet}
-
 
 \selectlanguage{english}
 
@@ -207,14 +205,14 @@ technology, so it was very difficult to reach an output frequency of 1 GHz.
 The transition detector consists of three inverters and a symmetric nand gate.
 The purpose of the transition detector is to produce negative pulses for every
 rising edge that reaches the input. The transistors are sized so the output
-pulse is approximately 200 ps long. The transistor layout can be seen
+pulse is approximately 230 ps long. The transistor layout can be seen
 in figure \ref{fig:trans_detect_trans}.
 A buffer is placed at the output of the circuit to improve rise and fall times.
 The gates are connected according to figure \ref{fig:trans_detect}.
 
 Earlier designs had a third input to the symmetric nand to control the
 multiplication factor of the circuit by only allowing certain pulses to pass.
-This was changed because it was difficult to get a 200 ps pulse with full swing
+This was changed because it was difficult to get a 230 ps pulse with full swing
 with this design.
 
 \begin{figure}[p]
@@ -268,10 +266,105 @@ sizing is inspired from \cite{dll_report}.
 \end{figure}
 
 \section{Simulation Result}
+The simulations have been run in different process variation corners and
+temperatures to examine the behaviour of the circuit. The process variation is
+the variations of the NMOS and PMOS between wafers and batches. 
+The process variation corners are where the process variations are biggest.
+The names of the process variation corners and their meaning can be seen in
+table \ref{tab:corners}.
+
+\begin{table}[h!]
+        \centering
+        \begin{tabular}{|l|l|}
+                \hline 
+                cmostm & Typical Mean - the normal values for PMOS and NMOS \\
+                cmoswp & Worst Power - PMOS and NMOS work faster than normal \\
+                cmosws & Worst Speed - PMOS and NMOS work slower than normal \\
+                cmoswo & Worst One - PMOS is slower than normal and NMOS is
+                faster than normal \\
+                cmoswz & Worst Zero - PMOS is faster than normal and NMOS is
+                slower than normal \\
+                \hline
+        \end{tabular}
+        \caption{Process Variation Corners}
+        \label{tab:corners}
+\end{table}
+
 \subsection{Whole System Simulation}
 \subsection{Phase Detector}
 \subsection{Counter}
 \subsection{Digitally Controlled Delay Line}
+Figure \ref{fig:delay_white} shows the simulation result of the delay line in
+250 MHz. The first signal is the input signal to the delay line, followed by the
+eight delayed output signals. The control bits has been set so that the last
+output is delayed 360\degree . 
+\begin{figure}[h]
+        \centering
+        \includegraphics[width=\textwidth]{../Bilder/Delay_Line/delay_trans_sim_white.png}
+        \caption{Simulation result of the Delay Line in 250 MHz}
+        \label{fig:delay_white}
+\end{figure}
+
+The delay line is highly sensitive to process variations as can be seen in the
+figures showing the delay for each control bit. Five different combinations of process
+variation corners and temperatures were chosen to test how much the input signal
+was delayed. Figure \ref{fig:CMOSTM} shows the simulation result for CMOSTM
+in 27 \degree C. Figures \ref{fig:CMOSTM0} and \ref{fig:CMOSTM100} show
+the simulation result for CMOSTM in 0 \degree C and 100 \degree C respectively.
+Finally, the CMOSWS and CMOSWP are plotted in figures \ref{fig:CMOSWS} and
+\ref{fig:CMOSWP}, both in 27 \degree C. The CMOSWZ and CMOSWO corners were also
+simulated but for the delay line they did not differ as much as the other corner
+cases and were therefore omitted in this report.
+
+\begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.8\textwidth]{../Bilder/Delay_Line/CMOSTM.png}
+        \caption{CMOSTM in 27 \degree C}
+        \label{fig:CMOSTM}
+\end{figure}
+
+\begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.8\textwidth]{../Bilder/Delay_Line/CMOSTM0.png}
+        \caption{CMOSTM in 0 \degree C}
+        \label{fig:CMOSTM0}
+\end{figure}
+
+\begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.8\textwidth]{../Bilder/Delay_Line/CMOSTM100.png}
+        \caption{CMOSTM in 100 \degree C}
+        \label{fig:CMOSTM100}
+\end{figure}
+
+\begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.8\textwidth]{../Bilder/Delay_Line/CMOSWS.png}
+        \caption{CMOSWS in 27 \degree C}
+        \label{fig:CMOSWS}
+\end{figure}
+
+\begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.8\textwidth]{../Bilder/Delay_Line/CMOSWP.png}
+        \caption{CMOSWP in 27 \degree C}
+        \label{fig:CMOSWP}
+\end{figure}
+
+The values shown in the figures are the
+delays from the rising edges of the input signal to the rising edges of the
+output signal. The values for the falling edge delay may differ from the values
+plotted and also for different bits. However, effort has been made to limit the
+overall difference since it affects the duty cycle of the delayed output. 
+In figure \ref{fig:CMOSWS} it can be seen that the delays are too long to work
+properly with an input frequency of 250 MHz. To fix this it is possible to
+decrease the input frequency. If using a separate power supply for the delay
+line it is possible to increase it to more than the normal 3.3 V which will
+also make the delay smaller. In figure \ref{fig:CMOSWP} the delay is instead too
+small. For this case it is possible to solve the problem by increasing the input
+frequency and reducing the voltage of the power supply.
+
+
 \subsection{Lock Detector}
 In table \ref{tab:LD_delay_corner} the delays during different corners
 can be seen. The interval where the lock detector is locking can be
@@ -358,7 +451,7 @@ The delay in different temperatures is as in table \ref{tab:LD_temperature}
 \subsection{Frequency Multiplier}
 The signal that is of biggest importance in the frequency multiplier is the
 combined edges. This is because if the pulses are too wide the combination of
-them will be constant low, and if they are too short the combined edges will not
+them will be constantly low, and if they are too short the combined edges will not
 reach full swing. In the simulations focus is put upon the pulse width of the
 combined edges. The pulse width should ideally be 120-230 ps for the toggle
 pulsed latch to work properly. The values of the pulse width for the
@@ -381,7 +474,7 @@ The output, combined edges, a single pulse and input can be seen in figure
                 cmosws & Not Working \\
                 \hline
         \end{tabular}
-        \caption{Pulse width of combined edges at 250 MHz, Corners}
+        \caption{Pulse width of combined edges at 250 MHz and 3.3 V supply voltage, Corners}
         \label{tab:pulsewidth_corn}
 \end{table}
 
@@ -396,7 +489,7 @@ The output, combined edges, a single pulse and input can be seen in figure
                 70 & 226.2 \\
                 \hline
         \end{tabular}
-        \caption{Pulse width of combined edges at 250 MHz, Temperatures}
+        \caption{Pulse width of combined edges at 250 MHz and 3.3 V supply voltage, Temperatures}
         \label{tab:pulsewidth_temp}
 \end{table}
 
@@ -408,12 +501,35 @@ The output, combined edges, a single pulse and input can be seen in figure
 \end{figure}
 
 \section{PAD Assignment} % Early test plan också
+%%%TODO skriva allt här!
 \section{Risks and Delays}
 \subsection{Phase Detector}
 \subsection{Counter}
 \subsection{Digitally Controlled Delay Line}
 \subsection{Lock Detector}
 \subsection{Frequency Multiplier}
+The risks from the high level report are no longer applicable on the frequency
+multiplier since the design has changed. Instead new risks have appeared in the
+new design which must be considered in the layout. The first thing to fail when
+the frequency is turned up is the edge combiner, which is reasonable since this
+is the first place where the higher frequency is handled. One way to combat this
+is to make the pulses from the transition detector smaller, but this is
+dangerous because then the signal might not reach full swing and it will be more
+sensitive to process variations, especially the fast fast corner. With the
+current design the slow, slow corner is of highest concern. In this corner the
+pulses from the transition detector have a pulse width of 356 ps which is too
+long to produce a 1 GHz output. To deal with this the input frequency must be
+lowered and the supply voltage increased. In the slow, slow corner the frequency
+multiplier works with 200 MHz and 3.6 V as the supply voltage.
+
+The most important things to assert in the layout is:
+\begin{itemize}
+        \item Full swing on pulse produced by transition detector
+        \item Pulsewidth of pulse produced by transition detector around 200-250 ps
+        \item Full swing on output of edge combiner
+        \item Pulsewidth on output of edge combiner around 200 ps
+        \item Full swing on internal nodes in the toggle pulsed latch
+\end{itemize}
 
 \newpage 
 \appendix 
@@ -432,4 +548,4 @@ The output, combined edges, a single pulse and input can be seen in figure
 
 \end{thebibliography}
 \end{document} 
-%% Local Variables: %%% mode: latex %%% TeX-master: t %%% End:
+% Local Variables: %%% mode: latex %%% TeX-master: t %%% End:
