@@ -105,16 +105,64 @@ some changes had to be made to satisfy the requirement of reset and inverted out
 \subsection{Digitally Controlled Delay Line}
 The Digitally Controlled Delay Line, henceforth called delay line, is the part
 that delays the input clock signal. The delay line is divided into eight
-identical segments, called delay cells, connected in series. Each cell delays
-the signal $45\degree$ giving a total delay of 360\degree. The delay line can be
-seen in figure \ref{fig:del_line}. 
+identical blocks connected in series. Each block delays
+the signal 
+$45\degree$ giving a total delay of 360\degree. The delay line can be seen in
+figure \ref{fig:del_line}. 
+
 \begin{figure}[h]
         \centering
         \includegraphics[width=\textwidth]{../Bilder/Delay_Line/Delay_line_top.png}
         \caption{Delay Line}
         \label{fig:del_line}
 \end{figure}
-\subsubsection{Delay Cell}
+The input to a delay block is the signal that is going
+to be delayed and the control signals from the 6-bit counter. How much a signal
+is delayed is set by the counter output. After each block an output signal is sent
+through buffers into the frequency multiplier. Because the last output signal
+also needs to be fed back to the phase detector, a dummy block consisting of the
+first stage of the buffer between delay line and phase detector is needed on
+the lower seven output signals. Figure \ref{fig:del_bl} shows the inside of
+the delay blocks.
+\subsubsection{Delay Block}
+\begin{figure}[h]
+        \centering
+        \includegraphics[width=\textwidth]{../Bilder/Delay_Line/Delay_cell.png}
+        \caption{Delay Block}
+        \label{fig:del_bl}
+\end{figure}
+A delay block consists of two delay cells with six bit delays between
+them. The delay cells is two inverters that makes up a small buffer with a
+tapering factor of 2.5. The delay cell and its sizing can be seen in figure
+\ref{fig:del_cell}. 
+\begin{figure}[h]
+        \centering
+        \includegraphics[width=0.8\textwidth]{../Bilder/Delay_Line/Delay_inv.png}
+        \caption{Delay Cell}
+        \label{fig:del_cell}
+\end{figure}
+The delay cells contribute to the fixed delay of the delay line and also helps
+to drive the signal between the delay blocks. The control signals from the
+counter is connected to the delay blocks and controls the variable delay of the
+delay line. 
+The basic building block of the
+bit delay is an NMOS transistor where the drain and source are connected
+together with the control signal and where the gate is connected between the two
+delay cells. Figure \ref{fig:del_bit} shows the sizing of the NMOS transistor.
+\begin{figure}[h]
+        \centering
+        \includegraphics[width=0.5\textwidth]{../Bilder/Delay_Line/Delay_bit.png}
+        \caption{Delay Bit}
+        \label{fig:del_bit}
+\end{figure}
+When connected like this the NMOS transistor works like a capacitor. If the control
+signal is low the capacitance is higher than when the control signal is high,
+therefore the inverted outputs of the 6-bit counter is used. The goal was to
+make the delay binary weighted. To achieve this different numbers of NMOS
+transistor is connected in parallel for each control signal. The exact number
+can be seen in figure \ref{fig:del_bl}. Note that the indices start at 0, so for
+example the first block is called I8<1:0>, meaning that the number of
+transistors is two.
 
 \subsection{Lock Detector}
 For power saving reasons a lock detector has been implemented. The
@@ -300,4 +348,8 @@ The output, combined edges, a single pulse and input can be seen in figure
 
 \end{thebibliography}
 \end{document} 
+<<<<<<< HEAD
+%% Local Variables: %%% mode: latex %%% TeX-master: t %%% End:
+=======
 %%% Local Variables: %%% mode: latex %%% TeX-master: t %%% End:.
+>>>>>>> 4e1309420db577c395bd2a90a3e75c0c98091a69
