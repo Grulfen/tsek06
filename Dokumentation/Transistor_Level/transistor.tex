@@ -2,6 +2,8 @@
 \usepackage{epstopdf} %\usepackage{gensymb} \usepackage{longtable}
 \usepackage{graphicx}
 \usepackage{listings}
+\usepackage{caption}
+\usepackage{subcaption}
 \lstset{
         language=verilog,
         basicstyle=\footnotesize,
@@ -167,7 +169,7 @@ transistors is two.
 \subsection{Lock Detector}
 For power saving reasons a lock detector has been implemented. The
 lock detector detects when the phase error between two signals is
-greater than a decided XXXps and then sets its output to 0.
+greater than a decided time and then sets its output to 0.
 
 \begin{figure}[h]
         \centering
@@ -271,6 +273,88 @@ sizing is inspired from \cite{dll_report}.
 \subsection{Counter}
 \subsection{Digitally Controlled Delay Line}
 \subsection{Lock Detector}
+In table \ref{tab:LD_delay_corner} the delays during different corners
+can be seen. The interval where the lock detector is locking can be
+seen in figure \ref{fig:LD_tm} - \ref{fig:LD_wz} respectively. 
+\begin{table}[h]
+        \centering
+        \begin{tabular}{|c|c|c|}
+                \hline
+                \textbf{Corner} & \textbf{single delay (ps)} &
+                \textbf{double delay (ps)} \\
+                \hline
+                cmostm & 60.4 & 121.2 \\
+                cmosws & 85.9 & 174.3 \\
+                cmoswp & 37.8 & 73.8 \\
+                cmoswo & 63.3 & 118.0 \\
+                cmoswz & 53.2 & 111.3 \\
+                \hline
+        \end{tabular}
+        \caption{The delays of the Lock Detector in corner simulations}
+        \label{tab:LD_delays_corner}
+\end{table}
+
+\begin{figure}
+  \centering
+\begin{subfigure}[b]{.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../Bilder/LD_tran/PD_tm.png}
+        \caption{Interval where the lock detector locks during corner cmostm}
+        \label{fig:LD_tm}
+\end{subfigure}
+
+\begin{subfigure}[b]{.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../Bilder/LD_tran/LD_ws.png}
+        \caption{Interval where the lock detector locks during corner cmosws}
+        \label{fig:LD_ws}
+\end{subfigure}
+
+\begin{subfigure}[b]{.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../Bilder/LD_tran/PD_wp.png}
+        \caption{Interval where the lock detector locks during corner cmoswp}
+        \label{fig:LD_wp}
+\end{subfigure}
+\caption{A figure with two subfigures}
+\label{fig:test}
+\end{figure}
+
+\begin{figure}
+\centering
+\begin{subfigure}[b]{.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../Bilder/LD_tran/PD_wo.png}
+        \caption{Interval where the lock detector locks during corner cmoswo}
+        \label{fig:LD_wo}
+\end{subfigure}
+
+\begin{subfigure}[b]{.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../Bilder/LD_tran/PD_wz.png}
+        \caption{Interval where the lock detector locks during corner cmoswz}
+        \label{fig:LD_wz}
+\end{subfigure}
+\end{figure}
+
+The delay in different temperatures is as in table \ref{tab:LD_temperature}
+\begin{table}[h]
+        \centering
+        \begin{tabular}{|c|c|c|}
+                \hline
+                \textbf{Temperature $\degree$C} & \textbf{single delay
+                  (ps)} & \textbf{double delay (ps)} \\
+                \hline
+                0 & 55.96 & 112.2 \\
+                27 & 60.39 & 121.2 \\
+                50 & 69.16 & 128.8 \\
+                100 & 72.02 & 144.9 \\
+                \hline
+        \end{tabular}
+        \caption{The delays of the Lock Detector in corner simulations}
+        \label{tab:LD_temperture}
+\end{table}
+
 \subsection{Frequency Multiplier}
 The signal that is of biggest importance in the frequency multiplier is the
 combined edges. This is because if the pulses are too wide the combination of
