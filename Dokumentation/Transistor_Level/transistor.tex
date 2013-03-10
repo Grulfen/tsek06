@@ -43,7 +43,6 @@
 %% Argument till \LIPSgruppmedlem: namn, roll i gruppen, telefonnummer, epost
 \selectlanguage{swedish}
 \begin{LIPSprojektidentitet}
-
         \LIPSgruppmedlem{Nora Björklund}{Project leader}{076 7756
         789}{norbj648@student.liu.se}
         \LIPSgruppmedlem{\LIPSdokumentansvarig}{Documentation}{073
@@ -52,7 +51,6 @@
         \LIPSgruppmedlem{Gustaf Bengtz}{}{07073607307}{gbengtz@gmail.com} 
         \LIPSgruppmedlem{Johan Berneland}{}{0704988329}{johbe915@student.liu.se}
 \end{LIPSprojektidentitet}
-
 
 \selectlanguage{english}
 
@@ -205,14 +203,14 @@ technology, so it was very difficult to reach an output frequency of 1 GHz.
 The transition detector consists of three inverters and a symmetric nand gate.
 The purpose of the transition detector is to produce negative pulses for every
 rising edge that reaches the input. The transistors are sized so the output
-pulse is approximately 200 ps long. The transistor layout can be seen
+pulse is approximately 230 ps long. The transistor layout can be seen
 in figure \ref{fig:trans_detect_trans}.
 A buffer is placed at the output of the circuit to improve rise and fall times.
 The gates are connected according to figure \ref{fig:trans_detect}.
 
 Earlier designs had a third input to the symmetric nand to control the
 multiplication factor of the circuit by only allowing certain pulses to pass.
-This was changed because it was difficult to get a 200 ps pulse with full swing
+This was changed because it was difficult to get a 230 ps pulse with full swing
 with this design.
 
 \begin{figure}[p]
@@ -266,6 +264,30 @@ sizing is inspired from \cite{dll_report}.
 \end{figure}
 
 \section{Simulation Result}
+The simulations have been run in different process variation corners and
+temperatures to examine the behaviour of the circuit. The process variation is
+the variations of the NMOS and PMOS between wafers and batches. 
+The process variation corners are where the process variations are biggest.
+The names of the process variation corners and their meaning can be seen in
+table \ref{tab:corners}.
+
+\begin{table}[h!]
+        \centering
+        \begin{tabular}{|l|l|}
+                \hline 
+                cmostm & Typical Mean - the normal values for PMOS and NMOS \\
+                cmoswp & Worst Power - PMOS and NMOS work faster than normal \\
+                cmosws & Worst Speed - PMOS and NMOS work slower than normal \\
+                cmoswo & Worst One - PMOS is slower than normal and NMOS is
+                faster than normal \\
+                cmoswz & Worst Zero - PMOS is faster than normal and NMOS is
+                slower than normal \\
+                \hline
+        \end{tabular}
+        \caption{Process Variation Corners}
+        \label{tab:corners}
+\end{table}
+
 \subsection{Whole System Simulation}
 \subsection{Phase Detector}
 \subsection{Counter}
@@ -274,7 +296,7 @@ sizing is inspired from \cite{dll_report}.
 \subsection{Frequency Multiplier}
 The signal that is of biggest importance in the frequency multiplier is the
 combined edges. This is because if the pulses are too wide the combination of
-them will be constant low, and if they are too short the combined edges will not
+them will be constantly low, and if they are too short the combined edges will not
 reach full swing. In the simulations focus is put upon the pulse width of the
 combined edges. The pulse width should ideally be 120-230 ps for the toggle
 pulsed latch to work properly. The values of the pulse width for the
@@ -297,7 +319,7 @@ The output, combined edges, a single pulse and input can be seen in figure
                 cmosws & Not Working \\
                 \hline
         \end{tabular}
-        \caption{Pulse width of combined edges at 250 MHz, Corners}
+        \caption{Pulse width of combined edges at 250 MHz and 3.3 V supply voltage, Corners}
         \label{tab:pulsewidth_corn}
 \end{table}
 
@@ -312,7 +334,7 @@ The output, combined edges, a single pulse and input can be seen in figure
                 70 & 226.2 \\
                 \hline
         \end{tabular}
-        \caption{Pulse width of combined edges at 250 MHz, Temperatures}
+        \caption{Pulse width of combined edges at 250 MHz and 3.3 V supply voltage, Temperatures}
         \label{tab:pulsewidth_temp}
 \end{table}
 
@@ -324,12 +346,35 @@ The output, combined edges, a single pulse and input can be seen in figure
 \end{figure}
 
 \section{PAD Assignment} % Early test plan också
+%%%TODO skriva allt här!
 \section{Risks and Delays}
 \subsection{Phase Detector}
 \subsection{Counter}
 \subsection{Digitally Controlled Delay Line}
 \subsection{Lock Detector}
 \subsection{Frequency Multiplier}
+The risks from the high level report are no longer applicable on the frequency
+multiplier since the design has changed. Instead new risks have appeared in the
+new design which must be considered in the layout. The first thing to fail when
+the frequency is turned up is the edge combiner, which is reasonable since this
+is the first place where the higher frequency is handled. One way to combat this
+is to make the pulses from the transition detector smaller, but this is
+dangerous because then the signal might not reach full swing and it will be more
+sensitive to process variations, especially the fast fast corner. With the
+current design the slow, slow corner is of highest concern. In this corner the
+pulses from the transition detector have a pulse width of 356 ps which is too
+long to produce a 1 GHz output. To deal with this the input frequency must be
+lowered and the supply voltage increased. In the slow, slow corner the frequency
+multiplier works with 200 MHz and 3.6 V as the supply voltage.
+
+The most important things to assert in the layout is:
+\begin{itemize}
+        \item Full swing on pulse produced by transition detector
+        \item Pulsewidth of pulse produced by transition detector around 200-250 ps
+        \item Full swing on output of edge combiner
+        \item Pulsewidth on output of edge combiner around 200 ps
+        \item Full swing on internal nodes in the toggle pulsed latch
+\end{itemize}
 
 \newpage 
 \appendix 
