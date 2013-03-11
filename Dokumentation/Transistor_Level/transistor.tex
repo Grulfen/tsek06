@@ -4,6 +4,7 @@
 \usepackage{listings}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{morefloats}
 \lstset{
         language=verilog,
         basicstyle=\footnotesize,
@@ -327,6 +328,7 @@ sizing is inspired from \cite{dll_report}.
         \label{fig:tpl}
 \end{figure}
 
+\clearpage
 \section{Simulation Result}
 The simulations have been run in different process variation corners and
 temperatures to examine the behaviour of the circuit. The process variation is
@@ -335,7 +337,7 @@ The process variation corners are where the process variations are biggest.
 The names of the process variation corners and their meaning can be seen in
 table \ref{tab:corners}.
 
-\begin{table}[h!]
+\begin{table}[h]
         \centering
         \begin{tabular}{|l|l|}
                 \hline 
@@ -570,7 +572,7 @@ about 50 ps, why that 50 ps delay is needed is not fully clear but the
         \label{tab:LD_delays_corner}
 \end{table}
 
-\begin{figure}[h]
+\begin{figure}
   \centering
 \begin{subfigure}[b]{.3\textwidth}
         \centering
@@ -593,7 +595,7 @@ about 50 ps, why that 50 ps delay is needed is not fully clear but the
 \label{fig:LD_tm_wp}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}
 \centering
 \begin{subfigure}[b]{.5\textwidth}
         \centering
@@ -640,6 +642,7 @@ different corners and temperatures can be seen in table \ref{tab:pulsewidth_corn
 cmosws corner the input frequency and the supply voltage can be adjusted.
 The output, combined edges, a single pulse and input can be seen in figure
 \ref{fig:freq_mult_signals}.
+
 \begin{table}[h]
         \centering
         \begin{tabular}{|c|c|}
@@ -678,10 +681,56 @@ The output, combined edges, a single pulse and input can be seen in figure
         \caption{Simulation of Frequency Multipler}
         \label{fig:freq_mult_signals}
 \end{figure}
-
+\clearpage
 \section{PAD Assignment} % Early test plan också
 %%%TODO skriva allt här!
+There will be twelve pad available on the fabricated chip. The input and output
+signals of the system are listed in tables \ref{tab:input_sig} and
+\ref{tab:output_sig} respectively. 
+
+\begin{table}[h!]
+        \centering
+        \begin{tabular}{|l|l|}
+                \hline
+                Vdd (system) & Power supply for the system \\
+                Vdd (delay) & Power supply for the delay line \\
+                Vdd (freq.) & Power supply for the frequency multiplier \\
+                Gnd & Ground \\
+                In & Input clock signal \\
+                \hline
+        \end{tabular}
+        \caption{Pad input signals}
+        \label{tab:input_sig}
+\end{table}
+Three different power supplies will probably be used to tune different parts of
+the system individually.
+\begin{table}[h!]
+        \centering
+        \begin{tabular}{|l|l|}
+               \hline
+               Out & The multiplied output of the system \\
+               360\_del & The delayed output of the delay line \\
+               Lock & The lock signal from the lock detector \\
+               Up\_Down & The control signal from phase detector to counter \\
+               In\_Out & The output of the input signal, needed for comparison \\
+               Edge\_Comb & The edge combiner signal \\
+               Bit\_3 & The fourth control signal from the counter\\
+               \hline
+        \end{tabular}
+        \caption{Pad output signals}
+        \label{tab:output_sig}
+\end{table}
+
+The output signals will be needed to see the internal state of the system as
+well as provide the multiplied output signal of the system. In order to see that
+the counter is working one of its control signals will be connected to an
+output.
+
+\clearpage
 \section{Risks and Delays}
+This section describes the hazards that threaten the functionality of the
+system. This is important to understand potential risks and what to
+focus upon in the layout.
 \subsection{Phase Detector}
 The PD manages to run with all the corner simulations, as well as run properly
 at 500 MHz. The only thing to note is that the clock needs to be properly buffered.
