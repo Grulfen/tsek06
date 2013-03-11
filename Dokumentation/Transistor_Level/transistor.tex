@@ -631,6 +631,7 @@ the system individually.
                Up\_Down & The control signal from phase detector to counter \\
                In\_Out & The output of the input signal, needed for comparison \\
                Edge\_Comb & The edge combiner signal \\
+               Bit\_3 & The fourth control signal from the counter\\
                \hline
         \end{tabular}
         \caption{Pad output signals}
@@ -638,7 +639,9 @@ the system individually.
 \end{table}
 
 The output signals will be needed to see the internal state of the system as
-well as provide the multiplied output signal of the system. 
+well as provide the multiplied output signal of the system. In order to see that
+the counter is working one of its control signals will be connected to an
+output.
 
 \clearpage
 \section{Risks and Delays}
