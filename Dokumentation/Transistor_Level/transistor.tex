@@ -108,7 +108,7 @@ output, to buff the signal before sending it to the next subsystem.
 \label{fig:DFF}
 \end{figure}
 
-The sizing of the transistors in the DFF have been found by sweeping on the variables that were interresting.
+The sizing of the transistors in the DFF have been found by sweeping on the variables that were interesting.
 
 \subsection{Counter}
 The purpose of the counter is to generate the control signals for the delay line.
@@ -348,16 +348,17 @@ The propagation-delay for the DFF
 \label{fig:set_up_PD}
 \end{figure}
 
+The time it takes for the DFF to propagate the signal from the input to the output is 504 ps.
 
-The time it takes for the DFF to propagate the signal from the input to the output is, as can be seen in Figure \ref{fig:propagate_DFF},
-takes ... ps.
+The DFF worked as expected when running all the corner tests, so the most interesting part was the propagation delay for
+the different set-ups.
 
-\begin{figure}
-        \centering
-        \includegraphics[width = 0.7\textwidth, angle = 270]{../Bilder/propagate_DFF.png}
-        \caption{Propagation delay in DFF}
-        \label{fig:propagate_DFF}
-\end{figure}
+cmostm: The propagation was 464 ps when working at 0 degrees.
+cmostm: The propagation was 612 ps when working at 100 degrees.
+cmosws: The propagation delay was 778 ps.
+cmoswp: The propagation delay was 299 ps.
+cmoswo: The propagation delay was 469 ps.
+cmoswz: The propagation delay was 489 ps.
 
 \subsection{Counter}
 \subsection{Digitally Controlled Delay Line}
@@ -575,6 +576,9 @@ The output, combined edges, a single pulse and input can be seen in figure
 %%%TODO skriva allt här!
 \section{Risks and Delays}
 \subsection{Phase Detector}
+The PD manages to run with all the corner simulations, as well as run properly
+at 500 MHz. The only thing to note is that the clock needs to be properly buffered.
+
 \subsection{Counter}
 \subsection{Digitally Controlled Delay Line}
 The delay line is sensitive to process variations as shown in the simulation
