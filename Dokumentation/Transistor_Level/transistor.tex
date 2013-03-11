@@ -4,6 +4,7 @@
 \usepackage{listings}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{morefloats}
 \lstset{
         language=verilog,
         basicstyle=\footnotesize,
@@ -488,7 +489,7 @@ about 50 ps.
         \label{tab:LD_delays_corner}
 \end{table}
 
-\begin{figure}[h]
+\begin{figure}
   \centering
 \begin{subfigure}[b]{.3\textwidth}
         \centering
@@ -511,7 +512,7 @@ about 50 ps.
 \label{fig:LD_tm_wp}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}
 \centering
 \begin{subfigure}[b]{.5\textwidth}
         \centering
@@ -558,6 +559,7 @@ different corners and temperatures can be seen in table \ref{tab:pulsewidth_corn
 cmosws corner the input frequency and the supply voltage can be adjusted.
 The output, combined edges, a single pulse and input can be seen in figure
 \ref{fig:freq_mult_signals}.
+
 \begin{table}[h]
         \centering
         \begin{tabular}{|c|c|}
@@ -640,6 +642,9 @@ well as provide the multiplied output signal of the system.
 
 \clearpage
 \section{Risks and Delays}
+This section describes the hazards that threaten the functionality of the
+system. This is important to understand potential risks and what to
+focus upon in the layout.
 \subsection{Phase Detector}
 The PD manages to run with all the corner simulations, as well as run properly
 at 500 MHz. The only thing to note is that the clock needs to be properly buffered.
