@@ -370,12 +370,16 @@ table \ref{tab:corners}.
         \centering
         \begin{tabular}{|l|l|}
                 \hline 
-                cmostm & Typical Mean - the normal values for PMOS and NMOS \\
-                cmoswp & Worst Power - PMOS and NMOS work faster than normal \\
-                cmosws & Worst Speed - PMOS and NMOS work slower than normal \\
-                cmoswo & Worst One - PMOS is slower than normal and NMOS is
+                \textbf{cmostm} & Typical Mean - the normal values for PMOS and NMOS \\
+                \hline 
+                \textbf{cmoswp} & Worst Power - PMOS and NMOS work faster than normal \\
+                \hline 
+                \textbf{cmosws} & Worst Speed - PMOS and NMOS work slower than normal \\
+                \hline 
+                \textbf{cmoswo} & Worst One - PMOS is slower than normal and NMOS is
                 faster than normal \\
-                cmoswz & Worst Zero - PMOS is faster than normal and NMOS is
+                \hline 
+                \textbf{cmoswz} & Worst Zero - PMOS is faster than normal and NMOS is
                 slower than normal \\
                 \hline
         \end{tabular}
@@ -789,6 +793,12 @@ The PD manages to run with all the corner simulations, as well as run properly
 at 500 MHz. The only thing to note is that the clock needs to be properly buffered.
 
 \subsection{Counter}
+The counter is rather robust and other parts of the system are likely to fail before
+it does. The biggest risk is that the carry propagation line is too slow which results
+in malfunction of the upper bits of the counter. This is not likely to happen at 250 
+MHz at the temperatures expected, nor in any of the corner cases at 27$\degree$C.
+One thing to be kept in mind is that the counter has no internal buffering and thus
+its output must be buffered.
 
 
 \subsection{Digitally Controlled Delay Line}
