@@ -198,6 +198,8 @@ example the first block is called I8<1:0>, meaning that the number of
 transistors is two. The corresponding delay when adding more capacitances is
 also highly non-linear as reflected by the numbers.
 
+\clearpage
+
 \subsection{Lock Detector}
 \label{sec:lck_det}
 To avoid that the counter will count up and down to many times and
@@ -211,7 +213,7 @@ where the clocks to the d-flip-flops have the same delay.
 
 \begin{figure}[h]
         \centering
-        \includegraphics[width=150mm]{../Bilder/Lockdetector.png}
+        \includegraphics[width=150mm]{../Bilder/LD_tran/LockDetector.png}
         \caption{Lock detector, block overview}
         \label{fig:LD_block}
 \end{figure}
@@ -242,6 +244,7 @@ sized to give proper delay to the two input signals. In figure
         \label{fig:c_delay}
 \end{figure}
 
+\clearpage
 \subsection{Frequency Multiplier}
 The block structure of the frequency multiplier can be seen in figure 
 \ref{fig:freq_mult}.
@@ -356,11 +359,12 @@ table \ref{tab:corners}.
 
 \subsection{Whole System Simulation}
 Under normal (cmostm) circumstances the system works very well and can
-lock and unlock for different frequences as shown in figure \ref{fig:WS_sim_tm} 
+lock and unlock for different frequences as shown in figure
+\ref{fig:WS_sim_tm}. In
 
 \begin{figure}[h]
   \centering
-  \includegraphics{..\Bilder\WS_sim_tm.png}
+  \includegraphics[width=\textwidth]{../Bilder/WS_sim_tm.png}
   \caption{Simulation results under "normal" circumstances (cmostm)}
   \label{fig:WS_sim_tm}
 \end{figure}
@@ -372,17 +376,17 @@ for cmoswp and cmosws the input frequency cannot be 250 MHz since the
 change within the delay line and frequency multiplier is too big. 
 \begin{table}[h]
         \centering
-        \begin{tabular}{|c|c|c|c|c|}
+        \begin{tabular}{|c|c|c|c|c|c|}
                 \hline
-                \textbf{Corner} & \textbf{Frequency (MHz)} &
-                \textbf{Locks after (ns)} & \textbf{Out frequency
-                  (MHz)} & \textbf{Comment}\\
+                \textbf{Corner} & \textbf{f (MHz)} &
+                \textbf{Locks after (ns)} & \textbf{lock interval (ps)} & \textbf{Out f
+                  (MHz)} & \textbf{Comment} \\
                 \hline
-                cmostm & 250 & 93 & 1002 & Can also run at 220 MHz \\
-                cmosws & 200 & 27 & 802  & Does not run at 250 MHz \\
-                cmoswp & 290 & xx & xxx  & \\
-                cmoswo & 250 & 72 & 1000 & Can also run at 220 MHz \\
-                cmoswz & 250 & 68 & 1000 & Can also run at 220 MHz \\
+                cmostm & 250 & 93  & 28 & 1002 & Can also run at 220 MHz \\
+                cmosws & 200 & 27  & 85 & 802  & Does not run at 250 MHz \\
+                cmoswp & 290 & 211 & 13 & 1211 & Does not run at 250 MHz \\
+                cmoswo & 250 & 72  & 36 & 1000 & Can also run at 220 MHz \\
+                cmoswz & 250 & 68  & 43 & 1000 & Can also run at 220 MHz \\
                 \hline
         \end{tabular}
         \caption{Corner simulation results}
@@ -400,8 +404,9 @@ tested.
           \textbf{\degree C} & \textbf{Locks after (ns)} & \textbf{Comment} \\
           \hline
           0  & 133 & Locks twice during the 200 ns interval \\
-          27 & 93 & ---\\
-          70 & xx & \\
+          27 & 93  & --- \\
+          70 & 37  & The output frequency is slightly uneven due to
+          locking a bit early \\
           \hline
         \end{tabular}
         \caption{Temperature simulation results (cmostm)}
@@ -412,19 +417,20 @@ In 0 \degree C after the lock goes down the counter counts up once
 locks again.  
 \subsubsection{Power usage}
 The power usage for the system and for each block during a 200 ns long
-simulation in cmostm conditions can be seen    
+simulation in cmostm conditions can be seen in table
+\ref{tab:WS_power}. Voltage is set to 3.3 V for all blocks.
 \begin{table}[h]
         \centering
         \begin{tabular}{|c|c|}
                 \hline
-                \textbf{Block} & \textbf{Power use (mW)}  \\
+                \textbf{Block}                & \textbf{Power use (mW)}  \\
                 \hline
-                System & 48.27\\
-                Frequency multiplier & 24.35 \\
-                Delay line & 3.472 \\
-                Counter & 0.806 \\
-                Lock detector & 0.782 \\
-                Phase detector & 0.104 \\
+                System               & 48.27           \\
+                Frequency multiplier & 24.35           \\
+                Delay line           & 3.472           \\
+                Counter              & 0.806           \\
+                Lock detector        & 0.782           \\
+                Phase detector       & 0.104           \\
                 \hline
         \end{tabular}
         \caption{Power usage for the system and each block}
@@ -630,6 +636,7 @@ The delay in different temperatures is as in table \ref{tab:LD_temperature}
         \label{tab:LD_temperature}
 \end{table}
 
+\clearpage
 \subsection{Frequency Multiplier}
 The signal that is of biggest importance in the frequency multiplier is the
 combined edges. This is because if the pulses are too wide the combination of
