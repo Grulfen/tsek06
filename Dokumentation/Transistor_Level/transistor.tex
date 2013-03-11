@@ -86,7 +86,7 @@ buffered in the design, using appropriately sized buffers.
 The Phase Detector (PD), as seen in Figure \ref{fig:PD}, is a D-flipflop (DFF), as seen in Figure \ref{fig:DFF}, without
 reset and inverted output signal.
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=0.7\textwidth, angle = 270]{../Bilder/Phase_detector_trans.png}
 \caption{The Phase Detector}
@@ -98,7 +98,7 @@ Using a NMOS being almost five times wider than the PMOS gives better rise and f
 PMOS, with a fanout of 3. The transistors on the input side were set to being as small as possible, and the size increases towards the
 output, to buff the signal before sending it to the next subsystem.
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=0.7\textwidth, angle = 270]{../Bilder/DFF-1.png}
 \caption{D-flipflop}
@@ -326,19 +326,19 @@ table \ref{tab:corners}.
 The set-up time for the PD, which can be seen in Figure \ref{fig:set_up_PD}, is less than 45 fs
 running with a non-ideal clock input, and non-ideal input data.
 
-The set-up time of the PD did not change when running any of the tests, but the rise time altered slightly
-for two of the set-ups. Except that, the PD worked well running all the tests.
+The set-up time did not change when running any of the tests, but the rise time altered slightly
+for two of the set-ups. Except that, the PD worked well for all the tests.
 
-cmostm: works well at 0 degrees.
-cmostm: works well at 100 degrees.
-cmosws: but the rise time is a little slower.
-cmoswp: but the rise time is a little faster.
-cmoswo: the rise is roughly the same as for tm.
-cmoswz: nothing note-worthy.
+\begin{itemize}
+        \item cmostm: works well at 0 degrees.
+        \item cmostm: works well at 100 degrees.
+        \item cmosws: but the rise time is a little slower.
+        \item cmoswp: but the rise time is a little faster.
+        \item cmoswo: the rise is roughly the same as for tm.
+        \item cmoswz: nothing note-worthy.
+\end{itemize}
 
-The propagation-delay for the DFF 
-
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=0.7\textwidth]{../Bilder/set_up_PD.png}
 \caption{Set-up time for PD}
@@ -350,12 +350,14 @@ The time it takes for the DFF to propagate the signal from the input to the outp
 The DFF worked as expected when running all the corner tests, so the most interesting part was the propagation delay for
 the different set-ups.
 
-cmostm: The propagation was 464 ps when working at 0 degrees.
-cmostm: The propagation was 612 ps when working at 100 degrees.
-cmosws: The propagation delay was 778 ps.
-cmoswp: The propagation delay was 299 ps.
-cmoswo: The propagation delay was 469 ps.
-cmoswz: The propagation delay was 489 ps.
+\begin{itemize}
+        \item cmostm: The propagation was 464 ps when working at 0 degrees.
+        \item cmostm: The propagation was 612 ps when working at 100 degrees.
+        \item cmosws: The propagation delay was 778 ps.
+        \item cmoswp: The propagation delay was 299 ps.
+        \item cmoswo: The propagation delay was 469 ps.
+        \item cmoswz: The propagation delay was 489 ps.
+\end{itemize}
 
 \subsection{Counter}
 \subsection{Digitally Controlled Delay Line}
