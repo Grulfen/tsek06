@@ -599,22 +599,45 @@ The output, combined edges, a single pulse and input can be seen in figure
 \clearpage
 \section{PAD Assignment} % Early test plan också
 %%%TODO skriva allt här!
-There will be twelve pad available on the fabricated chip. 
+There will be twelve pad available on the fabricated chip. The input and output
+signals of the system are listed in tables \ref{tab:input_sig} and
+\ref{tab:output_sig} respectively. 
 
 \begin{table}[h!]
         \centering
-        \begin{tabular}{|c|c|}
+        \begin{tabular}{|l|l|}
                 \hline
                 Vdd (system) & Power supply for the system \\
                 Vdd (delay) & Power supply for the delay line \\
                 Vdd (freq.) & Power supply for the frequency multiplier \\
                 Gnd & Ground \\
-                in & Input clock signal \\
+                In & Input clock signal \\
                 \hline
         \end{tabular}
         \caption{Pad input signals}
         \label{tab:input_sig}
 \end{table}
+Three different power supplies will probably be used to tune different parts of
+the system individually.
+\begin{table}[h!]
+        \centering
+        \begin{tabular}{|l|l|}
+               \hline
+               Out & The multiplied output of the system \\
+               360\_del & The delayed output of the delay line \\
+               Lock & The lock signal from the lock detector \\
+               Up\_Down & The control signal from phase detector to counter \\
+               In\_Out & The output of the input signal, needed for comparison \\
+               Edge\_Comb & The edge combiner signal \\
+               \hline
+        \end{tabular}
+        \caption{Pad output signals}
+        \label{tab:output_sig}
+\end{table}
+
+The output signals will be needed to see the internal state of the system as
+well as provide the multiplied output signal of the system. 
+
 \clearpage
 \section{Risks and Delays}
 \subsection{Phase Detector}
