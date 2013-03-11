@@ -81,7 +81,10 @@ An overview of the system can be seen in figure\ref{fig:system}.
 \end{figure}
 In figure \ref{fig:system} the buffers between subsystems have been omitted to
 make the figure less cluttered. Basically all intermediate signals have been
-buffered in the design, using appropriately sized buffers. 
+buffered in the design, using appropriately sized buffers. In the layout three
+different supply voltages will probably be used, one for the digitally
+controlled delay line, one for the frequency multiplier and one for the rest of
+the system.
 \subsection{Phase Detector}
 The Phase Detector (PD), as seen in Figure \ref{fig:PD}, is a D-flipflop (DFF), as seen in Figure \ref{fig:DFF}, without
 reset and inverted output signal.
@@ -207,8 +210,31 @@ greater than a decided time and then sets its output to 0.
         \label{fig:LD_block}
 \end{figure}
 
+
 The delay blocks have been implemented with inverters that have been
-sized to give proper delay to the two input signals.
+sized to give proper delay to the two input signals. In figure
+\ref{fig:s_delay} - \ref{fig:c_delay}
+
+\begin{figure}[h]
+        \centering
+        \includegraphics[width=150mm]{../Bilder/LD_tran/single_delay.png}
+        \caption{Lock detector, block overview}
+        \label{fig:s_delay}
+\end{figure}
+
+\begin{figure}[h]
+        \centering
+        \includegraphics[width=150mm]{../Bilder/LD_tran/double_delay.png}
+        \caption{Lock detector, block overview}
+        \label{fig:d_delay}
+\end{figure}
+
+\begin{figure}[h]
+        \centering
+        \includegraphics[width=150mm]{../Bilder/LD_tran/compensation_delay.png}
+        \caption{Lock detector, block overview}
+        \label{fig:c_delay}
+\end{figure}
 
 \subsection{Frequency Multiplier}
 The block structure of the frequency multiplier can be seen in figure 
@@ -225,7 +251,7 @@ to one signal with a frequency that is four times bigger than the input
 frequency. This is done by first producing a negative pulse for every rising
 edge of the delayed signals. This pulse is produced by the transition detector.
 The pulses are then combined to one signal by the edge combiner. The pulse
-train is the inputed to the toggle pulsed latch which produces the final output.
+train is then inputed to the toggle pulsed latch which produces the final output.
 
 The design of the frequency multiplier has changed from the high level report.
 This is because the delays in the multiplexer and counter were too high in this
@@ -437,9 +463,12 @@ around 3.3 ns and the largest delay is almost 5.2 ns. The largest step between
 two control words is approximately 40 ps. 
 
 \subsection{Lock Detector}
-In table \ref{tab:LD_delay_corner} the delays during different corners
+In table \ref{tab:LD_delays_corner} the delays during different corners
 can be seen. The interval where the lock detector is locking can be
-seen in figure \ref{fig:LD_tm} - \ref{fig:LD_wz} respectively. 
+seen in figure \ref{fig:LD_tm_wp} and \ref{fig:LD_wo_wz}. The
+interval when the lock detector `locks' was at first very shifted
+which was solved by adding an extra buffer on the delayed clock of
+about 50 ps.
 \begin{table}[h]
         \centering
         \begin{tabular}{|c|c|c|}
@@ -458,47 +487,44 @@ seen in figure \ref{fig:LD_tm} - \ref{fig:LD_wz} respectively.
         \label{tab:LD_delays_corner}
 \end{table}
 
-\begin{figure}
+\begin{figure}[h]
   \centering
 \begin{subfigure}[b]{.3\textwidth}
         \centering
         \includegraphics[width=\textwidth]{../Bilder/LD_tran/PD_tm.png}
         \caption{Interval where the lock detector locks during corner cmostm}
-        \label{fig:LD_tm}
 \end{subfigure}
 
 \begin{subfigure}[b]{.3\textwidth}
         \centering
         \includegraphics[width=\textwidth]{../Bilder/LD_tran/LD_ws.png}
         \caption{Interval where the lock detector locks during corner cmosws}
-        \label{fig:LD_ws}
 \end{subfigure}
 
 \begin{subfigure}[b]{.3\textwidth}
         \centering
         \includegraphics[width=\textwidth]{../Bilder/LD_tran/PD_wp.png}
         \caption{Interval where the lock detector locks during corner cmoswp}
-        \label{fig:LD_wp}
 \end{subfigure}
-\caption{A figure with two subfigures}
-\label{fig:test}
+\caption{Plots of the intervals with cmostm, cmosws, cmoswp}
+\label{fig:LD_tm_wp}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \begin{subfigure}[b]{.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{../Bilder/LD_tran/PD_wo.png}
         \caption{Interval where the lock detector locks during corner cmoswo}
-        \label{fig:LD_wo}
 \end{subfigure}
 
 \begin{subfigure}[b]{.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{../Bilder/LD_tran/PD_wz.png}
         \caption{Interval where the lock detector locks during corner cmoswz}
-        \label{fig:LD_wz}
 \end{subfigure}
+\caption{Plots of the intervals with cmoswo, cmoswz}
+\label{fig:LD_wo_wz}
 \end{figure}
 
 The delay in different temperatures is as in table \ref{tab:LD_temperature}
@@ -516,7 +542,7 @@ The delay in different temperatures is as in table \ref{tab:LD_temperature}
                 \hline
         \end{tabular}
         \caption{The delays of the Lock Detector in corner simulations}
-        \label{tab:LD_temperture}
+        \label{tab:LD_temperature}
 \end{table}
 
 \subsection{Frequency Multiplier}
@@ -526,8 +552,7 @@ them will be constantly low, and if they are too short the combined edges will n
 reach full swing. In the simulations focus is put upon the pulse width of the
 combined edges. The pulse width should ideally be 120-230 ps for the toggle
 pulsed latch to work properly. The values of the pulse width for the
-different corners and
-temperatures can be seen in table \ref{tab:pulsewidth_corn} and
+different corners and temperatures can be seen in table \ref{tab:pulsewidth_corn} and
 \ref{tab:pulsewidth_temp}. To get the frequency multiplier to work in the
 cmosws corner the input frequency and the supply voltage can be adjusted.
 The output, combined edges, a single pulse and input can be seen in figure
@@ -590,6 +615,10 @@ line, increasing the range would also increase the smallest delay that can be
 achieved. This could cause the system to not work at 250 MHz in the normal case
 and it was therefore decided not to try to increase the range. 
 \subsection{Lock Detector}
+The biggest risks with the lock detector is that it have to lock on
+good phase difference interval, and that the lock is similar both when
+the 360 degrees delayed clock comes before and after the reference
+clock. 
 \subsection{Frequency Multiplier}
 The risks from the high level report are no longer applicable on the frequency
 multiplier since the design has changed. Instead new risks have appeared in the
@@ -605,12 +634,11 @@ long to produce a 1 GHz output. To deal with this the input frequency must be
 lowered and the supply voltage increased. In the slow, slow corner the frequency
 multiplier works with 200 MHz and 3.6 V as the supply voltage.
 
-The most important things to assert in the layout is:
+The most important things to ensure in the layout is:
 \begin{itemize}
         \item Full swing on pulse produced by transition detector
         \item Pulsewidth of pulse produced by transition detector around 200-250 ps
         \item Full swing on output of edge combiner
-        \item Pulsewidth on output of edge combiner around 200 ps
         \item Full swing on internal nodes in the toggle pulsed latch
 \end{itemize}
 
