@@ -81,7 +81,10 @@ An overview of the system can be seen in figure\ref{fig:system}.
 \end{figure}
 In figure \ref{fig:system} the buffers between subsystems have been omitted to
 make the figure less cluttered. Basically all intermediate signals have been
-buffered in the design, using appropriately sized buffers. 
+buffered in the design, using appropriately sized buffers. In the layout three
+different supply voltages will probably be used, one for the digitally
+controlled delay line, one for the frequency multiplier and one for the rest of
+the system.
 \subsection{Phase Detector}
 The Phase Detector (PD), as seen in Figure \ref{fig:PD}, is a D-flipflop (DFF), as seen in Figure \ref{fig:DFF}, without
 reset and inverted output signal.
@@ -225,7 +228,7 @@ to one signal with a frequency that is four times bigger than the input
 frequency. This is done by first producing a negative pulse for every rising
 edge of the delayed signals. This pulse is produced by the transition detector.
 The pulses are then combined to one signal by the edge combiner. The pulse
-train is the inputed to the toggle pulsed latch which produces the final output.
+train is then inputed to the toggle pulsed latch which produces the final output.
 
 The design of the frequency multiplier has changed from the high level report.
 This is because the delays in the multiplexer and counter were too high in this
@@ -350,10 +353,10 @@ The time it takes for the DFF to propagate the signal from the input to the outp
 takes ... ps.
 
 \begin{figure}
-\centering
-\includegraphics[width = 0.7\textwidth, angle = 270]{../Bilder/propagate_DFF.png}
-\caption{Propagation delay in DFF}
-\label{fig:propagate_DFF}
+        \centering
+        \includegraphics[width = 0.7\textwidth, angle = 270]{../Bilder/propagate_DFF.png}
+        \caption{Propagation delay in DFF}
+        \label{fig:propagate_DFF}
 \end{figure}
 
 \subsection{Counter}
