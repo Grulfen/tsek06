@@ -200,9 +200,14 @@ also highly non-linear as reflected by the numbers.
 
 \subsection{Lock Detector}
 \label{sec:lck_det}
-For power saving reasons a lock detector has been implemented. The
+To avoid that the counter will count up and down to many times and
+create a \emph{jitter} and to save power a lock detector has been implemented. The
 lock detector detects when the phase error between two signals is
-greater than a decided time and then sets its output to 0.
+greater than a decided time and then sets its output to low. The
+design of the lock detector has been changed slightly from what was
+decided in the high-level report since the lock detector works better
+with the second design. The design now is from \cite{dll_report},
+where the clocks to the d-flip-flops have the same delay. 
 
 \begin{figure}[h]
         \centering
@@ -219,21 +224,21 @@ sized to give proper delay to the two input signals. In figure
 \begin{figure}[h]
         \centering
         \includegraphics[width=150mm]{../Bilder/LD_tran/single_delay.png}
-        \caption{Lock detector, block overview}
+        \caption{Single delay}
         \label{fig:s_delay}
 \end{figure}
 
 \begin{figure}[h]
         \centering
         \includegraphics[width=150mm]{../Bilder/LD_tran/double_delay.png}
-        \caption{Lock detector, block overview}
+        \caption{Double delay}
         \label{fig:d_delay}
 \end{figure}
 
 \begin{figure}[h]
         \centering
         \includegraphics[width=150mm]{../Bilder/LD_tran/compensation_delay.png}
-        \caption{Lock detector, block overview}
+        \caption{Compensation delay}
         \label{fig:c_delay}
 \end{figure}
 
@@ -350,6 +355,83 @@ table \ref{tab:corners}.
 \end{table}
 
 \subsection{Whole System Simulation}
+Under normal (cmostm) circumstances the system works very well and can
+lock and unlock for different frequences as shown in figure \ref{fig:WS_sim_tm} 
+
+\begin{figure}[h]
+  \centering
+  \includegraphics{..\Bilder\WS_sim_tm.png}
+  \caption{Simulation results under "normal" circumstances (cmostm)}
+  \label{fig:WS_sim_tm}
+\end{figure}
+
+\subsubsection{Corner simulations}
+The relevant results from the corner simulations are presented in
+table \ref{tab:WS_corner}. The system works for all corners but
+for cmoswp and cmosws the input frequency cannot be 250 MHz since the
+change within the delay line and frequency multiplier is too big. 
+\begin{table}[h]
+        \centering
+        \begin{tabular}{|c|c|c|c|c|}
+                \hline
+                \textbf{Corner} & \textbf{Frequency (MHz)} &
+                \textbf{Locks after (ns)} & \textbf{Out frequency
+                  (MHz)} & \textbf{Comment}\\
+                \hline
+                cmostm & 250 & 93 & 1002 & Can also run at 220 MHz \\
+                cmosws & 200 & 27 & 802  & Does not run at 250 MHz \\
+                cmoswp & 290 & xx & xxx  & \\
+                cmoswo & 250 & 72 & 1000 & Can also run at 220 MHz \\
+                cmoswz & 250 & 68 & 1000 & Can also run at 220 MHz \\
+                \hline
+        \end{tabular}
+        \caption{Corner simulation results}
+        \label{tab:WS_corner}
+\end{table}
+\subsubsection{Temperature simulations}
+The system works well for the temperatures 0-70 \degree C, since the
+frequency multiplier does not work under 100 \degree C it has not been
+tested.
+  
+\begin{table}[h]
+        \centering
+        \begin{tabular}{|c|c|c|}
+          \hline
+          \textbf{\degree C} & \textbf{Locks after (ns)} & \textbf{Comment} \\
+          \hline
+          0  & 133 & Locks twice during the 200 ns interval \\
+          27 & 93 & ---\\
+          70 & xx & \\
+          \hline
+        \end{tabular}
+        \caption{Temperature simulation results (cmostm)}
+        \label{tab:WS_temp}
+      \end{table}
+In 0 \degree C after the lock goes down the counter counts up once
+(since it is not synchronous)the lock detector then unlocks and then
+locks again.  
+\subsubsection{Power usage}
+The power usage for the system and for each block during a 200 ns long
+simulation in cmostm conditions can be seen    
+\begin{table}[h]
+        \centering
+        \begin{tabular}{|c|c|}
+                \hline
+                \textbf{Block} & \textbf{Power use (mW)}  \\
+                \hline
+                System & 48.27\\
+                Frequency multiplier & 24.35 \\
+                Delay line & 3.472 \\
+                Counter & 0.806 \\
+                Lock detector & 0.782 \\
+                Phase detector & 0.104 \\
+                \hline
+        \end{tabular}
+        \caption{Power usage for the system and each block}
+        \label{tab:WS_power}
+\end{table}
+
+
 \subsection{Phase Detector}
 The set-up time for the PD, which can be seen in Figure \ref{fig:set_up_PD}, is less than 45 fs
 running with a non-ideal clock input, and non-ideal input data.
@@ -392,7 +474,7 @@ the different set-ups.
 Figure \ref{fig:delay_white} shows the simulation result of the delay line in
 250 MHz. The first signal is the input signal to the delay line, followed by the
 eight delayed output signals. The control bits has been set so that the last
-output is delayed 360\degree . 
+output is delayed 360\degree C. 
 \begin{figure}[h]
         \centering
         \includegraphics[width=\textwidth]{../Bilder/Delay_Line/delay_trans_sim_white.png}
@@ -400,16 +482,18 @@ output is delayed 360\degree .
         \label{fig:delay_white}
 \end{figure}
 
-The delay line is highly sensitive to process variations as can be seen in the
-figures showing the delay for each control bit. Five different combinations of process
-variation corners and temperatures were chosen to test how much the input signal
-was delayed. Figure \ref{fig:CMOSTM} shows the simulation result for CMOSTM
-in 27 \degree C. Figures \ref{fig:CMOSTM0} and \ref{fig:CMOSTM100} show
-the simulation result for CMOSTM in 0 \degree C and 100 \degree C respectively.
-Finally, the CMOSWS and CMOSWP are plotted in figures \ref{fig:CMOSWS} and
-\ref{fig:CMOSWP}, both in 27 \degree C. The CMOSWZ and CMOSWO corners were also
-simulated but for the delay line they did not differ as much as the other corner
-cases and were therefore omitted in this report.
+The delay line is highly sensitive to process variations as can be
+seen in the figures showing the delay for each control bit. Five
+different combinations of process variation corners and temperatures
+were chosen to test how much the input signal was delayed. Figure
+\ref{fig:CMOSTM} shows the simulation result for CMOSTM in 27 \degree
+C. Figures \ref{fig:CMOSTM0} and \ref{fig:CMOSTM100} show the
+simulation result for CMOSTM in 0 \degree C and 100 \degree C
+respectively.  Finally, the CMOSWS and CMOSWP are plotted in figures
+\ref{fig:CMOSWS} and \ref{fig:CMOSWP}, both in 27 \degree C. The
+CMOSWZ and CMOSWO corners were also simulated but for the delay line
+they did not differ as much as the other corner cases and were
+therefore omitted in this report.
 
 \begin{figure}[h!]
         \centering
@@ -437,9 +521,7 @@ cases and were therefore omitted in this report.
         \includegraphics[width=0.8\textwidth]{../Bilder/Delay_Line/CMOSWS.png}
         \caption{CMOSWS in 27 \degree C}
         \label{fig:CMOSWS}
-\end{figure}
-
-\begin{figure}[h!]
+\end{figure}\begin{figure}[h!]
         \centering
         \includegraphics[width=0.8\textwidth]{../Bilder/Delay_Line/CMOSWP.png}
         \caption{CMOSWP in 27 \degree C}
@@ -465,12 +547,13 @@ around 3.3 ns and the largest delay is almost 5.2 ns. The largest step between
 two control words is approximately 40 ps. 
 
 \subsection{Lock Detector}
-In table \ref{tab:LD_delays_corner} the delays during different corners
-can be seen. The interval where the lock detector is locking can be
-seen in figure \ref{fig:LD_tm_wp} and \ref{fig:LD_wo_wz}. The
-interval when the lock detector `locks' was at first very shifted
+In table \ref{tab:LD_delays_corner} the delays during different
+corners can be seen. The interval where the lock detector is locking
+can be seen in figure \ref{fig:LD_tm_wp} and \ref{fig:LD_wo_wz}. The
+interval when the lock detector \emph{locks} was at first very shifted
 which was solved by adding an extra buffer on the delayed clock of
-about 50 ps.
+about 50 ps, why that 50 ps delay is needed is not fully clear but the
+\emph{lock interval} for all corners and the normal case improves substantially.
 \begin{table}[h]
         \centering
         \begin{tabular}{|c|c|c|}
@@ -480,7 +563,7 @@ about 50 ps.
                 \hline
                 cmostm & 60.4 & 121.2 \\
                 cmosws & 85.9 & 174.3 \\
-                cmoswp & 37.8 & 73.8 \\
+                cmoswp & 37.8 & 73.8  \\
                 cmoswo & 63.3 & 118.0 \\
                 cmoswz & 53.2 & 111.3 \\
                 \hline
@@ -504,7 +587,7 @@ about 50 ps.
 \end{subfigure}
 
 \begin{subfigure}[b]{.3\textwidth}
-        \centering
+  \centering
         \includegraphics[width=\textwidth]{../Bilder/LD_tran/PD_wp.png}
         \caption{Interval where the lock detector locks during corner cmoswp}
 \end{subfigure}
@@ -601,22 +684,48 @@ The output, combined edges, a single pulse and input can be seen in figure
 \clearpage
 \section{PAD Assignment} % Early test plan också
 %%%TODO skriva allt här!
-There will be twelve pad available on the fabricated chip. 
+There will be twelve pad available on the fabricated chip. The input and output
+signals of the system are listed in tables \ref{tab:input_sig} and
+\ref{tab:output_sig} respectively. 
 
 \begin{table}[h!]
         \centering
-        \begin{tabular}{|c|c|}
+        \begin{tabular}{|l|l|}
                 \hline
                 Vdd (system) & Power supply for the system \\
                 Vdd (delay) & Power supply for the delay line \\
                 Vdd (freq.) & Power supply for the frequency multiplier \\
                 Gnd & Ground \\
-                in & Input clock signal \\
+                In & Input clock signal \\
                 \hline
         \end{tabular}
         \caption{Pad input signals}
         \label{tab:input_sig}
 \end{table}
+Three different power supplies will probably be used to tune different parts of
+the system individually.
+\begin{table}[h!]
+        \centering
+        \begin{tabular}{|l|l|}
+               \hline
+               Out & The multiplied output of the system \\
+               360\_del & The delayed output of the delay line \\
+               Lock & The lock signal from the lock detector \\
+               Up\_Down & The control signal from phase detector to counter \\
+               In\_Out & The output of the input signal, needed for comparison \\
+               Edge\_Comb & The edge combiner signal \\
+               Bit\_3 & The fourth control signal from the counter\\
+               \hline
+        \end{tabular}
+        \caption{Pad output signals}
+        \label{tab:output_sig}
+\end{table}
+
+The output signals will be needed to see the internal state of the system as
+well as provide the multiplied output signal of the system. In order to see that
+the counter is working one of its control signals will be connected to an
+output.
+
 \clearpage
 \section{Risks and Delays}
 This section describes the hazards that threaten the functionality of the
