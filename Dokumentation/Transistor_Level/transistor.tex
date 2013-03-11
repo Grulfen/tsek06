@@ -322,6 +322,7 @@ sizing is inspired from \cite{dll_report}.
         \label{fig:tpl}
 \end{figure}
 
+\clearpage
 \section{Simulation Result}
 The simulations have been run in different process variation corners and
 temperatures to examine the behaviour of the circuit. The process variation is
@@ -330,7 +331,7 @@ The process variation corners are where the process variations are biggest.
 The names of the process variation corners and their meaning can be seen in
 table \ref{tab:corners}.
 
-\begin{table}[h!]
+\begin{table}[h]
         \centering
         \begin{tabular}{|l|l|}
                 \hline 
@@ -595,9 +596,26 @@ The output, combined edges, a single pulse and input can be seen in figure
         \caption{Simulation of Frequency Multipler}
         \label{fig:freq_mult_signals}
 \end{figure}
-
+\clearpage
 \section{PAD Assignment} % Early test plan också
 %%%TODO skriva allt här!
+There will be twelve pad available on the fabricated chip. 
+
+\begin{table}[h!]
+        \centering
+        \begin{tabular}{|c|c|}
+                \hline
+                Vdd (system) & Power supply for the system \\
+                Vdd (delay) & Power supply for the delay line \\
+                Vdd (freq.) & Power supply for the frequency multiplier \\
+                Gnd & Ground \\
+                in & Input clock signal \\
+                \hline
+        \end{tabular}
+        \caption{Pad input signals}
+        \label{tab:input_sig}
+\end{table}
+\clearpage
 \section{Risks and Delays}
 \subsection{Phase Detector}
 The PD manages to run with all the corner simulations, as well as run properly
