@@ -1,6 +1,13 @@
 \documentclass[a4paper,12pt]{article} \usepackage{graphicx}
 \usepackage{epstopdf} %\usepackage{gensymb} \usepackage{longtable}
 \usepackage{graphicx}
+\usepackage{listings}
+\lstset{
+language=verilog,
+basicstyle=\footnotesize,
+breaklines=true
+}
+
 \input{../LIPS.tex}
 
 \newcommand{\degree}{\ensuremath{^\circ}}
@@ -24,7 +31,7 @@
 
 \newcommand{\LIPSdokumenttyp}{High Level Simulation} 
 \newcommand{\LIPSredaktor}{Nora Björklund} 
-\newcommand{\LIPSversion}{0.1} 
+\newcommand{\LIPSversion}{1.0} 
 \newcommand{\LIPSdatum}{\dagensdatum}
 
 \newcommand{\LIPSgranskare}{} 
@@ -54,8 +61,11 @@
 \tableofcontents{} 
 \newpage %% Argument till \LIPSversionsinfo: versionsnummer, datum, Ändringar,
          %  utfört av,granskat av
-\addcontentsline{toc}{section}{Document history} \begin{LIPSdokumenthistorik} 
-\LIPSversionsinfo{0.1}{}{First draft.}{}{}\end{LIPSdokumenthistorik} 
+\addcontentsline{toc}{section}{Document history}
+\begin{LIPSdokumenthistorik} 
+        \LIPSversionsinfo{0.1}{}{First draft.}{}{}
+        \LIPSversionsinfo{1.0}{27/2 -13}{Added Verilog-A Code}{}{}
+\end{LIPSdokumenthistorik} 
 \newpage
 
 
@@ -69,12 +79,22 @@ An overview of the system can be seen in figure\ref{fig:system}.
 \end{figure}
 \section{Block Level and Description}
 In the subsections below the blocks presented above will be described in detail.
+The Verilog-A code used to describe the blocks can be seen in Appendix \ref{sec:verilog_code}
 
 \subsection{Phase Detector}
 The phase detector (PD) has a very simple design. It is a DFF with the
+<<<<<<< HEAD
 reference clock as update signal and the delayed clock signal coming out from the last delay cell as input signal (as in figure \ref{fig:phase_det}). If the delayed clock rises before
 the reference clock does, the output will be set to a logic high. If the delayed clock has not yet risen 
 when the reference clock rises the output will be set to a logic zero. The clocks are checked when the transient voltage (i.e 50\% 
+=======
+reference clock as update signal and the delayed clock signal coming out from the 
+last delay cell as input signal (as in figure \ref{fig:phase_det}). If the delayed 
+clock rises before
+the reference clock does, the output will be set to a logic high. If the delayed 
+clock has not yet risen when the reference clock rises the output will be set 
+to a logic zero. The clocks are checked when the transient voltage (i.e 50\% 
+>>>>>>> 7e4b7359d851d93973a9b356e2a2c340006975f7
 of rise-time/fall-time) is exceeded.
 
 \begin{figure}[h!b]
@@ -94,7 +114,7 @@ save power, and avoid the toggle state that the counter is bound to end up in wh
 the phases between the reference clock and the delayed clock match.
 
 
-\subsection{Delay Line}
+\subsection{Digitally Controlled Delay Line}
 The delay block will in the finished design consist of eight inverter cells,
 each delaying the signal 45\degree giving a total delay of 360\degree. In turn
 each inverter cell might consist of an odd number of smaller inverters to buffer
@@ -120,12 +140,13 @@ counter, as can be seen in figure \ref{fig:system}.
 
 \subsection{Lock Detector}
 The lock detector takes the input signal and the signal that is delayed 
-360\degree   as inputs and outputs a signal that is used as an enable 
+360\degree  as inputs and outputs a signal that is used as an enable 
 signal to the counter. If the input signal and the delayed signal are 
 closer than a predetermined time, the loop is locked and the counter
 is disabled, and if not, the counter is enabled. This prevents 
 the counter to toggle between two values and prevents harmonics on the
 output. The Lock detector can be seen in figure \ref{fig:lockdetect}.
+The design of the lock detector is taken from \cite{lock_detect}.
 
 \begin{figure}[h!]
         \centering
@@ -137,7 +158,7 @@ output. The Lock detector can be seen in figure \ref{fig:lockdetect}.
 \subsection{Frequency Multiplier}
 The frequency multiplier contains 3 blocks, one 8-input multiplexer, one 3-bit
 counter and one 3-input multiplexer, the blocks and connections can be seen in 
-figure \ref{fig:freq_mult}.
+figure \ref{fig:freq_mult}. The design is taken from \cite{dll_clock}.
 \begin{figure}[h!b]
         \centering
         \includegraphics[width=0.6\textwidth]{../Bilder/freq_mult_high.png}
@@ -174,13 +195,14 @@ multiplication factor can be seen.
 \section{Simulation Result}
 The simulation result of the whole system and the individual Blocks is
 presented below.
+
 \subsection{Whole System Simulation}
 Simulation of the whole system with a 250 MHz input signal successfully
 generates an output of 1 GHz, this can be seen in figure \ref{fig:high_sim}.
 It can be noted that it takes a while for the system to produce a good output
 with around 50\% duty cycle, this is because it takes some time for the DLL
 to lock.
-\begin{figure}[hb]
+\begin{figure}[h]
         \centering
         \includegraphics[width=\textwidth]{../Bilder/high_level_sim.png}
         \caption{Simulation of the whole system}
@@ -191,7 +213,7 @@ to lock.
 \subsection{Phase Detector}
 Simulation of the phase detector was successful.  The phase detector was simulated with the delayed clock and the reference clock of equal pulse
 width, equal fall and rise time but with different period. 
-\begin{figure}[hb]
+\begin{figure}[h!p]
         \centering
         \includegraphics[width=\textwidth]{../Bilder/PD_closeup_sim.png}
         \caption{Simulation of phase detector}
@@ -199,6 +221,7 @@ width, equal fall and rise time but with different period.
 \end{figure}
 As seen in figure \ref{fig:PD_sim} the output stays high when the
 signal matches the reference clock, and goes low when unmatched.
+
 \subsection{Counter}
 The simulation of the counter is mostly done to see if the Verilog A code is 
 written correctly so that it can be used in the simulation of the entire system.
@@ -209,7 +232,7 @@ the rest of the system.
 Simulations show that the counter can count both up and down, have a synchronous
 reset and that the enable signal works.
 
-\subsection{Delay Line}
+\subsection{Digitally Controlled Delay Line}
 Simulating the delay line in high level is mostly just a matter of
 verifying if the Verilog A code is correct or not. Since there are no physical
 considerations to take into account at this stage, thorough simulations
@@ -261,7 +284,7 @@ as expected for input frequencies lower than 256 MHz. At higher input
 frequencies the output signal does not have constant frequency. This is
 mainly because of delays in the counter block.
 The result of a simulation can be seen in figure \ref{fig:freq_mult_sim}.
-\begin{figure}[hb]
+\begin{figure}[h!]
         \centering
         \includegraphics[width=\textwidth]{../Bilder/delay_line_sim.png}
         \caption{Simulation of frequency multiplier}
@@ -298,7 +321,8 @@ overshoot.
 The counter also has to have a low enough delay for it to change the control
 signal fast enough that when it reacts to the next signal from the phase 
 detector the delay line has already had time enough to react to the last change.
-\subsection{Delay Line}
+
+\subsection{Digitally Controlled Delay Line}
 A problem with process variation for the delay line is that the delay
 needs to be very exact in order for the whole thing to work. If the
 fixed delay of each inverter cell is off-set when the chip is
@@ -319,9 +343,49 @@ version of the input signal. This puts high requirements on the delays of its
 components. The total delay of the counter and the 8-input multiplexer
 must be smaller than the time of a 45\degree  delay of the input signal.
 This means that for a 250 MHz input signal the total worst case delay of the
-counter and multiplexer must be smaller than 500 ps, int this case the rise
+counter and multiplexer must be smaller than 500 ps, in this case the rise
  and fall times are included in the worst case delay, this needs to be handled
 carefully in the transistor level.
+
+\newpage 
+\appendix 
+\newpage
+
+\addcontentsline{toc}{section}{References}
+\begin{thebibliography}{99}
+\bibitem{dll_clock}\textit{A Low-Power Digital DLL-Based Clock Generator in Open-Loop Mode - }
+Behzad Mesgarzadeh, Atila Alvandpour \\
+IEEE Journal of Solid-State Circuits. Vol. 44. No. 7. July 2009
+\bibitem{lock_detect}\textit{A 62.5-625-Mhz Anti-Reset All-Digital Delay-Locked Loop - }
+Shao-Ku Kao, Bo-Jiun Chen and Shen-Iuan Liu \\
+IEEE Transations on Circuits and Systems - II: Express Briefs, Vol. 54 No. 7, July 2007
+
+\end{thebibliography}
+
+\newpage
+
+\section{Verilog-A Code}
+\label{sec:verilog_code}
+
+\subsection{Phase Detector}
+The Phase Detector consists of the following Verilog-A code.
+\lstinputlisting[caption=Phase Detector]{/proj/ek/vlsi6/common_libs/project_main_shared/phase_detector/veriloga/veriloga.va}
+
+\subsection{Frequency Multiplier}
+The parts in the frequency multiplier that are written in Verilog-A is the 
+8-input multiplexer, the 3-input multiplexer and the dff in the 3-bit counter.
+\lstinputlisting[caption=8 Input Multiplexer]{/proj/ek/vlsi6/common_libs/project_main_shared/multiplexer_8input/veriloga/veriloga.va}
+\lstinputlisting[caption=3 Input Multiplexer]{/proj/ek/vlsi6/common_libs/project_main_shared/mux3bit/veriloga/veriloga.va}
+\lstinputlisting[caption=DFF]{/proj/ek/vlsi6/common_libs/project_main_shared/dff_synchreset/veriloga/veriloga.va}
+
+\subsection{Digitally Controlled Delay Line}
+In the High-Level design the digitally controlled delay line consists
+of the following Verilog-A code.
+\lstinputlisting[caption=Delay Line]{/proj/ek/vlsi6/common_libs/project_main_shared/delay_line/veriloga/veriloga.va}
+
+\subsection{Counter}
+The counter consists of the Verilog-A code beneath.
+\lstinputlisting[caption=Counter]{/proj/ek/vlsi6/common_libs/project_main_shared/counter_6bit/veriloga/veriloga.va}
 
 \end{document} 
 %%% Local Variables: %%% mode: latex %%% TeX-master: t %%% End:
