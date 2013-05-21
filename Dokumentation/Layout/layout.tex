@@ -75,6 +75,11 @@
 % Blocknivå beskrivning liknande från tidigare rapporter
 
 \subsection{Phase Detector}
+The Phase Detector (PD) is used check whether the 360\degree delayed
+signal has got a rising edge before or after the system clock. If the
+360\degree delayed clock rises before the system clock, the output
+from the PD is 0, and if it rises after the system clock the output is 1.
+This is used to tell the counter whether it should count up or down.
 \subsection{Counter}
 \subsubsection{Enable Net}
 \subsubsection{Bitcell}
@@ -99,10 +104,20 @@ low, otherwise high.
 \subsubsection{Temperature simulations}
 \subsubsection{Power usage}
 \subsection{Phase Detector}
-The most interesting aspect of the Phase Detector (PD) is the time
-needed for the PD to set-up, that is how long before the rising edge
-of the clock that the data needs to arrive to be sure to be noted by
-the PD this clock-period.
+The most interesting aspect of the PD is the time
+needed for the PD to set-up. The set-up time is how long
+ before the rising edge of the clock that the data needs 
+ to arrive to be sure to be noted by the PD this clock-period.
+
+The set-up time for the PD is as follows:
+
+tm: 144ps
+
+wo: 178ps
+
+wz: 108ps
+
+wp: 84ps
 
 \subsection{Counter}
 \subsection{Digitally Controlled Delay Line}
@@ -121,35 +136,35 @@ fairly uneven and shifted to the right, if compared to the typical mean.
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=5in]{../Bilder/LD_tran/LD_lsim_tm.png}
+  \includegraphics[width=0.65\textwidth]{../Bilder/LD_tran/LD_lsim_tm.png}
   \caption{Lock interval in typical mean}
   \label{fig:LDtm}
 \end{figure}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=5in]{../Bilder/LD_tran/LD_lsim_wp.png}
+  \includegraphics[width=0.65\textwidth]{../Bilder/LD_tran/LD_lsim_wp.png}
   \caption{Lock interval in worst power}
   \label{fig:LDwp}
 \end{figure}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=5in]{../Bilder/LD_tran/LD_lsim_wo.png}
+  \includegraphics[width=0.65\textwidth]{../Bilder/LD_tran/LD_lsim_wo.png}
   \caption{Lock interval in worst one}
   \label{fig:LDwo}
 \end{figure}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=5in]{../Bilder/LD_tran/LD_lsim_wz.png}
+  \includegraphics[width=0.65\textwidth]{../Bilder/LD_tran/LD_lsim_wz.png}
   \caption{Lock interval in worst zero}
   \label{fig:LDwz}
 \end{figure}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=5in]{../Bilder/LD_tran/LD_lsim_ws.png}
+  \includegraphics[width=0.65\textwidth]{../Bilder/LD_tran/LD_lsim_ws.png}
   \caption{Lock interval in worst slow}
   \label{fig:LDws}
 \end{figure}
@@ -167,6 +182,9 @@ fairly uneven and shifted to the right, if compared to the typical mean.
 \section{Risks}
 % Vad kan gå fel
 \subsection{Phase Detector}
+One of the biggest risks concerning the PD is when we get
+slow/slow transistors, since the PD is used both as a stand-alone
+module, and within the lock detector.
 \subsection{Counter}
 \subsection{Digitally Controlled Delay Line}
 \subsection{Lock Detector}
