@@ -82,6 +82,11 @@
 \subsection{Digitally Controlled Delay Line}
 \subsubsection{Delay Block}
 \subsection{Lock Detector}
+To dampen and prevent jitter effects and to save power a lock detector
+has been implemented. As described in both the high level and the
+transistor level report the lock detector takes two signals and if
+the delay between them are within a certain interval the output is
+low, otherwise high.
 \subsection{Frequency Multiplier}
 \subsubsection{Transition Detector}
 \subsubsection{Edge Combiner}
@@ -97,6 +102,56 @@
 \subsection{Counter}
 \subsection{Digitally Controlled Delay Line}
 \subsection{Lock Detector}
+The important feature of the lock detector is the delay interval where
+the lock signal goes low. In the figures below an average of the
+output signal from different delays between the input clock and the
+360\degree delayed clock is shown. At 0 the delay between the input
+signals are 0, at -100 the 360\degree delayed clock comes 100 ps
+before the erference clock and reverse at 100 ps. In figure
+\ref{fig:LDtm} the interval for the typical mean can be seen, it is
+quite even and it locks on about 50 ps delay between the reference
+clock and the 360\degree delayed clock. Figure \ref{fig:LDwp} to
+\ref{fig:LDws} shows the lock interval in the corner simulations, they
+are compared to the typical mean fairly uneven and shifted to the
+right. 
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=5in]{../Bilder/LD_tran/LD_lsim_tm.png}
+  \caption{Lock interval in typical mean}
+  \label{fig:LDtm}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=5in]{../Bilder/LD_tran/LD_lsim_wp.png}
+  \caption{Lock interval in worst power}
+  \label{fig:LDwp}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=5in]{../Bilder/LD_tran/LD_lsim_wo.png}
+  \caption{Lock interval in worst one}
+  \label{fig:LDwo}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=5in]{../Bilder/LD_tran/LD_lsim_wz.png}
+  \caption{Lock interval in worst zero}
+  \label{fig:LDwz}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=5in]{../Bilder/LD_tran/LD_lsim_ws.png}
+  \caption{Lock interval in worst slow}
+  \label{fig:LDws}
+\end{figure}
+
+\clearpage
+
 \subsection{Frequency Multiplier}
 
 \section{Evaluation Plan and PAD List}
