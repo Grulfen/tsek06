@@ -99,21 +99,25 @@ low, otherwise high.
 \subsubsection{Temperature simulations}
 \subsubsection{Power usage}
 \subsection{Phase Detector}
+The most interesting aspect of the Phase Detector (PD) is the time
+needed for the PD to set-up, that is how long before the rising edge
+of the clock that the data needs to arrive to be sure to be noted by
+the PD this clock-period.
+
 \subsection{Counter}
 \subsection{Digitally Controlled Delay Line}
 \subsection{Lock Detector}
 The important feature of the lock detector is the delay interval where
-the lock signal goes low. In the figures below an average of the
+the lock signal goes low. In the figures below, an average of the
 output signal from different delays between the input clock and the
-360\degree delayed clock is shown. At 0 the delay between the input
+360\degree delayed clock are shown. At 0 the delay between the input
 signals are 0, at -100 the 360\degree delayed clock comes 100 ps
-before the erference clock and reverse at 100 ps. In figure
-\ref{fig:LDtm} the interval for the typical mean can be seen, it is
-quite even and it locks on about 50 ps delay between the reference
-clock and the 360\degree delayed clock. Figure \ref{fig:LDwp} to
-\ref{fig:LDws} shows the lock interval in the corner simulations, they
-are compared to the typical mean fairly uneven and shifted to the
-right. 
+before the reference clock and reverse at 100 ps. In figure
+\ref{fig:LDtm} the interval for the typical mean can be seen. The interval 
+is quite even and locks when the delay between the reference
+clock and the 360\degree delayed clock is approximately 50 ps, or less. Figure \ref{fig:LDwp} to
+\ref{fig:LDws} show the lock interval in the corner simulations. They are
+fairly uneven and shifted to the right, if compared to the typical mean.
 
 \begin{figure}[h]
   \centering
