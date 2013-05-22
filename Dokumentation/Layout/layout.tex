@@ -94,8 +94,33 @@ This is used to tell the counter whether it should count up or down.
 \subsubsection{Enable Net}
 \subsubsection{Bitcell}
 \subsubsection{TFF and DFF}
+
 \subsection{Digitally Controlled Delay Line}
-\subsubsection{Delay Block}
+The Digitally Controlled Delay Line, henceforth called delay line, is the part
+that delays the input clock signal. The delay line is divided into eight
+identical blocks connected in series. Each block delays the signal $45\degree$
+giving a total delay of 360\degree. The blocks in turn consists of a two step
+buffers and NMOS transistors working as variable capacitors. The capacitors are
+controlled by the counter. For more details see the transistor level report
+\cite{transistor}.
+
+For the layout all transistor sizes in the delay line had to be changed because
+of added resistance and parasitic capacitances. With the sizes derived in the
+schematic the delay line gave too much delay, making it impossible to reach the
+desired operating frequency interval. In order to reduce the static delay the
+buffer sizes in the delay cells was increased. However, while reducing the
+static delay, this also caused interval to become smaller. Therefore the sizes
+of the NMOS capacitors had to be increased.
+
+When routing the interconnects within the delay line it is important to keep the
+length of the wires between the blocks equal. The distance from the delay line
+to the frequency multiplier also needs to be the same for all output signals.
+Furthermore, because the last output signal also is fed back to the phase and
+lock detectors, dummy transistors are placed on the lower seven output signals
+to obtain an equal load.
+
+The finished layout of the delay line is shown in %TODO: BILD AV DELAY LINE
+
 \subsection{Lock Detector}
 To dampen and prevent jitter effects and to save power a lock detector
 has been implemented. As described in both the high level and the
