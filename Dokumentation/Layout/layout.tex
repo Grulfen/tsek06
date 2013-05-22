@@ -119,6 +119,18 @@ wz: 108ps
 
 wp: 84ps
 
+ws: 210ps
+
+The plotted results of the simulations can be viewed in appendix \ref{sec:corners}
+
+The reason as to why these values differ such a great deal, when compared 
+to the simulations from the transistor level, is due to the fact that the 
+clock we compare the 360\degree delay signal to in the layout simulations 
+is the internal one while we compared the 360\degree delay signal to the 
+external one in the transistor level.
+
+
+
 \subsection{Counter}
 \subsection{Digitally Controlled Delay Line}
 \subsection{Lock Detector}
@@ -214,5 +226,50 @@ module, and within the lock detector.
                 Layout Edition 2008-05-25 
 
 \end{thebibliography}
+
+\newpage
+\section{Cornerstone simulation results}
+\label{sec:corners}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.65\textwidth]{../Bilder/Layout/pd_tm.png}
+  \caption{Set-up time of PD in typical mean}
+  \label{fig:PDtm}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.65\textwidth]{../Bilder/Layout/pd_wo.png}
+  \caption{Set-up time of PD in worst one}
+  \label{fig:PDwo}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.65\textwidth]{../Bilder/Layout/pd_wz.png}
+  \caption{Set-up time of PD in worst zero}
+  \label{fig:PDwz}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.65\textwidth]{../Bilder/Layout/pd_wp.png}
+  \caption{Set-up time of PD in worst power}
+  \label{fig:PDwp}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.65\textwidth]{../Bilder/Layout/pd_ws.png}
+  \caption{Set-up time of PD in worst slow}
+  \label{fig:PDws}
+\end{figure}
+
+\section{Layout of sub-blocks}
+\label{sec:Layout}
+
+
+
 \end{document} 
 % Local Variables: %%% mode: latex %%% TeX-master: t %%% End:
