@@ -75,6 +75,15 @@
 % Kort beskrivning med motivering och mål.
 % Blocknivå beskrivning liknande från tidigare rapporter
 
+The complete system
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{../Bilder/Layout/complete_system_pad.png}
+\caption{Complete system}
+\label{fig:complete_system_pad}
+\end{figure}
+
 \subsection{Phase Detector}
 The Phase Detector (PD) is used check whether the 360\degree delayed
 signal has got a rising edge before or after the system clock. If the
@@ -85,8 +94,33 @@ This is used to tell the counter whether it should count up or down.
 \subsubsection{Enable Net}
 \subsubsection{Bitcell}
 \subsubsection{TFF and DFF}
+
 \subsection{Digitally Controlled Delay Line}
-\subsubsection{Delay Block}
+The Digitally Controlled Delay Line, henceforth called delay line, is the part
+that delays the input clock signal. The delay line is divided into eight
+identical blocks connected in series. Each block delays the signal $45\degree$
+giving a total delay of 360\degree. The blocks in turn consists of a two step
+buffers and NMOS transistors working as variable capacitors. The capacitors are
+controlled by the counter. For more details see the transistor level report
+\cite{transistor}.
+
+For the layout all transistor sizes in the delay line had to be changed because
+of added resistance and parasitic capacitances. With the sizes derived in the
+schematic the delay line gave too much delay, making it impossible to reach the
+desired operating frequency interval. In order to reduce the static delay the
+buffer sizes in the delay cells was increased. However, while reducing the
+static delay, this also caused interval to become smaller. Therefore the sizes
+of the NMOS capacitors had to be increased.
+
+When routing the interconnects within the delay line it is important to keep the
+length of the wires between the blocks equal. The distance from the delay line
+to the frequency multiplier also needs to be the same for all output signals.
+Furthermore, because the last output signal also is fed back to the phase and
+lock detectors, dummy transistors are placed on the lower seven output signals
+to obtain an equal load.
+
+The finished layout of the delay line is shown in %TODO: BILD AV DELAY LINE
+
 \subsection{Lock Detector}
 To dampen and prevent jitter effects and to save power a lock detector
 has been implemented. As described in both the high level and the
@@ -213,42 +247,42 @@ module, and within the lock detector.
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.65\textwidth]{../Bilder/Layout/pd_tm.png}
+  \includegraphics[width=0.65\textwidth]{../Bilder/Layout/simulations/pd_tm.png}
   \caption{Set-up time of PD in typical mean}
   \label{fig:PDtm}
 \end{figure}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.65\textwidth]{../Bilder/Layout/pd_wo.png}
+  \includegraphics[width=0.65\textwidth]{../Bilder/Layout/simulations/pd_wo.png}
   \caption{Set-up time of PD in worst one}
   \label{fig:PDwo}
 \end{figure}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.65\textwidth]{../Bilder/Layout/pd_wz.png}
+  \includegraphics[width=0.65\textwidth]{../Bilder/Layout/simulations/pd_wz.png}
   \caption{Set-up time of PD in worst zero}
   \label{fig:PDwz}
 \end{figure}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.65\textwidth]{../Bilder/Layout/pd_wp.png}
+  \includegraphics[width=0.65\textwidth]{../Bilder/Layout/simulations/pd_wp.png}
   \caption{Set-up time of PD in worst power}
   \label{fig:PDwp}
 \end{figure}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.65\textwidth]{../Bilder/Layout/pd_ws.png}
+  \includegraphics[width=0.65\textwidth]{../Bilder/Layout/simulations/pd_ws.png}
   \caption{Set-up time of PD in worst slow}
   \label{fig:PDws}
 \end{figure}
 
 
 In figure \ref{fig:LDwp} to \ref{fig:LDws} the corner simulations for
-the loch interval is shown.
+the lock interval is shown.
 
 \begin{figure}[h]
   \centering
@@ -283,11 +317,59 @@ the loch interval is shown.
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=1.0\textwidth]{../Bilder/LD_tran/LD.png}
+  \includegraphics[width=1.0\textwidth]{../Bilder/Layout/lock_detector.png}
   \caption{Lock Detector layout}
   \label{fig:LD}
 \end{figure}
 
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]{../Bilder/Layout/pd_including_clk_set.png}
+  \caption{PD layout}
+  \label{fig:pd_final}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]{../Bilder/Layout/bitcell.png}
+  \caption{Lock Detector layout}
+  \label{fig:bitcell_final}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]{../Bilder/Layout/ud_counter_6bit.png}
+  \caption{UD counter layout}
+  \label{fig:counter_final}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]{../Bilder/Layout/delay_line_trans.png}
+  \caption{Delay line layout}
+  \label{fig:delay_final}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]{../Bilder/Layout/freq_mult_tpl.png}
+  \caption{Freqmult layout}
+  \label{fig:freq_mult_final}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]{../Bilder/Layout/dff_sync_reset_qbar_clkset.png}
+  \caption{DFF layout}
+  \label{fig:dff_final}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]{../Bilder/Layout/complete_system.png}
+  \caption{Complete system layout}
+  \label{fig:complete_system_final}
+\end{figure}
 
 \end{document} 
 % Local Variables: %%% mode: latex %%% TeX-master: t %%% End:
