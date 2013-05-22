@@ -96,11 +96,12 @@ low, otherwise high.
 \subsection{Frequency Multiplier}
 The frequency multiplier takes the eight delayed signals from the delay line and
 combines them to a signal with four times the frequency of the original input
-signal. 
+signal. A more detailed description can be seen in the transistor level report\cite{transistor}.
 
-\subsubsection{Transition Detector}
-\subsubsection{Edge Combiner}
-\subsubsection{Toggle Pulsed Latch}
+When the interconnects were laid out, the length and metal layer was considered
+to achieve the same delay on all relevant signals. This was especially important
+in this block and the interconnects from the delay line to this block due to
+the precise timings. 
 
 \section{Simulation Result}
 % Testresultat, typiska tester. Med PAD-frame och allt
@@ -200,7 +201,9 @@ module, and within the lock detector.
                 Shao-Ku Kao, Bo-Jiun Chen and Shen-Iuan Liu \\
                 IEEE Transations on Circuits and Systems - II: Express Briefs, Vol. 54 No. 7, July 2007
         \bibitem{dll_report}\textit{DLL-Based Frequency Multiplier - }
-                Layout Edition 2008-05-25 
+                Layout Edition 2008-05-25 \\
+        \bibitem{transistor}\textit{Transistor Level - }
+                Bengtz, Berneland, Björklund, Hallberg, Svensk \\
 
 \end{thebibliography}
 
