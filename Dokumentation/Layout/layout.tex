@@ -135,7 +135,9 @@ signal. A more detailed description can be seen in the transistor level report\c
 When the interconnects were laid out, the length and metal layer was considered
 to achieve the same delay on all relevant signals. This was especially important
 in this block and the interconnects from the delay line to this block due to
-the precise timings. 
+the precise timings. The layout of the frequency multiplier can be seen in
+figure \ref{fig:freq_mult_final} in appendix \ref{sec:Layout}.
+
 
 \section{Simulation Result}
 % Testresultat, typiska tester. Med PAD-frame och allt
@@ -196,6 +198,9 @@ appendix \ref{sec:corners}.
 \clearpage
 
 \subsection{Frequency Multiplier}
+To reach the wanted functionality the supply voltage and input frequency must be
+adjusted in some of the corner variations. But with some tweaking a
+multiplication of four can be reached in all the corners.
 
 \section{Evaluation Plan and PAD List}
 % Hur ska chippet testas?
