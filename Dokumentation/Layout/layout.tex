@@ -142,43 +142,15 @@ signals are 0, at -100 the 360\degree delayed clock comes 100 ps
 before the reference clock and reverse at 100 ps. In figure
 \ref{fig:LDtm} the interval for the typical mean can be seen. The interval 
 is quite even and locks when the delay between the reference
-clock and the 360\degree delayed clock is approximately 50 ps, or less. Figure \ref{fig:LDwp} to
-\ref{fig:LDws} show the lock interval in the corner simulations. They are
-fairly uneven and shifted to the right, if compared to the typical mean.
+clock and the 360\degree delayed clock is approximately 50 ps, or
+less. Corner simulations of the lock interval are presented in
+appendix \ref{sec:corners}.
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.65\textwidth]{../Bilder/LD_tran/LD_lsim_tm.png}
   \caption{Lock interval in typical mean}
   \label{fig:LDtm}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.65\textwidth]{../Bilder/LD_tran/LD_lsim_wp.png}
-  \caption{Lock interval in worst power}
-  \label{fig:LDwp}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.65\textwidth]{../Bilder/LD_tran/LD_lsim_wo.png}
-  \caption{Lock interval in worst one}
-  \label{fig:LDwo}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.65\textwidth]{../Bilder/LD_tran/LD_lsim_wz.png}
-  \caption{Lock interval in worst zero}
-  \label{fig:LDwz}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.65\textwidth]{../Bilder/LD_tran/LD_lsim_ws.png}
-  \caption{Lock interval in worst slow}
-  \label{fig:LDws}
 \end{figure}
 
 \clearpage
@@ -266,9 +238,47 @@ module, and within the lock detector.
   \label{fig:PDws}
 \end{figure}
 
+
+In figure \ref{fig:LDwp} to \ref{fig:LDws} the corner simulations for
+the loch interval is shown.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.65\textwidth]{../Bilder/LD_tran/LD_lsim_wp.png}
+  \caption{Lock interval in worst power}
+  \label{fig:LDwp}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.65\textwidth]{../Bilder/LD_tran/LD_lsim_wo.png}
+  \caption{Lock interval in worst one}
+  \label{fig:LDwo}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.65\textwidth]{../Bilder/LD_tran/LD_lsim_wz.png}
+  \caption{Lock interval in worst zero}
+  \label{fig:LDwz}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.65\textwidth]{../Bilder/LD_tran/LD_lsim_ws.png}
+  \caption{Lock interval in worst slow}
+  \label{fig:LDws}
+\end{figure}
+
 \section{Layout of sub-blocks}
 \label{sec:Layout}
 
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]{../Bilder/LD_tran/LD.png}
+  \caption{Lock Detector layout}
+  \label{fig:LD}
+\end{figure}
 
 
 \end{document} 
