@@ -162,7 +162,7 @@ presented.
 \subsection{Whole System Simulation}
 The simulations of the system, in the different corners, worked well. A multiplication
 of four could be reached in all corners, after a little tweaking of the voltage-levels.
-The system did not manage to work at an input of 250 MHz in all corners though.
+The system did not manage to work at an input of 250 MHz in all corners.
 
 The system managed to obtain an output frequency of 1 GHz for most cases. The ones that
 did not reach the goal, but obtained an output frequency of roughly 800 MHz were:
@@ -213,9 +213,16 @@ Total chip without buffers & 50.33
 \subsection{Phase Detector}
 The most interesting aspect of the PD is the time needed for the PD to set-up.
  The set-up time is how long before the rising edge of the clock that the data
- needs to arrive to be sure to be noted by the PD this clock-period.
-
-The set-up time for the PD is 144 ps.
+ needs to arrive to be sure to be noted by the PD this clock-period. The set-up
+ time for the corners can be seen below.
+ 
+\begin{tabular}{l l}
+tm & 144 ps \\
+wo & 178 ps \\
+wz & 108 ps \\
+wp & 84 ps \\
+ws & 210 ps
+\end{tabular}
 
 The reason as to why this value differ such a great deal, when compared 
 to the simulation from the transistor level is due to the fact that the 
@@ -224,11 +231,6 @@ The clock used to compare in the layout simulation is the internal clock, while
 we compared the 360\degree delay signal to the external clock in the transistor level.
 
 The plotted results of the corners can be viewed in appendix \ref{sec:corners}
-%tm: 144ps\newline
-%wo: 178ps\newline
-%wz: 108ps\newline
-%wp: 84ps\newline
-%ws: 210ps
 
 \subsection{Counter}
 
@@ -266,10 +268,8 @@ increased. However, even when increasing the voltage the target input frequency
 of 250MHz could not be reached. With a delay line VDD of 3.6 V the obtained
 interval of the input was 150-200 MHz.   
 
-
-
 \subsection{Lock Detector}
-The important feature of the lock detector is the delay interval where
+The most important aspect of the lock detector is the delay interval where
 the lock signal goes low. In the figure below an average of the
 output signal from different delays between when the input clock and the
 360\degree delayed clock are shown. At 0 delay, the delay between the input
@@ -414,12 +414,34 @@ Related to this is also if it does not lock at all and thus is just a load on th
 
 \section{Evaluation}
 % Vad har vi lärt oss
-% Hur har gruppen fungerat
-% Har tiden delats väl
-% Vad var bra/dåligt
-% Vad bör ändras
-% Kommentarer till kursen
+We have learned a lot about how to layout hardware, specifically using cadence.
+We also came to understand the theoretical parts taught during the lectures 
+better when working on the project. The top-down design methodology is something 
+we have used in previous courses, but using it to this extent has been really 
+useful and educational. 
 
+% Hur har gruppen fungerat
+The group has worked well. This has got a lot to do with the
+fact that we knew each other since before the course.
+
+% Har tiden delats väl
+The time has not been split fairly in the group, but this has
+to do with the fact that some sub-blocks were a lot more time-consuming.
+This could have been avoided, to some extent, had the responsibility
+of the sub-blocks among the group-members been distributed differently.
+
+% Vad var bra/dåligt
+The lectures were really interesting and gave us a lot of
+second-hand experience of the industry. The labs were really 
+good and prepared us for the project in a well thought out fashion.
+
+The lab manual was good, but the tasks to be done during the labs should 
+be clearly written in bullet points. Another thing that should be added 
+in the manual are ways and methods of decreasing the simulation time as well
+as general hints when using cadence.
+
+% Kommentarer till kursen
+A really good course that was relevant to our studies.
 
 \newpage
 \appendix 
