@@ -1,0 +1,29 @@
+NPP_GetValue is called
+NPP_GetValue is called
+NPP_GetValue is called
+NPP_GetValue is called
+NPP_GetValue is called
+NPP_GetValue is called
+NPP_Initialize : called
+NPP_GetValue is called
+NPP_GetValue is called
+NPP_SetWindow : called for instance 84c5378
+Window from browser - 67108866
+NPP_SetWindow : called for instance 84c5378
+Window from browser - 67108866
+NPP_NewStream : called for instance 84c5378, stream 84c75e8, URL http://www.es.isy.liu.se/courses/TSTE87/download/lab2_2008.pdf, stream size 33936, seekable 1
+NPP_Write : called for instance 84c5378, stream 84c75e8, offset = 0, length = 16384, streamlength = 33936
+Trying for window attributes
+Trying for query tree
+NPP_Write : called for instance 84c5378, stream 84c75e8, offset = 16384, length = 16384, streamlength = 33936
+Trying for window attributes
+Trying for query tree
+NPP_Write : called for instance 84c5378, stream 84c75e8, offset = 32768, length = 1168, streamlength = 33936
+Trying for window attributes
+Trying for query tree
+NPP_SetWindow : called for instance 84c5378
+Window from browser - 67108866
+NPP_SetWindow : called for instance 84c5378
+Window from browser - 67108866
+NPP_DestroyStream : called for instance 84c5378 and stream 84c75e8
+NPP_Destroy : called for instance 84c5378
