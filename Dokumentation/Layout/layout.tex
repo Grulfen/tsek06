@@ -155,6 +155,9 @@ figure \ref{fig:freq_mult_final} in appendix \ref{sec:Layout}.
 
 \section{Simulation Result}
 % Testresultat, typiska tester. Med PAD-frame och allt
+In this section the simulation result of the system and its subsystem will be
+presented.
+
 \subsection{Whole System Simulation}
 The simulations of the system, in the different corners, worked well. A multiplication
 of four could be reached in all corners, after a little tweaking of the voltage-levels.
@@ -240,6 +243,7 @@ probably better than needed and that the difference between some of the lower
 bits is very small due to non-linearities. A possible solution would be to
 ``remove`` one bit from the system. This would probably also make it possible to
 have a larger range and shift the centre of the interval closer to 250MHz.
+Because the system would be smaller it would also consume less power.
 
 Testing the design in different process corners showed huge difference in
 performance in the worst power and worst speed corners. The worst zero and worst
@@ -323,14 +327,40 @@ The result of a simulation can be seen in figure \ref{fig:freq_mult_sim} in appe
 
 \section{Risks}
 % Vad kan gå fel
+In this section the risks of the design is discussed. The risks will mainly be
+about the process variations during fabrication. There is also the risk that,
+even though the current densities of the wires were tested, somehow a node was
+overlooked and will see a current that is too high.
+
 \subsection{Phase Detector}
 One of the biggest risks concerning the PD is when we get
 slow/slow transistors, since the PD is used both as a stand-alone
 module, and within the lock detector.
+
 \subsection{Counter}
-As the Counter is used to control the delay line, the speed and timing is not as big an issue as in the case of the other parts. The only issue that has occurred is that of the timing of the carry propagation signal and the inputs. When the transistor level Counter was tested, the input signals did not have to be clocked. In the layout this resulted in glitches where the upper bits acted as if the counter was counting up while the lower bits counted down as the input signals indicated. This problem occurred when the input signals switched too close in time to the switching of the clock. In this design the problem is solved by sampling the input signals through DFFs, but it can be easily overlooked as the signals appear to be sampled by the same clock if the parasitic capacitances of the wires, and the delays induced by these, are overlooked.
-The carry propagation is the critical path of the Counter and therefore determines the maximum frequency at which it can operate. As this design has a 6-bit Counter the carry propagation path is quite long. Thus it is important to size the transistors for maximum speed.
+As the Counter is used to control the delay line, the speed and timing is not as
+big an issue as in the case of the other parts. The only issue that has occurred
+is that of the timing of the carry propagation signal and the inputs. When the
+transistor level Counter was tested, the input signals did not have to be
+clocked. In the layout this resulted in glitches where the upper bits acted as
+if the counter was counting up while the lower bits counted down as the input
+signals indicated. This problem occurred when the input signals switched too
+close in time to the switching of the clock. In this design the problem is
+solved by sampling the input signals through DFFs, but it can be easily
+overlooked as the signals appear to be sampled by the same clock if the
+parasitic capacitances of the wires, and the delays induced by these, are
+overlooked. The carry propagation is the critical path of the Counter and
+therefore determines the maximum frequency at which it can operate. As this
+design has a 6-bit Counter the carry propagation path is quite long. Thus it is
+important to size the transistors for maximum speed. 
+
 \subsection{Digitally Controlled Delay Line}
+The simulations of the delay line showed that process variation corners is a big
+risk. In the worst speed case it is probably not possible to reach an output
+frequency of 1GHz. For worst power there should not be any real problem since
+producing a little higher output frequency is not a bad thing. The only risk is
+that the capacitance on the output will distort signals of higher frequencies.
+
 \subsection{Lock Detector}
 \subsection{Frequency Multiplier}
 
@@ -341,7 +371,8 @@ The carry propagation is the critical path of the Counter and therefore determin
 % Vad var bra/dåligt
 % Vad bör ändras
 % Kommentarer till kursen
-% Kan skriva om att eventuellt ta bort en bit. 5 bitar hade varit nog.
+
+
 \newpage
 \appendix 
 \newpage
