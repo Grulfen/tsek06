@@ -172,18 +172,28 @@ ws & 40\degree & 800 MHz\\
 tm & 100\degree & 880 MHz
 \end{tabular}
 
-%If the corner simulated was ws, the voltage for the frequency multiplier
-%needed to be adjusted, and the input clock frequency had to be lowered 
-%to 200 MHz resulting in an output of 800 MHz instead of the desired 1 GHz.
+A simulation of the system can be viewed in Figure \ref{fig:sim_system}
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{../Bilder/Layout/simulation_system.png}
+\caption{Simulation of the system}
+\label{fig:sim_system}
+\end{figure}
 
-%On the other hand we managed to obtain an output of a little more than 1 GHz for
-%the 40\degree simulation of the tm corner, where we could successfully use an 
-%input clock with a period of 3.8ns.
-%Also, the voltage of the frequency multiplier could be reduced when the corner simulated was wp.
+If the corner simulated was ws, the voltage for the frequency multiplier
+needed to be adjusted, and the input clock frequency had to be lowered 
+to 200 MHz resulting in an output of 800 MHz instead of the desired 1 GHz.
 
-\subsubsection{Corner simulations}
+On the other hand we managed to obtain an output of a little more than 1 GHz for
+the 40\degree simulation of the tm corner, where we could successfully use an 
+input clock with a period of 3.8ns.
+Also, the voltage of the frequency multiplier could be reduced when the corner simulated was wp.
+
 \subsubsection{Temperature simulations}
-
+The system works well for 40\degree C in all corners except ws.
+When the temperature is increased to 100\degree C we had to decrease 
+the input clock in order to make the system multiply the frequency
+by four.
 
 \subsubsection{Power usage}
 The power usage, when the system is simulated at 40\degree C.
@@ -324,6 +334,29 @@ The result of a simulation can be seen in figure \ref{fig:freq_mult_sim} in appe
 % Vilken sorts PAD vart?
 % Meningen med alla pinnar
 % Sketch hur kontakterna ska kopplas till omvärlden
+\begin{figure} [h]
+\centering
+\includegraphics[width=0.6\textwidth]{../Bilder/Layout/PCB.png}
+\caption{PCB layout}
+\label{fig:PCB}
+\end{figure}
+
+\begin{tabular}{l  l  l  l}
+Pin number & Name & Type & Connection\\ \hline \\
+1 & VDD			& VDD				& Power Supply	\\
+2 & VDD\_MULT	& VDD				& Power Supply	\\
+3 & OUT			& Clock Output		& SMA			\\
+4 & 360\_DEL	& Clock Output		& SMA			\\
+5 & UPDOWN		& Digital Output	& Pin Array		\\
+6 & VSS			& Ground			& Ground		\\
+7 & VDD\_BUF	& VDD				& Power Supply	\\
+8 & LOCK		& Digital Output	& Pin Array		\\
+9 & IN\_OUT		& Clock output		& SMA			\\
+10 & VDD\_DELAY	& VDD				& Power Supply	\\
+11 & RESET		& Digital Input		& Push Button	\\
+12 & CLK		& Clock Input		& SMA
+\end{tabular}
+
 
 \section{Risks}
 % Vad kan gå fel
