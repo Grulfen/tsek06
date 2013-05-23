@@ -82,6 +82,7 @@
 \subsection{Digitally Controlled Delay Line}
 \subsubsection{Delay Block}
 \subsection{Lock Detector}
+% Hänvisa till tidigare beskrivning på lockdetektorn
 \subsection{Frequency Multiplier}
 \subsubsection{Transition Detector}
 \subsubsection{Edge Combiner}
@@ -97,6 +98,7 @@
 \subsection{Counter}
 \subsection{Digitally Controlled Delay Line}
 \subsection{Lock Detector}
+
 \subsection{Frequency Multiplier}
 
 \section{Evaluation Plan and PAD List}
@@ -111,6 +113,11 @@
 \subsection{Counter}
 \subsection{Digitally Controlled Delay Line}
 \subsection{Lock Detector}
+The main risk with the lock detector is if the lock signal goes low on a bad interval such that it causes the DLL output faulty signal.
+
+% Bild på hur bra VS dåligt interval är
+
+Related to this is also if it does not lock at all and thus is just a load on the chip. 
 \subsection{Frequency Multiplier}
 
 \section{Evaluation}
