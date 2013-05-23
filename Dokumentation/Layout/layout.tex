@@ -214,7 +214,7 @@ The most interesting aspect of the PD is the time needed for the PD to set-up.
  The set-up time is how long before the rising edge of the clock that the data
  needs to arrive to be sure to be noted by the PD this clock-period.
 
-The set-up time for the PD is 144ps.
+The set-up time for the PD is 144 ps.
 
 The reason as to why this value differ such a great deal, when compared 
 to the simulation from the transistor level is due to the fact that the 
@@ -247,23 +247,23 @@ shows the delay obtained for each bit in a typical mean simulation performed in
     \label{fig:del_bit}
 \end{figure}
 
-The range in this simulation is 185MHz to 263MHz which would be enough to
+The range in this simulation is 185 MHz to 263 MHz which would be enough to
 generate the desired output frequency. It can be noted that the resolution is
 probably better than needed and that the difference between some of the lower
 bits is very small due to non-linearities. A possible solution would be to
 ``remove`` one bit from the system. This would probably also make it possible to
-have a larger range and shift the centre of the interval closer to 250MHz.
+have a larger range and shift the centre of the interval closer to 250 MHz.
 Because the system would be smaller it would also consume less power.
 
 Testing the design in different process corners showed huge difference in
 performance in the worst power and worst speed corners. The worst zero and worst
 one corners showed no notable difference in range and resolution compared to typical
 mean. For worst power it is possible to reduce the voltage of the separate delay
-line VDD. Reducing it to 2.8V resulted in a frequency range for the input signal
-of approximately 250-370MHz. For worst speed the voltage needs instead to be
+line VDD. Reducing it to 2.8 V resulted in a frequency range for the input signal
+of approximately 250-370 MHz. For worst speed the voltage needs instead to be
 increased. However, even when increasing the voltage the target input frequency
-of 250MHz could not be reached. With a delay line VDD of 3.6V the obtained
-interval of the input was 150-200MHz.   
+of 250MHz could not be reached. With a delay line VDD of 3.6 V the obtained
+interval of the input was 150-200 MHz.   
 
 
 
@@ -390,7 +390,7 @@ important to size the transistors for maximum speed.
 \subsection{Digitally Controlled Delay Line}
 The simulations of the delay line showed that process variation corners is a big
 risk. In the worst speed case it is probably not possible to reach an output
-frequency of 1GHz. For worst power there should not be any real problem since
+frequency of 1 GHz. For worst power there should not be any real problem since
 producing a little higher output frequency is not a bad thing. The only risk is
 that the capacitance on the output will distort signals of higher frequencies.
 
