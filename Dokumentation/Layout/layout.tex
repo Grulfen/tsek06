@@ -202,6 +202,41 @@ To reach the wanted functionality the supply voltage and input frequency must be
 adjusted in some of the corner variations. But with some tweaking a
 multiplication of four can be reached in all the corners.
 
+With the typical mean model library the frequency multiplier works for
+input frequencies up to 285 MHz in simulations, in 40 \degree C with a supply
+voltage of 3.3 V.
+
+The maximum input frequency for different corners and temperatures can be seen
+in table \ref{tab:freq_mult}.
+
+When the input frequency is higher than the maximum the combined pulses will be
+a constant zero and the output will not be valid. For high frequencies the
+output will not reach full swing, even though the output driver is quite big.
+This is because the capacitance of the pad and measurement equipment will be
+relatively high. In the simulations a capacitance of 4 pF is used.
+
+The result of a simulation can be seen in figure \ref{fig:freq_mult_sim} in appendix
+\ref{sec:corners}.
+\begin{table}[h]
+        \centering
+        \begin{tabular}{|c|c|c|c|}
+                \hline
+        \textbf{Corner} & \textbf{Temperature (\degree C)} &
+        \textbf{Supply Voltage (V)} & \textbf{Max frequency(MHz)} \\
+        \hline
+        tm & 40 & 3.3 & 285 \\
+        tm & 90 & 3.3 & 250 \\
+        wp & 40 & 3.3 & 450 \\
+        ws & 40 & 3.4 & 200 \\
+        wz & 40 & 3.3 & 285 \\
+        wo & 40 & 3.3 & 313 \\
+
+        \hline
+\end{tabular}
+\caption{Maximum input frequency of frequency multipliers}
+\label{tab:freq_mult}
+\end{table}
+
 \section{Evaluation Plan and PAD List}
 % Hur ska chippet testas?
 % Vilken sorts PAD vart?
@@ -249,6 +284,13 @@ module, and within the lock detector.
 \newpage
 \section{Corner simulation results}
 \label{sec:corners}
+
+\begin{figure}[h]
+        \centering
+        \includegraphics[width=0.9\textwidth]{../Bilder/freq_mult_layout_sim.png}
+        \caption{Simulation of frequency multiplier}
+        \label{fig:freq_mult_sim}
+\end{figure}
 
 \begin{figure}[h]
   \centering
