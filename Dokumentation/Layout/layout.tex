@@ -1,3 +1,4 @@
+
 \documentclass[a4paper,12pt]{article} \usepackage{graphicx}
 \usepackage{epstopdf} %\usepackage{gensymb} \usepackage{longtable}
 \usepackage{graphicx}
@@ -74,32 +75,165 @@
 % Kort beskrivning med motivering och mål.
 % Blocknivå beskrivning liknande från tidigare rapporter
 
+The complete system
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{../Bilder/Layout/complete_system_pad.png}
+\caption{Complete system}
+\label{fig:complete_system_pad}
+\end{figure}
+
 \subsection{Phase Detector}
+The Phase Detector (PD) is used check whether the 360\degree delayed
+signal has got a rising edge before or after the system clock. If the
+360\degree delayed clock rises before the system clock, the output
+from the PD is 0, and if it rises after the system clock the output is 1.
+This is used to tell the counter whether it should count up or down. 
+
+The final layout of the PD can be seen in \ref{fig:pd_final} in appendix \ref{sec:Layout}.
 \subsection{Counter}
 \subsubsection{Enable Net}
 \subsubsection{Bitcell}
 \subsubsection{TFF and DFF}
+
 \subsection{Digitally Controlled Delay Line}
-\subsubsection{Delay Block}
+The Digitally Controlled Delay Line, henceforth called delay line, is the part
+that delays the input clock signal. The delay line is divided into eight
+identical blocks connected in series. Each block delays the signal $45\degree$
+giving a total delay of 360\degree. The blocks in turn consists of a two step
+buffers and NMOS transistors working as variable capacitors. The capacitors are
+controlled by the counter. For more details see the transistor level report
+\cite{transistor}.
+
+For the layout all transistor sizes in the delay line had to be changed because
+of added resistance and parasitic capacitances. With the sizes derived in the
+schematic the delay line gave too much delay, making it impossible to reach the
+desired operating frequency interval. In order to reduce the static delay the
+buffer sizes in the delay cells was increased. However, while reducing the
+static delay, this also caused interval to become smaller. Therefore the sizes
+of the NMOS capacitors had to be increased.
+
+When routing the interconnects within the delay line it is important to keep the
+length of the wires between the blocks equal. The distance from the delay line
+to the frequency multiplier also needs to be the same for all output signals.
+Furthermore, because the last output signal also is fed back to the phase and
+lock detectors, dummy transistors are placed on the lower seven output signals
+to obtain an equal load.
+
+The finished layout of the delay line is shown in figure \ref{fig:delay_final}.
+
 \subsection{Lock Detector}
 % Hänvisa till tidigare beskrivning på lockdetektorn
+To dampen and prevent jitter effects and to save power a lock detector
+has been implemented. As described in both the high level and the
+transistor level report the lock detector takes two signals and if
+the delay between them are within a certain interval the output is
+low, otherwise high.
 \subsection{Frequency Multiplier}
-\subsubsection{Transition Detector}
-\subsubsection{Edge Combiner}
-\subsubsection{Toggle Pulsed Latch}
+The frequency multiplier takes the eight delayed signals from the delay line and
+combines them to a signal with four times the frequency of the original input
+signal. A more detailed description can be seen in the transistor level report\cite{transistor}.
+
+When the interconnects were laid out, the length and metal layer was considered
+to achieve the same delay on all relevant signals. This was especially important
+in this block and the interconnects from the delay line to this block due to
+the precise timings. The layout of the frequency multiplier can be seen in
+figure \ref{fig:freq_mult_final} in appendix \ref{sec:Layout}.
+
 
 \section{Simulation Result}
 % Testresultat, typiska tester. Med PAD-frame och allt
 \subsection{Whole System Simulation}
+The simulations of the system, in the different corners, worked well. A multiplication
+of four could be reached in all corners, after a little tweaking of the voltage-levels.
+The system did not manage to work at an input of 250 MHz in all corners though.
+
+The system managed to obtain an output frequency of 1 GHz for most cases. The ones that
+did not reach the goal, but obtained an output frequency of roughly 800 MHz were:
+
+\begin{tabular}{l l l}
+Corner & Temperature & Frequency\\ \hline
+ws & 40\degree & 800 MHz\\
+tm & 100\degree & 880 MHz
+\end{tabular}
+
+%If the corner simulated was ws, the voltage for the frequency multiplier
+%needed to be adjusted, and the input clock frequency had to be lowered 
+%to 200 MHz resulting in an output of 800 MHz instead of the desired 1 GHz.
+
+%On the other hand we managed to obtain an output of a little more than 1 GHz for
+%the 40\degree simulation of the tm corner, where we could successfully use an 
+%input clock with a period of 3.8ns.
+%Also, the voltage of the frequency multiplier could be reduced when the corner simulated was wp.
+
 \subsubsection{Corner simulations}
 \subsubsection{Temperature simulations}
+
+
 \subsubsection{Power usage}
+The power usage, when the system is simulated at 40\degree C.
+
+\begin{tabular}{ l | l }
+Part & Power consumption [mW] \\
+\hline
+Delay Line & 6.38 \\
+Frequency multiplier & 25.61 \\
+Buffers & 90.12 \\
+The rest & 18.34 \\ \hline
+Total chip with buffers & 140.5 \\
+Total chip without buffers & 50.33
+\end{tabular}
+
 \subsection{Phase Detector}
+The most interesting aspect of the PD is the time needed for the PD to set-up.
+ The set-up time is how long before the rising edge of the clock that the data
+ needs to arrive to be sure to be noted by the PD this clock-period.
+
+The set-up time for the PD is 144ps.
+
+The reason as to why this value differ such a great deal, when compared 
+to the simulation from the transistor level is due to the fact that the 
+clock we compare the 360\degree delay signal to is a different one.
+The clock used to compare in the layout simulation is the internal clock, while 
+we compared the 360\degree delay signal to the external clock in the transistor level.
+
+The plotted results of the corners can be viewed in appendix \ref{sec:corners}
+%tm: 144ps\newline
+%wo: 178ps\newline
+%wz: 108ps\newline
+%wp: 84ps\newline
+%ws: 210ps
+
 \subsection{Counter}
 \subsection{Digitally Controlled Delay Line}
 \subsection{Lock Detector}
+The important feature of the lock detector is the delay interval where
+the lock signal goes low. In the figures below, an average of the
+output signal from different delays between the input clock and the
+360\degree delayed clock are shown. At 0 the delay between the input
+signals are 0, at -100 the 360\degree delayed clock comes 100 ps
+before the reference clock and reverse at 100 ps. In figure
+\ref{fig:LDtm} the interval for the typical mean can be seen. The interval 
+is quite even and locks when the delay between the reference
+clock and the 360\degree delayed clock is approximately 50 ps, or
+less. Corner simulations of the lock interval are presented in
+appendix \ref{sec:corners}.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.65\textwidth]{../Bilder/LD_tran/LD_lsim_tm.png}
+  \caption{Lock interval in typical mean}
+  \label{fig:LDtm}
+\end{figure}
+
+\clearpage
+
 
 \subsection{Frequency Multiplier}
+To reach the wanted functionality the supply voltage and input frequency must be
+adjusted in some of the corner variations. But with some tweaking a
+multiplication of four can be reached in all the corners.
 
 \section{Evaluation Plan and PAD List}
 % Hur ska chippet testas?
@@ -110,6 +244,9 @@
 \section{Risks}
 % Vad kan gå fel
 \subsection{Phase Detector}
+One of the biggest risks concerning the PD is when we get
+slow/slow transistors, since the PD is used both as a stand-alone
+module, and within the lock detector.
 \subsection{Counter}
 \subsection{Digitally Controlled Delay Line}
 \subsection{Lock Detector}
@@ -141,8 +278,141 @@ Related to this is also if it does not lock at all and thus is just a load on th
                 Shao-Ku Kao, Bo-Jiun Chen and Shen-Iuan Liu \\
                 IEEE Transations on Circuits and Systems - II: Express Briefs, Vol. 54 No. 7, July 2007
         \bibitem{dll_report}\textit{DLL-Based Frequency Multiplier - }
-                Layout Edition 2008-05-25 
+                Layout Edition 2008-05-25 \\
+        \bibitem{transistor}\textit{Transistor Level - }
+                Bengtz, Berneland, Björklund, Hallberg, Svensk \\
 
 \end{thebibliography}
+
+\newpage
+\section{Corner simulation results}
+\label{sec:corners}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.65\textwidth]{../Bilder/Layout/simulations/pd_tm.png}
+  \caption{Set-up time of PD in typical mean}
+  \label{fig:PDtm}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.65\textwidth]{../Bilder/Layout/simulations/pd_wo.png}
+  \caption{Set-up time of PD in worst one}
+  \label{fig:PDwo}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.65\textwidth]{../Bilder/Layout/simulations/pd_wz.png}
+  \caption{Set-up time of PD in worst zero}
+  \label{fig:PDwz}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.65\textwidth]{../Bilder/Layout/simulations/pd_wp.png}
+  \caption{Set-up time of PD in worst power}
+  \label{fig:PDwp}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.65\textwidth]{../Bilder/Layout/simulations/pd_ws.png}
+  \caption{Set-up time of PD in worst slow}
+  \label{fig:PDws}
+\end{figure}
+
+
+In figure \ref{fig:LDwp} to \ref{fig:LDws} the corner simulations for
+the lock interval is shown.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.65\textwidth]{../Bilder/LD_tran/LD_lsim_wp.png}
+  \caption{Lock interval in worst power}
+  \label{fig:LDwp}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.65\textwidth]{../Bilder/LD_tran/LD_lsim_wo.png}
+  \caption{Lock interval in worst one}
+  \label{fig:LDwo}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.65\textwidth]{../Bilder/LD_tran/LD_lsim_wz.png}
+  \caption{Lock interval in worst zero}
+  \label{fig:LDwz}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.65\textwidth]{../Bilder/LD_tran/LD_lsim_ws.png}
+  \caption{Lock interval in worst slow}
+  \label{fig:LDws}
+\end{figure}
+
+\section{Layout of sub-blocks}
+\label{sec:Layout}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]{../Bilder/Layout/lock_detector.png}
+  \caption{Lock Detector layout}
+  \label{fig:LD}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]{../Bilder/Layout/pd_including_clk_set.png}
+  \caption{PD layout}
+  \label{fig:pd_final}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]{../Bilder/Layout/bitcell.png}
+  \caption{Lock Detector layout}
+  \label{fig:bitcell_final}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]{../Bilder/Layout/ud_counter_6bit.png}
+  \caption{UD counter layout}
+  \label{fig:counter_final}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]{../Bilder/Layout/delay_line_trans.png}
+  \caption{Delay line layout}
+  \label{fig:delay_final}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]{../Bilder/Layout/freq_mult_tpl.png}
+  \caption{Freqmult layout}
+  \label{fig:freq_mult_final}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]{../Bilder/Layout/dff_sync_reset_qbar_clkset.png}
+  \caption{DFF layout}
+  \label{fig:dff_final}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]{../Bilder/Layout/complete_system.png}
+  \caption{Complete system layout}
+  \label{fig:complete_system_final}
+\end{figure}
+
 \end{document} 
 % Local Variables: %%% mode: latex %%% TeX-master: t %%% End:
