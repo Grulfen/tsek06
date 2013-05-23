@@ -326,7 +326,7 @@ The result of a simulation can be seen in figure \ref{fig:freq_mult_sim} in appe
 
         \hline
 \end{tabular}
-\caption{Maximum input frequency of frequency multipliers}
+\caption{Maximum input frequency of frequency multiplier}
 \label{tab:freq_mult}
 \end{table}
 
@@ -405,12 +405,26 @@ producing a little higher output frequency is not a bad thing. The only risk is
 that the capacitance on the output will distort signals of higher frequencies.
 
 \subsection{Lock Detector}
-The main risk with the lock detector is if the lock signal goes low on a bad interval such that it causes the DLL output faulty signal.
+The main risk with the lock detector is if the lock signal goes low on a bad
+interval such that it causes the DLL output faulty signal.
 
 % Bild på hur bra VS dåligt interval är
 
 Related to this is also if it does not lock at all and thus is just a load on the chip. 
+
 \subsection{Frequency Multiplier}
+As in the transistor level, the most sensitive part in the frequency
+multiplier is the edge combiner, due to the high frequency signal it produces.
+This can be seen when simulating with the worst speed model library, where the
+input frequency needs to be reduced. Since the output signal from the edge
+combiner has a very high frequency (around 2 GHz) and is very sensitive it would
+be difficult to have this signal as a test signal as this would add additional
+capacitances. Because of this there is no test signals from the frequency
+multiplier, so if it malfunctions it will be difficult to detect what the
+problem is.
+
+Generally the process variations are a risk because the behavior of the
+frequency multiplier varies a lot in the different corners.
 
 
 \section{Evaluation}
