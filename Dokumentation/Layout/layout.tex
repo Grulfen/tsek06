@@ -136,11 +136,12 @@ to obtain an equal load.
 The finished layout of the delay line is shown in figure \ref{fig:delay_final}.
 
 \subsection{Lock Detector}
+% Hänvisa till tidigare beskrivning på lockdetektorn
 To dampen and prevent jitter effects and to save power a lock detector
 has been implemented. As described in both the high level and the
 transistor level report the lock detector takes two signals and if
 the delay between them are within a certain interval the output is
-low, otherwise high.
+low, otherwise high. The layout can be seen in appendix \ref{sec:layout} in figure \ref{fig:LD}.
 \subsection{Frequency Multiplier}
 The frequency multiplier takes the eight delayed signals from the delay line and
 combines them to a signal with four times the frequency of the original input
@@ -269,15 +270,14 @@ interval of the input was 150-200 MHz.
 
 \subsection{Lock Detector}
 The important feature of the lock detector is the delay interval where
-the lock signal goes low. In the figures below, an average of the
-output signal from different delays between the input clock and the
-360\degree delayed clock are shown. At 0 the delay between the input
-signals are 0, at -100 the 360\degree delayed clock comes 100 ps
+the lock signal goes low. In the figure below an average of the
+output signal from different delays between when the input clock and the
+360\degree delayed clock are shown. At 0 delay, the delay between the input
+signals is of course 0, at -100 ps delay the 360\degree delayed clock comes 100 ps
 before the reference clock and reverse at 100 ps. In figure
 \ref{fig:LDtm} the interval for the typical mean can be seen. The interval 
-is quite even and locks when the delay between the reference
-clock and the 360\degree delayed clock is approximately 50 ps, or
-less. Corner simulations of the lock interval are presented in
+is quite even and can lock when the difference between the reference
+clock and the 360\degree delayed clock is approximately 80 ps. Corner simulations of the lock interval are presented in
 appendix \ref{sec:corners}.
 
 \begin{figure}[h]
@@ -288,6 +288,7 @@ appendix \ref{sec:corners}.
 \end{figure}
 
 \clearpage
+
 
 \subsection{Frequency Multiplier}
 To reach the wanted functionality the supply voltage and input frequency must be
@@ -329,18 +330,17 @@ The result of a simulation can be seen in figure \ref{fig:freq_mult_sim} in appe
 \label{tab:freq_mult}
 \end{table}
 
+\newpage
 \section{Evaluation Plan and PAD List}
-% Hur ska chippet testas?
-% Vilken sorts PAD vart?
-% Meningen med alla pinnar
-% Sketch hur kontakterna ska kopplas till omvärlden
-\begin{figure} [h]
+
+\begin{figure} [h!]
 \centering
 \includegraphics[width=0.6\textwidth]{../Bilder/Layout/PCB.png}
 \caption{PCB layout}
 \label{fig:PCB}
 \end{figure}
 
+\begin{table} [h!]
 \begin{tabular}{l  l  l  l}
 Pin number & Name & Type & Connection\\ \hline \\
 1 & VDD			& VDD				& Power Supply	\\
@@ -356,6 +356,16 @@ Pin number & Name & Type & Connection\\ \hline \\
 11 & RESET		& Digital Input		& Push Button	\\
 12 & CLK		& Clock Input		& SMA
 \end{tabular}
+\caption{PCB table}
+\label{tab:PCB}
+\end{table}
+
+\subsection{Testing of the System}
+% Hur ska chippet testas?
+The testing will be done for different input clock frequencies
+, with varying settings of voltage levels for the sub-systems. The
+signals we are most interested in are the signals 3, 4, 5, 8 and 9
+from Table \ref{tab:PCB}. The testing will be done using an oscilloscope.
 
 
 \section{Risks}
@@ -395,6 +405,11 @@ producing a little higher output frequency is not a bad thing. The only risk is
 that the capacitance on the output will distort signals of higher frequencies.
 
 \subsection{Lock Detector}
+The main risk with the lock detector is if the lock signal goes low on a bad interval such that it causes the DLL output faulty signal.
+
+% Bild på hur bra VS dåligt interval är
+
+Related to this is also if it does not lock at all and thus is just a load on the chip. 
 \subsection{Frequency Multiplier}
 
 \section{Evaluation}

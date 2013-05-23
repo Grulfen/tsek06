@@ -83,12 +83,18 @@ The Verilog-A code used to describe the blocks can be seen in Appendix \ref{sec:
 
 \subsection{Phase Detector}
 The phase detector (PD) has a very simple design. It is a DFF with the
+<<<<<<< HEAD
+reference clock as update signal and the delayed clock signal coming out from the last delay cell as input signal (as in figure \ref{fig:phase_det}). If the delayed clock rises before
+the reference clock does, the output will be set to a logic high. If the delayed clock has not yet risen 
+when the reference clock rises the output will be set to a logic zero. The clocks are checked when the transient voltage (i.e 50\% 
+=======
 reference clock as update signal and the delayed clock signal coming out from the 
 last delay cell as input signal (as in figure \ref{fig:phase_det}). If the delayed 
 clock rises before
 the reference clock does, the output will be set to a logic high. If the delayed 
 clock has not yet risen when the reference clock rises the output will be set 
 to a logic zero. The clocks are checked when the transient voltage (i.e 50\% 
+>>>>>>> 7e4b7359d851d93973a9b356e2a2c340006975f7
 of rise-time/fall-time) is exceeded.
 
 \begin{figure}[h!b]
