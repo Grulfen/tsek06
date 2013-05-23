@@ -329,18 +329,17 @@ The result of a simulation can be seen in figure \ref{fig:freq_mult_sim} in appe
 \label{tab:freq_mult}
 \end{table}
 
+\newpage
 \section{Evaluation Plan and PAD List}
-% Hur ska chippet testas?
-% Vilken sorts PAD vart?
-% Meningen med alla pinnar
-% Sketch hur kontakterna ska kopplas till omvärlden
-\begin{figure} [h]
+
+\begin{figure} [h!]
 \centering
 \includegraphics[width=0.6\textwidth]{../Bilder/Layout/PCB.png}
 \caption{PCB layout}
 \label{fig:PCB}
 \end{figure}
 
+\begin{table} [h!]
 \begin{tabular}{l  l  l  l}
 Pin number & Name & Type & Connection\\ \hline \\
 1 & VDD			& VDD				& Power Supply	\\
@@ -356,6 +355,16 @@ Pin number & Name & Type & Connection\\ \hline \\
 11 & RESET		& Digital Input		& Push Button	\\
 12 & CLK		& Clock Input		& SMA
 \end{tabular}
+\caption{PCB table}
+\label{tab:PCB}
+\end{table}
+
+\subsection{Testing of the System}
+% Hur ska chippet testas?
+The testing will be done for different input clock frequencies
+, with varying settings of voltage levels for the sub-systems. The
+signals we are most interested in are the signals 3, 4, 5, 8 and 9
+from Table \ref{tab:PCB}. The testing will be done using an oscilloscope.
 
 
 \section{Risks}
