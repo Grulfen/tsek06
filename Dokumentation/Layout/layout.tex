@@ -141,7 +141,7 @@ To dampen and prevent jitter effects and to save power a lock detector
 has been implemented. As described in both the high level and the
 transistor level report the lock detector takes two signals and if
 the delay between them are within a certain interval the output is
-low, otherwise high. The layout can be seen in appendix \ref{sec:layout} in figure \ref{fig:LD}.
+low, otherwise high. The layout can be seen in appendix \ref{sec:Layout} in figure \ref{fig:LD}.
 \subsection{Frequency Multiplier}
 The frequency multiplier takes the eight delayed signals from the delay line and
 combines them to a signal with four times the frequency of the original input
@@ -169,8 +169,8 @@ did not reach the goal, but obtained an output frequency of roughly 800 MHz were
 
 \begin{tabular}{l l l}
 Corner & Temperature & Frequency\\ \hline
-ws & 40\degree & 800 MHz\\
-tm & 100\degree & 880 MHz
+ws & 40 \degree C & 800 MHz\\
+tm & 100 \degree C & 880 MHz
 \end{tabular}
 
 A simulation of the system can be viewed in Figure \ref{fig:sim_system}
@@ -186,18 +186,18 @@ needed to be adjusted, and the input clock frequency had to be lowered
 to 200 MHz resulting in an output of 800 MHz instead of the desired 1 GHz.
 
 On the other hand we managed to obtain an output of a little more than 1 GHz for
-the 40\degree simulation of the tm corner, where we could successfully use an 
+the 40 \degree C simulation of the tm corner, where we could successfully use an 
 input clock with a period of 3.8ns.
 Also, the voltage of the frequency multiplier could be reduced when the corner simulated was wp.
 
 \subsubsection{Temperature simulations}
-The system works well for 40\degree C in all corners except ws.
-When the temperature is increased to 100\degree C we had to decrease 
+The system works well for 40 \degree C in all corners except ws.
+When the temperature is increased to 100 \degree C we had to decrease 
 the input clock in order to make the system multiply the frequency
 by four.
 
 \subsubsection{Power usage}
-The power usage, when the system is simulated at 40\degree C.
+The power usage, when the system is simulated at 40 \degree C.
 
 \begin{tabular}{ l | l }
 Part & Power consumption [mW] \\
@@ -239,12 +239,12 @@ the functionality of the delay line. The first being the frequency range of the 
 for which a successful lock can be obtained. The second is the resolution,
 meaning the sizes of the steps when changing the delay. Figure \ref{fig:del_bit}
 shows the delay obtained for each bit in a typical mean simulation performed in
-40\degree.
+40 \degree C.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{../Bilder/Layout/simulations/delayCMOSTM40.png}
-    \caption{Delay Obtained in CMOSTM 40\degree}
+    \caption{Delay Obtained in CMOSTM 40 \degree C}
     \label{fig:del_bit}
 \end{figure}
 
@@ -411,6 +411,7 @@ The main risk with the lock detector is if the lock signal goes low on a bad int
 
 Related to this is also if it does not lock at all and thus is just a load on the chip. 
 \subsection{Frequency Multiplier}
+
 
 \section{Evaluation}
 % Vad har vi lärt oss
