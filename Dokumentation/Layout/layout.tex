@@ -98,6 +98,7 @@ The final layout of the PD can be seen in \ref{fig:pd_final} in appendix \ref{se
 \subsubsection{TFF and DFF}
 
 \subsection{Digitally Controlled Delay Line}
+\label{sec:del}
 The Digitally Controlled Delay Line, henceforth called delay line, is the part
 that delays the input clock signal. The delay line is divided into eight
 identical blocks connected in series. Each block delays the signal $45\degree$
@@ -113,6 +114,10 @@ desired operating frequency interval. In order to reduce the static delay the
 buffer sizes in the delay cells was increased. However, while reducing the
 static delay, this also caused interval to become smaller. Therefore the sizes
 of the NMOS capacitors had to be increased.
+
+A separate VDD was added to the delay line in order to be able to compensate for
+process variations. A higher voltage would make the overall delay smaller and a
+lower voltage could increase the delay.
 
 When routing the interconnects within the delay line it is important to keep the
 length of the wires between the blocks equal. The distance from the delay line
@@ -189,6 +194,40 @@ external one in the transistor level.
 
 \subsection{Counter}
 \subsection{Digitally Controlled Delay Line}
+As mentioned in the description of the delay line in section \ref{sec:del} all
+transistor sizes had to be changed in the layout. There are two important aspects of
+the functionality of the delay line. The first being the frequency range of the input
+for which a successful lock can be obtained. The second is the resolution,
+meaning the sizes of the steps when changing the delay. Figure \ref{fig:del_bit}
+shows the delay obtained for each bit in a typical mean simulation performed in
+40\degree.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../Bilder/Layout/simulations/delayCMOSTM40.png}
+    \caption{Delay Obtained in CMOSTM 40\degree}
+    \label{fig:del_bit}
+\end{figure}
+
+The range in this simulation is 185MHz to 263MHz which would be enough to
+generate the desired output frequency. It can be noted that the resolution is
+probably better than needed and that the difference between some of the lower
+bits is very small due to non-linearities. A possible solution would be to
+``remove`` one bit from the system. This would probably also make it possible to
+have a larger range and shift the centre of the interval closer to 250MHz.
+
+Testing the design in different process corners showed huge difference in
+performance in the worst power and worst speed corners. The worst zero and worst
+one corners showed no notable difference in range and resolution compared to typical
+mean. For worst power it is possible to reduce the voltage of the separate delay
+line VDD. Reducing it to 2.8V resulted in a frequency range for the input signal
+of approximately 250-370MHz. For worst speed the voltage needs instead to be
+increased. However, even when increasing the voltage the target input frequency
+of 250MHz could not be reached. With a delay line VDD of 3.6V the obtained
+interval of the input was 150-200MHz.   
+
+
+
 \subsection{Lock Detector}
 The important feature of the lock detector is the delay interval where
 the lock signal goes low. In the figures below, an average of the
@@ -240,7 +279,7 @@ module, and within the lock detector.
 % Vad var bra/dåligt
 % Vad bör ändras
 % Kommentarer till kursen
-
+% Kan skriva om att eventuellt ta bort en bit. 5 bitar hade varit nog.
 \newpage
 \appendix 
 \newpage
