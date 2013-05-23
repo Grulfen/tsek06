@@ -89,7 +89,9 @@ The Phase Detector (PD) is used check whether the 360\degree delayed
 signal has got a rising edge before or after the system clock. If the
 360\degree delayed clock rises before the system clock, the output
 from the PD is 0, and if it rises after the system clock the output is 1.
-This is used to tell the counter whether it should count up or down.
+This is used to tell the counter whether it should count up or down. 
+
+The final layout of the PD can be seen in \ref{fig:pd_final} in appendix \ref{sec:Layout}.
 \subsection{Counter}
 \subsubsection{Enable Net}
 \subsubsection{Bitcell}
@@ -142,25 +144,39 @@ figure \ref{fig:freq_mult_final} in appendix \ref{sec:Layout}.
 \section{Simulation Result}
 % Testresultat, typiska tester. Med PAD-frame och allt
 \subsection{Whole System Simulation}
+The simulations of the system, in the different corners, worked well. A multiplication
+of four could be reached in all corners, after a little tweaking of the voltage-levels.
+The system did not manage to work at an input of 250 MHz in all corners though.
+
+The system managed to obtain an output frequency of 1 GHz for most cases. The ones that
+did not reach the goal, but obtained an output frequency of roughly 800 MHz were:
+
+ws at 40\degree: 800 MHz \newline
+tm at 100\degree: 880 MHz
+
+If the corner simulated was ws, the voltage for the frequency multiplier
+needed to be adjusted, and the input clock frequency had to be lowered 
+to 200 MHz resulting in an output of 800 MHz instead of the desired 1 GHz.
+
+On the other hand we managed to obtain an output of a little more than 1 GHz for
+the 40\degree simulation of the tm corner, where we could successfully use an 
+input clock with a period of 3.8ns.
+Also, the voltage of the frequency multiplier could be reduced when the corner simulated was wp.
+
 \subsubsection{Corner simulations}
 \subsubsection{Temperature simulations}
 \subsubsection{Power usage}
 \subsection{Phase Detector}
-The most interesting aspect of the PD is the time
-needed for the PD to set-up. The set-up time is how long
- before the rising edge of the clock that the data needs 
- to arrive to be sure to be noted by the PD this clock-period.
+The most interesting aspect of the PD is the time needed for the PD to set-up.
+ The set-up time is how long  before the rising edge of the clock that the data
+ needs to arrive to be sure to be noted by the PD this clock-period.
 
 The set-up time for the PD is as follows:
 
-tm: 144ps
-
-wo: 178ps
-
-wz: 108ps
-
-wp: 84ps
-
+tm: 144ps\newline
+wo: 178ps\newline
+wz: 108ps\newline
+wp: 84ps\newline
 ws: 210ps
 
 The plotted results of the simulations can be viewed in appendix \ref{sec:corners}
@@ -170,8 +186,6 @@ to the simulations from the transistor level, is due to the fact that the
 clock we compare the 360\degree delay signal to in the layout simulations 
 is the internal one while we compared the 360\degree delay signal to the 
 external one in the transistor level.
-
-
 
 \subsection{Counter}
 \subsection{Digitally Controlled Delay Line}
