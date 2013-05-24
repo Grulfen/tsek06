@@ -65,18 +65,28 @@
 
 \section{Time Report}
 % Bifogas
-
+Se attached document.
 \section{Project Desciption}
 % Kort beskrivning med motivering och mål.
 % Blocknivå beskrivning liknande från tidigare rapporter
-
-The complete system
+The goal of the project is to successfully make a delay locked loop
+(DLL) where we from an input signal's frequency can generate an output
+signal whose frequency is the input frequency multiplied with an
+integer. In our project the output signal's frequency is four times
+the input. We have implemented a system such as can be seen in figure
+\ref{fig:DIA} and the final layout can be seen in figure \ref{fig:complete_system_pad}.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{../Bilder/DIA_high_level.png}
+  \caption{Block overview of the system}
+  \label{fig:DIA}
+\end{figure}
 
 \begin{figure}[h]
-\centering
-\includegraphics[width=\textwidth]{../Bilder/Layout/complete_system_pad.png}
-\caption{Complete system}
-\label{fig:complete_system_pad}
+  \centering
+  \includegraphics[width=\textwidth]{../Bilder/Layout/complete_system_pad.png}
+  \caption{Complete system}
+  \label{fig:complete_system_pad}
 \end{figure}
 
 \subsection{Phase Detector}
